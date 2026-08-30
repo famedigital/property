@@ -4,7 +4,9 @@
 **Date:** 2026-08-30  
 **Goal:** Multi-platform (Android, iOS, Web) property management for buildings / units / flats, with water-level sensors, **rent collection (payouts to building owner)**, RBAC in the database, cost-aware realtime, and cloud deployment options.
 
-**Related:** Full organogram, money flows, and ops playbooks → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)
+**Related:**
+- Full organogram, money flows, ops → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)
+- Thimphu source→tank LoRaWAN + CCTV → [`THIMPHU_LORAWAN_PIPELINE.md`](./THIMPHU_LORAWAN_PIPELINE.md)
 
 ---
 
@@ -66,7 +68,7 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 | Primary DB | **PostgreSQL 16+ with RLS** | RBAC + multi-tenant isolation in DB |
 | Telemetry store | **Same Postgres + TimescaleDB extension** (or plain hypertables via partitioning if Timescale not available) | Join sensors ↔ units in SQL; one ops surface |
 | Cache / pubsub | **Redis** (Upstash or self-hosted) | Presence, rate limits, alert fan-out |
-| Device protocol | **MQTT (EMQX or Mosquitto)** | Instant, cheap, IoT-native |
+| Device protocol | **LoRaWAN (sensors) + MQTT bridge into cloud**; Wi‑Fi/4G only where needed | Long-range Thimphu hills; CCTV on separate 4G/fiber |
 | App realtime | **WebSockets / Supabase Realtime / SSE** | Push level updates to apps |
 | ORM / migrations | **Drizzle ORM** | Typed schema shared with mobile types |
 | Object storage | **S3-compatible** (Cloudflare R2 / MinIO / AWS S3) | Photos, docs, firmware |
