@@ -2,7 +2,9 @@
 
 **Status:** Proposed (plan only — no implementation yet)  
 **Date:** 2026-08-30  
-**Goal:** Multi-platform (Android, iOS, Web) property management for buildings / units / flats, with water-level sensors, RBAC in the database, cost-aware realtime, and cloud deployment options.
+**Goal:** Multi-platform (Android, iOS, Web) property management for buildings / units / flats, with water-level sensors, **rent collection (payouts to building owner)**, RBAC in the database, cost-aware realtime, and cloud deployment options.
+
+**Related:** Full organogram, money flows, and ops playbooks → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)
 
 ---
 
@@ -36,6 +38,7 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 - Organizations (tenants of the SaaS) with multi-property portfolios
 - Buildings → floors → units / flats
 - Residents, staff, owners linked to properties
+- Leases + rent invoices + **pay-to-owner** collection (connected accounts)
 - Water tanks / cisterns / rooftop tanks mapped to buildings (and optionally units)
 - Sensor registry + live level % / liters + low/critical alerts
 - Work orders from alerts
@@ -43,8 +46,8 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 
 ### Phase 2
 - Metering / consumption trends, pump schedules, refill logistics
+- Autopay, arrears automation, owner tax/export statements
 - Vendor marketplace, inspections, documents
-- Accounting / rent collection
 - BMS / third-party PMS import (Entrata-style open API)
 
 ---
