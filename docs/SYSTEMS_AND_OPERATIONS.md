@@ -130,7 +130,7 @@ Owner sees expected vs collected vs outstanding in real time — independent of 
 |---|---|---|
 | **Building owner** | Owns asset; receives rent; sees portfolio & water risk | Owner dashboard, payouts, reports |
 | **Org admin** | Creates buildings, units, users, roles, payment KYC link | Admin, RBAC, settings |
-| **Property manager** | Occupancy, leases, tickets, escalation | Leases, units, work orders |
+| **Property manager** | Occupancy, tickets, chase rent — **does not hold rent money** | Leases, units, work orders, reminders (no payout bank) |
 | **Accounts / rent clerk** | Issue invoices, chase arrears, reconcile | Rent ledger, receipts, dunning |
 | **Facilities head** | Water tanks, pumps, vendors, SLAs | Sensors, alerts, assets |
 | **Maintenance staff** | Execute work orders | Mobile work orders |
