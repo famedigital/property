@@ -8,6 +8,7 @@ Plan only — see:
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — tech stack, DB, deploy
 - [`docs/SYSTEMS_AND_OPERATIONS.md`](docs/SYSTEMS_AND_OPERATIONS.md) — organogram, rent-to-owner, anti-skimming
 - [`docs/THIMPHU_LORAWAN_PIPELINE.md`](docs/THIMPHU_LORAWAN_PIPELINE.md) — source→tank LoRaWAN + CCTV
+- [`docs/WATER_SOURCE_ALERTS.md`](docs/WATER_SOURCE_ALERTS.md) — source water issue push/SMS alerts
 
 ## Planned stack (summary)
 

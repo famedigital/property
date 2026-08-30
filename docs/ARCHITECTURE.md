@@ -7,6 +7,7 @@
 **Related:**
 - Full organogram, money flows, ops → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)
 - Thimphu source→tank LoRaWAN + CCTV → [`THIMPHU_LORAWAN_PIPELINE.md`](./THIMPHU_LORAWAN_PIPELINE.md)
+- Water issue alerts from source → [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md)
 
 ---
 

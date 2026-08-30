@@ -230,6 +230,8 @@ Problem D:  Tank empty + CCTV shows source full        → Distribution fault (p
 
 This stops blame games: **manager / Thromde / building** — data shows which stage failed.
 
+**Alerts from source:** see [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md) — triggers, who is notified, push/SMS, escalation.
+
 ---
 
 ## 9. Phased rollout (Thimphu)
