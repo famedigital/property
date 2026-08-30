@@ -9,6 +9,7 @@
 - Thimphu source→tank LoRaWAN + CCTV → [`THIMPHU_LORAWAN_PIPELINE.md`](./THIMPHU_LORAWAN_PIPELINE.md)
 - Water issue alerts from source → [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md)
 - Seoul / Tokyo / Thimphu comparison → [`CITY_WATER_MONITORING_COMPARISON.md`](./CITY_WATER_MONITORING_COMPARISON.md)
+- AI features + API keys → [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md)
 
 ---
 
@@ -76,6 +77,7 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 | Object storage | **S3-compatible** (Cloudflare R2 / MinIO / AWS S3) | Photos, docs, firmware |
 | Maps | Mapbox or Google Maps | Building location |
 | Push notifications | Expo Push + FCM/APNs | Critical water alerts |
+| AI | **Vercel AI SDK + AI Gateway** (`AI_GATEWAY_API_KEY`) | Alert explain, root-cause assist, briefs — server only |
 | Observability | OpenTelemetry + Grafana | Device + API health |
 | CI/CD | GitHub Actions + EAS + deploy hooks | Code management |
 
