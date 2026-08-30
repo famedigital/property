@@ -38,6 +38,67 @@
 
 ---
 
+## 1b. Why this exists: stop “manager eating the money”
+
+This is the #1 ops failure for many buildings today:
+
+| Old (broken) flow | What goes wrong |
+|---|---|
+| Resident pays **cash/transfer to manager** | Manager under-reports, delays remittance, invents “vacancies”, keeps change |
+| Owner only sees what manager *says* was collected | Owner cannot prove arrears vs theft |
+| Manual Excel / WhatsApp receipts | Easy to fake, delete, or alter |
+| Manager “holds” repairs money | Inflated vendor costs, no proof |
+
+### Product rule (non-negotiable)
+
+```text
+Resident MUST pay into the platform payment rail
+        → money settles to BUILDING OWNER account
+Manager NEVER receives rent into personal wallet/bank as the default path
+Manager fee is a VISIBLE split (or separate invoice) — never “whatever is left”
+Owner sees expected vs collected vs outstanding in real time — independent of manager
+```
+
+### Hard controls in software
+
+| Control | How it works |
+|---|---|
+| **Pay-to-owner only** | Card/bank/USSD checkout → owner connected account |
+| **No silent “mark paid”** | Manager cannot clear an invoice without a payment webhook **or** owner-approved cash exception |
+| **Cash exception (rare)** | Log cash → photo proof + **owner OTP/approve** → then marked paid; still auditable |
+| **Immutable ledger** | Payments cannot be deleted; only void/refund with reason + actor |
+| **Expected rent board** | Every active lease auto-invoices; vacancies are owner-visible |
+| **Manager fee capped** | Config: fixed % or flat; shown on every receipt |
+| **Dual visibility** | Owner + resident both see same provider receipt ID |
+| **Arrears alerts to owner** | Overdue notifies owner directly — not only manager |
+| **Audit log** | Who changed lease, rent, vacancy, fee — forever |
+| **Bank mismatch report** | Owner payouts vs invoices paid — weekly |
+
+### What the manager *is* allowed to do
+
+- Chase overdue residents (reminders)
+- Log maintenance / water issues
+- Propose rent/lease changes (**owner approves**)
+- Record *owner-approved* cash exceptions
+- Earn a **transparent management fee**
+
+### What the manager must *never* control alone
+
+- Destination bank for rent
+- Deleting payments
+- Declaring vacancy without owner visibility
+- Changing rent mid-cycle without audit
+- Holding “repair float” without work-order + receipt
+
+### Immediate ops change (even before full app)
+
+1. Residents pay **only** via official owner/platform link — never manager’s personal account
+2. “I gave it to the manager” is **not** proof of payment
+3. Owner reviews weekly: invoiced − paid − outstanding
+4. Pay manager a clear fee (e.g. %) — not leftover cash
+
+---
+
 ## 2. Organogram (customer side — who the app serves)
 
 ```text
