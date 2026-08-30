@@ -9,6 +9,7 @@ Plan only — see:
 - [`docs/SYSTEMS_AND_OPERATIONS.md`](docs/SYSTEMS_AND_OPERATIONS.md) — organogram, rent-to-owner, anti-skimming
 - [`docs/THIMPHU_LORAWAN_PIPELINE.md`](docs/THIMPHU_LORAWAN_PIPELINE.md) — source→tank LoRaWAN + CCTV
 - [`docs/WATER_SOURCE_ALERTS.md`](docs/WATER_SOURCE_ALERTS.md) — source water issue push/SMS alerts
+- [`docs/CITY_WATER_MONITORING_COMPARISON.md`](docs/CITY_WATER_MONITORING_COMPARISON.md) — Seoul/Tokyo vs Thimphu
 
 ## Planned stack (summary)
 
