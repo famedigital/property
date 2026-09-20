@@ -1,10 +1,10 @@
-# Pema — UI Inventory (Pages, Look, Needs)
+# Pemakhang — UI Inventory (Pages, Look, Needs)
 
-**Brand:** [Pema](./BRAND.md) — *Property, settled.*  
+**Brand:** [Pemakhang](./BRAND.md) — *Property, settled.*  
 **Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) via  
 `npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`  
 **Apps:** Next.js web (Owner/PM + public listings) · Expo mobile (Resident + Cleaning worker)  
-**Default appearance:** **Dark** (Northern Lights dark tokens). Light mode supported via same CSS vars.
+**Default appearance:** **Light** (Northern Lights light tokens). Dark mode optional via same CSS vars.
 
 ---
 
@@ -12,9 +12,9 @@
 
 | Token | Role in UI |
 |---|---|
-| **Background** | Cool blue-night (`oklch ~0.23`) — aurora ops feel |
-| **Foreground** | Near-white soft text |
-| **Primary** | Aurora **green** — CTAs, active nav, “Pay security”, Ask Pema |
+| **Background** | Soft cool-white (`oklch ~0.98`) — settled light ops feel |
+| **Foreground** | Charcoal text |
+| **Primary** | Aurora **green** — CTAs, active nav, “Pay security”, Ask Pemakhang |
 | **Secondary** | Cool **blue** — secondary buttons, water chips |
 | **Accent** | Violet-blue aurora — highlights, AI strip edge |
 | **Muted** | Mid-gray panels / rows |
@@ -24,7 +24,7 @@
 | **Fonts** | **Plus Jakarta Sans** (UI) · **JetBrains Mono** (IDs) · Source Serif 4 optional |
 
 ### Layout language
-- **Owner/PM web:** left sidebar (**Pema** wordmark) + top bar (“Ask Pema”) + main canvas  
+- **Owner/PM web:** left sidebar (**Pemakhang** wordmark) + top bar (“Ask Pemakhang”) + main canvas  
 - **Prospect:** full-bleed listing gallery, minimal chrome  
 - **Resident / Worker mobile:** bottom tab bar, large green primary CTAs  
 - Prefer **tables + dense lists** for ops; **cards only** for listing gallery and proof packs  
@@ -34,17 +34,17 @@
 
 ```text
 ┌──────────┬─────────────────────────────────────────────┐
-│ Pema     │  Top: Building switcher · Notifs · Ask Pema │
-│──────────┼─────────────────────────────────────────────┤
-│ Dash     │  Main: KPI row + AI risk strip + tables     │
-│ Units    │                                             │
-│ Listings │                                             │
-│ Rent     │                                             │
-│ Cleaning │                                             │
-│ Water    │                                             │
-│ People   │                                             │
-│ Settings │                                             │
-└──────────┴─────────────────────────────────────────────┘
+│ Pemakhang│  Top: Building switcher · Notifs · Ask Pemakhang │
+│──────────┼─────────────────────────────────────────────────┤
+│ Dash     │  Main: KPI row + AI risk strip + tables         │
+│ Units    │                                                 │
+│ Listings │                                                 │
+│ Rent     │                                                 │
+│ Cleaning │                                                 │
+│ Water    │                                                 │
+│ People   │                                                 │
+│ Settings │                                                 │
+└──────────┴─────────────────────────────────────────────────┘
 ```
 
 ---
@@ -71,7 +71,7 @@
 
 | # | Route / screen | Who | UI look / purpose |
 |---|---|---|---|
-| 1 | `/login` | All | Centered card, Pema wordmark, green primary button |
+| 1 | `/login` | All | Centered card, Pemakhang wordmark, green primary button |
 | 2 | `/signup` | Prospect / invite | Same shell; role from invite token |
 | 3 | `/forgot-password` | All | Email reset |
 | 4 | `/invite/[token]` | Staff/owner | Accept membership |
@@ -94,7 +94,7 @@
 
 | # | Route | Purpose / UI |
 |---|---|---|
-| 12 | `/app` | **Command dashboard** — KPI tiles, AI risk strip, Ask Pema |
+| 12 | `/app` | **Command dashboard** — KPI tiles, AI risk strip, Ask Pemakhang |
 | 13 | `/app/buildings` | Table of buildings |
 | 14 | `/app/buildings/new` | Create building form |
 | 15 | `/app/buildings/[id]` | Building overview (units, water, cleaning) |
@@ -123,7 +123,7 @@
 | 38 | `/app/people` | Members + roles |
 | 39 | `/app/settings` | Org profile + escrow + notification prefs (tabs) |
 
-*Overlays (not separate pages): Ask Pema drawer, notification popover, confirm dialogs.*
+*Overlays (not separate pages): Ask Pemakhang drawer, notification popover, confirm dialogs.*
 
 *Dashboard + buildings 4 · units 3 · listings 4 · applications 2 · leases 2 · rent 3 · cleaning 3 · water 2 · alerts 1 · WO 2 · people 1 · settings 1 → **28**.*
 
@@ -131,7 +131,7 @@
 
 | # | Screen | UI |
 |---|---|---|
-| 40 | Home | Dues chip, tank gauge, Ask Pema, quick pay |
+| 40 | Home | Dues chip, tank gauge, Ask Pemakhang, quick pay |
 | 41 | Pay rent | Escrow checkout |
 | 42 | Receipts | List + PDF |
 | 43 | Tickets | Create / list |
@@ -179,7 +179,7 @@ button input label textarea select checkbox radio-group switch
 form dialog sheet drawer dropdown-menu popover
 table card badge avatar separator tabs
 calendar date-picker (or react-day-picker)
-command (Ask Pema palette)
+command (Ask Pemakhang palette)
 sonner / toast
 sidebar navigation-menu breadcrumb
 scroll-area skeleton progress alert
@@ -203,7 +203,7 @@ chart (for tank / rent graphs)
 - Push notifications (Expo)  
 - Biometric device SDK or supervised mobile capture  
 - Maps (optional for worker address)  
-- `AI_GATEWAY_API_KEY` for Ask Pema  
+- `AI_GATEWAY_API_KEY` for Ask Pemakhang  
 
 ### 4.5 Roles → default home
 
@@ -227,7 +227,7 @@ chart (for tank / rent graphs)
 5. Escrow rent board + resident pay  
 6. Cleaning jobs + proof viewer + worker check-in  
 7. Building water gauge + alerts  
-8. Ask Pema drawer wired to tools  
+8. Ask Pemakhang drawer wired to tools  
 
 ---
 
@@ -239,4 +239,4 @@ Pamtsho WTP ERP: control-room overview, process tags, CMMS, stores, lab, network
 
 ## 7. One-line summary
 
-**52 screens NOW** on **Northern Lights** (cool dark, Plus Jakarta Sans, aurora green primary): public listings → security escrow → Owner/PM console → resident + worker apps, with Ask Pema on dashboards and clients.
+**52 screens NOW** on **Northern Lights** (light, Plus Jakarta Sans, aurora green primary): public listings → security escrow → Owner/PM console → resident + worker apps, with Ask Pemakhang on dashboards and clients.

@@ -1,33 +1,34 @@
-# Pema — Brand
+# Pemakhang — Brand
 
-**Name:** Pema  
-**Pronunciation:** *PEH-mah*  
-**Meaning:** Lotus (Dzongkha / Tibetan པདྨ་) — quiet growth, settled ground  
+**Name:** Pemakhang  
+**Pronunciation:** *peh-mah-KHANG*  
+**Parts:** **Pema** (lotus, Dzongkha/Tibetan པདྨ་) + **khang** (house / building)  
 **Tagline:** Property, settled.  
-**Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) via  
+**Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) — **light default**  
 `npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`
 
 ---
 
-## Why this name
+## Why not bare “Pema”
 
-**Pema** keeps PEMA front and center — short, soft, and rooted in Bhutan without sounding like startup hype.  
-Lotus undertone: calm, enduring, not flashy PropTech. Fits escrow trust, building care, and local ops.
+Bare **Pema** collides hard in market search and conversation: hotels, “Pema Realm”, clinics/hospitals, and countless personal names.  
+**Pemakhang** keeps PEMA, but locks meaning to **buildings** — this product — so it doesn’t sound like another Pema brand.
 
 | Considered | Why not |
 |---|---|
-| Pemora | Soft *-ora* blend — good alternate if you want longer |
-| Velora | Previous pick; dropped for PEMA |
-| Finora / Linora | Liked shape; not PEMA |
-| Pema OS / Pema PMS | Too product-y for the wordmark |
+| Pema (alone) | Too many market collisions |
+| Pema Realm–style | Occupied vibe / easy confusion |
+| Pemora | Soft *-ora*; weaker “building” signal |
+| PemaHold | Escrow-clear, less cultural |
+| Velora | Dropped earlier |
 
-**Alternate:** **Pemora** (same system, longer wordmark).
+**Alternate:** **Pemora** (if you want shorter wordmark later).
 
 ---
 
 ## One-line product
 
-**Pema** is quiet building ops: listings → security escrow → secured lease, escrow rent, cleaning proof, building water — with Ask Pema when you need it.
+**Pemakhang** is quiet building ops: listings → security escrow → secured lease, escrow rent, cleaning proof, building water — with Ask Pemakhang when you need it.
 
 ---
 
@@ -35,68 +36,68 @@ Lotus undertone: calm, enduring, not flashy PropTech. Fits escrow trust, buildin
 
 | Do | Don’t |
 |---|---|
-| Calm, precise, short | Hype, “disrupt”, emoji clutter |
-| “Escrow settled to owner” | “Revolutionize rent!!!” |
-| Clear status chips | Soft pastel SaaS fluff |
+| Calm, precise, short | Hype, “disrupt” |
+| “Escrow settled to owner” | Sounding like a hospital or hotel |
+| Clear status chips | Over-explaining lotus on every screen |
 
 **Sample UI strings**
 
-- Sidebar: `Pema`
+- Sidebar: `Pemakhang`
 - Empty vacancy: `No vacant units.`
 - Pay CTA: `Pay security`
 - Escrow: `Held until lease is secured`
-- AI: `Ask Pema`
+- AI: `Ask Pemakhang`
 
 ---
 
-## Visual identity (Northern Lights)
+## Visual identity (Northern Lights · light)
 
 | Element | Spec |
 |---|---|
-| **Wordmark** | `Pema` in **Plus Jakarta Sans**, semibold |
-| **Accent** | Aurora **green** primary on the **P** or lotus mark |
-| **Mark** | Soft lotus / petal — green + cool blue, not a cartoon flower |
-| **Surfaces** | Cool blue-tinted dark (`oklch ~0.23`), elevated cards |
-| **Secondary / accent** | Blue → violet aurora — water chips, secondary actions |
+| **Default mode** | **Light** |
+| **Wordmark** | `Pemakhang` in **Plus Jakarta Sans**, semibold |
+| **Accent** | Aurora **green** on **P** / lotus mark |
+| **Mark** | Abstract lotus petal (green + cool blue) |
+| **Surfaces** | Soft cool-white bg, white cards, muted sand-gray panels |
+| **Secondary** | Cool blue-violet — water / secondary |
 | **Radius** | `0.5rem` |
-| **Fonts** | **Plus Jakarta Sans** (UI) · **Source Serif 4** (rare display) · **JetBrains Mono** (IDs) |
-| **Default** | Dark |
+| **Fonts** | Plus Jakarta Sans · JetBrains Mono (IDs) · Source Serif 4 optional |
 
 ### Wordmark treatments
 
 ```text
-Pema                ← primary (sidebar, login, PDF)
-PEMA                ← rare; invoices / legal header only
-Ask Pema            ← AI affordance
-Listed on Pema      ← prospect footer
+Pemakhang           ← primary (sidebar, login, PDF)
+PEMAKHANG           ← rare; legal / invoice header
+Ask Pemakhang       ← AI
+Listed on Pemakhang ← prospect footer
 ```
 
 ### Don’t
 
-- Old Darkmatter / amber leftovers  
-- Literal water-drop logos as the brand mark  
-- Over-explaining “lotus” in every UI string  
+- Dark-first as default (dark remains optional later)  
+- Bare “Pema” as the product wordmark  
+- Cartoon house or hospital-cross marks  
 
 ---
 
-## Roles → how they meet Pema
+## Roles → first brand moment
 
-| Role | First brand moment |
+| Role | Sees |
 |---|---|
-| Owner / PM | Sidebar wordmark + dashboard |
-| Prospect | “Listed on Pema” |
-| Resident | Splash: **Pema** · Property, settled. |
-| Worker | Header: Pema Cleaning |
+| Owner / PM | Sidebar **Pemakhang** |
+| Prospect | “Listed on Pemakhang” |
+| Resident | Splash: **Pemakhang** · Property, settled. |
+| Worker | **Pemakhang** Cleaning |
 
 ---
 
 ## Domains / handles (check before buy)
 
-Prefer: `pema.app`, `pema.io`, `getpema.com`, `@pema`  
-Local: `pema.bt` if available.
+Prefer: `pemakhang.com`, `pemakhang.app`, `pemakhang.bt`, `@pemakhang`  
+Avoid leading with bare `pema.*` as the product identity.
 
 ---
 
 ## Legal note
 
-Working product brand for this repo. Confirm trademark / domain availability in Bhutan and target markets before public launch. “Pema” is a common given name — protect the wordmark + product category (property / building ops software).
+Working brand for this repo. Confirm trademark/domain before launch. Compound form reduces collision with given-name and unrelated “Pema …” businesses — still search Bhutan + regional registries.

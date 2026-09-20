@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pema — Brand</title>
+  <title>Pemakhang — Brand</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* Northern Lights — light */
     :root {
-      --background: oklch(0.2303 0.0125 264.2926);
-      --foreground: oklch(0.9219 0 0);
-      --card: oklch(0.3210 0.0078 223.6661);
+      --background: oklch(0.9824 0.0013 286.3757);
+      --foreground: oklch(0.3211 0 0);
+      --card: oklch(1.0000 0 0);
       --primary: oklch(0.6487 0.1538 150.3071);
       --primary-foreground: oklch(1.0000 0 0);
-      --secondary: oklch(0.5880 0.0993 245.7394);
-      --muted: oklch(0.3867 0 0);
-      --muted-foreground: oklch(0.7155 0 0);
-      --accent: oklch(0.6746 0.1414 261.3380);
-      --border: oklch(0.3867 0 0);
+      --secondary: oklch(0.6746 0.1414 261.3380);
+      --muted: oklch(0.8828 0.0285 98.1033);
+      --muted-foreground: oklch(0.5382 0 0);
+      --accent: oklch(0.8269 0.1080 211.9627);
+      --border: oklch(0.8699 0 0);
       --radius: 0.5rem;
       --font: "Plus Jakarta Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", monospace;
     }
     * { box-sizing: border-box; }
     body {
@@ -33,7 +35,8 @@
       display: flex; flex-wrap: wrap; gap: .5rem;
       align-items: center; justify-content: space-between;
       padding: .75rem 1.25rem; border-bottom: 1px solid var(--border);
-      background: color-mix(in oklch, var(--background) 92%, black);
+      background: color-mix(in oklch, var(--background) 90%, white);
+      backdrop-filter: blur(8px);
     }
     .toolbar a, .toolbar button {
       font-family: var(--font); font-size: .8rem; font-weight: 600;
@@ -41,37 +44,39 @@
       background: var(--primary); color: var(--primary-foreground); text-decoration: none;
     }
     .toolbar a.ghost {
-      background: transparent; color: var(--foreground); border: 1px solid var(--border);
+      background: var(--card); color: var(--foreground); border: 1px solid var(--border);
     }
     .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
     .hero {
-      min-height: 72vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start; gap: 1.25rem;
-      padding: 3rem 0 4rem;
+      min-height: 68vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 1.15rem;
+      padding: 2.5rem 0 3.5rem;
       background:
-        radial-gradient(700px 380px at 10% 20%, color-mix(in oklch, var(--primary) 14%, transparent), transparent 60%),
-        radial-gradient(500px 280px at 90% 70%, color-mix(in oklch, var(--secondary) 10%, transparent), transparent 55%);
+        radial-gradient(700px 380px at 8% 15%, color-mix(in oklch, var(--primary) 16%, transparent), transparent 58%),
+        radial-gradient(520px 300px at 92% 70%, color-mix(in oklch, var(--secondary) 12%, transparent), transparent 55%),
+        radial-gradient(400px 240px at 50% 100%, color-mix(in oklch, var(--accent) 18%, transparent), transparent 50%);
     }
     .mark svg { width: 36px; height: 36px; display: block; }
     .wordmark {
-      font-size: clamp(2.75rem, 8vw, 4.5rem); font-weight: 600;
+      font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 700;
       letter-spacing: -0.03em; line-height: 1; margin: 0;
     }
     .wordmark .p { color: var(--primary); }
     .tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted-foreground);
-      margin: 0; max-width: 28ch;
+      font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted-foreground);
+      margin: 0; max-width: 32ch;
     }
     .say {
-      font-size: .8rem; color: var(--muted-foreground);
+      font-size: .78rem; color: var(--muted-foreground); font-family: var(--mono);
       border: 1px solid var(--border); border-radius: 999px;
-      padding: .3rem .75rem; background: var(--muted);
+      padding: .3rem .75rem; background: var(--card);
     }
 
     section {
       border: 1px solid var(--border); border-radius: var(--radius);
       background: var(--card); padding: 1.35rem 1.25rem; margin-bottom: 1.1rem;
+      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.06);
     }
     section h2 { margin: 0 0 .5rem; font-size: 1.05rem; color: var(--primary); }
     section p, section li { font-size: .88rem; color: var(--muted-foreground); }
@@ -82,17 +87,17 @@
 
     .logo-card {
       border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 2rem 1.5rem; text-align: center; background: var(--muted);
+      padding: 2rem 1.5rem; text-align: center; background: var(--background);
     }
-    .logo-card.on-light {
-      background: oklch(0.97 0 0); color: oklch(0.21 0.03 265);
+    .logo-card.on-dark {
+      background: oklch(0.2303 0.0125 264.2926); color: oklch(0.92 0 0);
     }
-    .logo-card.on-light .wm { color: oklch(0.21 0.03 265); }
-    .logo-card.on-light .wm .p { color: oklch(0.65 0.15 150); }
-    .logo-card .wm { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo-card.on-dark .wm { color: oklch(0.92 0 0); }
+    .logo-card.on-dark .wm .p { color: var(--primary); }
+    .logo-card.on-dark .cap { color: oklch(0.72 0 0); }
+    .logo-card .wm { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em; }
     .logo-card .wm .p { color: var(--primary); }
     .logo-card .cap { margin-top: .6rem; font-size: .7rem; color: var(--muted-foreground); }
-    .logo-card.on-light .cap { color: oklch(0.45 0.02 265); }
 
     .swatches { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
     .sw {
@@ -112,12 +117,17 @@
     }
     .ui-chip.cta { background: var(--primary); color: var(--primary-foreground); border-color: transparent; font-weight: 600; }
 
+    .callout {
+      border-left: 3px solid var(--primary); background: color-mix(in oklch, var(--primary) 8%, var(--muted));
+      padding: .75rem .9rem; border-radius: 0 var(--radius) var(--radius) 0; margin: .75rem 0 0; font-size: .85rem;
+    }
+
     footer { text-align: center; color: var(--muted-foreground); font-size: .78rem; padding: 1.5rem 0; }
   </style>
 </head>
 <body>
   <div class="toolbar">
-    <div><strong style="color:var(--primary)">Pema</strong> · Brand</div>
+    <div><strong style="color:var(--primary)">Pemakhang</strong> · Brand</div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap">
       <a id="dl" href="BRAND.html" download="BRAND.html">Download HTML</a>
       <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory</a>
@@ -128,70 +138,70 @@
   <div class="wrap">
     <header class="hero">
       <div class="mark" aria-hidden="true">
-        <!-- Abstract lotus / petal — not a cartoon flower -->
         <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
                 stroke="oklch(0.6487 0.1538 150.3071)" stroke-width="1.75" stroke-linejoin="round"/>
           <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
-                stroke="oklch(0.5880 0.0993 245.7394)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
+                stroke="oklch(0.6746 0.1414 261.3380)" stroke-width="1.4" opacity=".8" stroke-linejoin="round"/>
           <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
         </svg>
       </div>
-      <h1 class="wordmark"><span class="p">P</span>ema</h1>
+      <h1 class="wordmark"><span class="p">P</span>emakhang</h1>
       <p class="tagline">Property, settled.</p>
-      <span class="say">PEH-mah · lotus · quiet building ops</span>
+      <span class="say">peh-mah-KHANG · lotus + house · light theme</span>
     </header>
 
     <section>
-      <h2>Why Pema</h2>
+      <h2>Why Pemakhang (not bare Pema)</h2>
       <p>
-        <strong>PEMA</strong> kept clear. Dzongkha / Tibetan for <strong>lotus</strong> —
-        calm growth, settled ground. Short enough for a sidebar; soft enough to not shout PropTech.
+        <strong>Pema</strong> alone collides with hotels, “Pema Realm”, clinics, and common given names.
+        <strong>Pemakhang</strong> = <strong>Pema</strong> (lotus) + <strong>khang</strong> (house / building) —
+        PEMA kept, meaning locked to <em>this</em> property product.
       </p>
-      <p style="margin-top:.75rem">
-        <strong>Alternate:</strong> Pemora (PEMA + soft *-ora* ending).
-      </p>
+      <div class="callout">
+        Alternate shorter mark: <strong>Pemora</strong>. Avoid leading with bare “Pema” as the product name.
+      </div>
     </section>
 
     <div class="grid2">
       <section>
-        <h2>Wordmark · dark</h2>
+        <h2>Wordmark · light (default)</h2>
         <div class="logo-card">
-          <div class="wm"><span class="p">P</span>ema</div>
-          <div class="cap">Primary — sidebar, splash, PDF</div>
+          <div class="wm"><span class="p">P</span>emakhang</div>
+          <div class="cap">Sidebar, splash, PDF</div>
         </div>
       </section>
       <section>
-        <h2>Wordmark · light</h2>
-        <div class="logo-card on-light">
-          <div class="wm"><span class="p">P</span>ema</div>
-          <div class="cap">Print / light sheets only</div>
+        <h2>Wordmark · dark (optional)</h2>
+        <div class="logo-card on-dark">
+          <div class="wm"><span class="p">P</span>emakhang</div>
+          <div class="cap">Optional dark mode later</div>
         </div>
       </section>
     </div>
 
     <section>
-      <h2>Color (Northern Lights)</h2>
+      <h2>Color (Northern Lights · light)</h2>
       <div class="swatches">
         <div class="sw"><i style="background:var(--background)"></i><span>Bg</span></div>
         <div class="sw"><i style="background:var(--foreground)"></i><span>Text</span></div>
         <div class="sw"><i style="background:var(--primary)"></i><span>Green</span></div>
         <div class="sw"><i style="background:var(--secondary)"></i><span>Blue</span></div>
+        <div class="sw"><i style="background:var(--accent)"></i><span>Accent</span></div>
         <div class="sw"><i style="background:var(--muted)"></i><span>Muted</span></div>
       </div>
-      <p style="margin-top:.85rem">Font: Plus Jakarta Sans. Radius 0.5rem. Default dark.</p>
+      <p style="margin-top:.85rem">Font: Plus Jakarta Sans. Radius 0.5rem. <strong>Default light.</strong></p>
     </section>
 
     <section>
       <h2>Voice · UI chips</h2>
       <div>
-        <span class="ui-chip">Ask Pema</span>
+        <span class="ui-chip">Ask Pemakhang</span>
         <span class="ui-chip cta">Pay security</span>
         <span class="ui-chip">Held until secured</span>
         <span class="ui-chip">No vacant units.</span>
         <span class="ui-chip">Escrow settled</span>
       </div>
-      <p style="margin-top:.85rem">Calm. Precise. Never hype.</p>
     </section>
 
     <section>
@@ -199,35 +209,18 @@
       <table>
         <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
         <tbody>
-          <tr><td>Owner / PM sidebar</td><td><strong>Pema</strong> wordmark</td></tr>
+          <tr><td>Owner / PM sidebar</td><td><strong>Pemakhang</strong></td></tr>
           <tr><td>Login / splash</td><td>Wordmark + tagline</td></tr>
-          <tr><td>Prospect listings</td><td>“Listed on Pema”</td></tr>
+          <tr><td>Prospect listings</td><td>“Listed on Pemakhang”</td></tr>
           <tr><td>Resident app</td><td>Splash · Property, settled.</td></tr>
-          <tr><td>Worker app</td><td>Pema Cleaning</td></tr>
-          <tr><td>AI</td><td>Ask Pema</td></tr>
+          <tr><td>Worker app</td><td>Pemakhang Cleaning</td></tr>
+          <tr><td>AI</td><td>Ask Pemakhang</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section>
-      <h2>Mark</h2>
-      <p>
-        Abstract lotus / petal — nods to the meaning without a literal flower sticker.
-        Green outline, soft blue inner petal, small center.
-      </p>
-      <div style="margin-top:1rem">
-        <svg width="72" height="72" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
-                stroke="oklch(0.6487 0.1538 150.3071)" stroke-width="1.75" stroke-linejoin="round"/>
-          <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
-                stroke="oklch(0.5880 0.0993 245.7394)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
-          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
-        </svg>
-      </div>
-    </section>
-
     <footer>
-      Source: <a href="BRAND.md">BRAND.md</a> · Theme Northern Lights · 2026-09-20
+      Source: <a href="BRAND.md">BRAND.md</a> · Northern Lights light · 2026-09-20
     </footer>
   </div>
 

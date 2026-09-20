@@ -1,7 +1,7 @@
 # Project Focus & Phasing
 
 **Updated:** 2026-09-20  
-**Brand:** [Pema](./BRAND.md) — *Property, settled.*
+**Brand:** [Pemakhang](./BRAND.md) — *Property, settled.*
 
 ## Groundwork sequence
 
@@ -27,7 +27,7 @@ Building water IoT
 
 | Doc | Role |
 |---|---|
-| [`BRAND.md`](./BRAND.md) / [`.html`](./BRAND.html) | **Pema** — name, voice, mark, Northern Lights |
+| [`BRAND.md`](./BRAND.md) / [`.html`](./BRAND.html) | **Pemakhang** — name, voice, mark, Northern Lights |
 | [`LISTING_AND_LEASING.md`](./LISTING_AND_LEASING.md) | Vacancies, listings, photos/3D, security → secured |
 | [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md) | Full AI control — dashboards & clients |
 | [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md) | Escrow + org ops |
