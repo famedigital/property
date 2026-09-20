@@ -10,6 +10,7 @@
 - Water issue alerts from source → [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md)
 - Seoul / Tokyo / Thimphu comparison → [`CITY_WATER_MONITORING_COMPARISON.md`](./CITY_WATER_MONITORING_COMPARISON.md)
 - AI features + API keys → [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md)
+- **Visual downloadable plan** → [`COMPLETE_SYSTEM_PLAN.html`](./COMPLETE_SYSTEM_PLAN.html)
 
 ---
 
