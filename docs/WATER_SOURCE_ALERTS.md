@@ -1,6 +1,8 @@
 # Water Issue Alerts — From Source
 
-**Need:** When something is wrong at the **Thimphu water source** (or on the path from source), the right people get **instant notifications** — not only when the building tank is already empty.
+**Need:** When something is wrong at the **Pamtsho / Thimphu source or WTP path**, the right people get **instant notifications** — Plant Manager / Thromde duty (municipal ERP) and, on the property product, building owners for shared-supply disruption.
+
+**Platform:** Alarms live in the **Pamtsho Water Utility ERP** ([`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md)). Thromde paper SCADA is not the notification path.
 
 ---
 
@@ -79,13 +81,14 @@ ChirpStack → MQTT → mqtt-bridge / alert-service
 
 | Role | Source P0 | Source P1 | Source P2/P3 | Building tank only |
 |---|---|---|---|---|
-| **Building owner** | Push + SMS | Push | In-app | Push (+ SMS if P0) |
-| **Facilities / water ops** | Push + SMS | Push + SMS | Push | Push |
-| **Property manager** | Push | Push | In-app | Push |
-| **Residents** (optional) | Broadcast: “Water supply issue from source — expect low pressure” | Same digest (not every sensor blip) | — | “Building tank low” only if shared tank |
+| **Plant Manager / Thromde duty** | Push + SMS | Push + SMS | Push | — |
+| **Building owner** (property tenant) | Push + SMS if supply affects their zone | Push | In-app | Push (+ SMS if P0) |
+| **Facilities / water ops** (property) | — | — | — | Push |
+| **Property manager** | Push if broadcast | Push | In-app | Push |
+| **Residents** (optional) | Supply disruption digest | Digest | — | Building tank messages |
 | **Platform support** | P0 webhook | — | Offline sensors | — |
 
-Residents get **human messages**, not raw sensor codes — avoids panic spam.
+Municipal vs property recipients are separated by `org_type` — Thromde ERP users do not see landlord escrow data.
 
 ---
 

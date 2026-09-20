@@ -1,7 +1,10 @@
 # Systems & Operations — Full Picture
 
-**Product:** Property management (buildings / units / flats) + water sensors + **rent collection**  
-**Money rule:** Rent is paid by the resident and **settled to the building owner** (platform may take a small SaaS/processing fee only).  
+**Product:** Property management (buildings / units / flats) + water sensors + **escrow rent collection**  
+**Money rule:** Resident pays into a **platform escrow bank account**; platform settles to the building owner on a schedule (PM fee + SaaS fee explicit).  
+**RRCO rule:** **Do not share rental owner roster / PII with RRCO.** Owner KYC stays internal; residents get money receipts; owners get settlement statements for their own PIT filing.  
+**Also:** Building **cleaning ops** with biometric + CCTV proof — [`CLEANING_OPS.md`](./CLEANING_OPS.md).  
+**Phasing:** [`PROJECT_FOCUS.md`](./PROJECT_FOCUS.md) — building IoT first; Pamtsho main source later.  
 **Status:** Plan — systems & ops blueprint
 
 ---
@@ -13,28 +16,29 @@
                     │   YOUR PLATFORM (SaaS+IoT)   │
                     │  Software · Alerts · Rent UI │
                     │  Fee: subscription ± % fee   │
+                    │  Holds ESCROW bank account   │
                     └─────────────┬───────────────┘
                                   │
          ┌────────────────────────┼────────────────────────┐
          ▼                        ▼                        ▼
    Building Owner           Property Manager          Residents
-   (receives RENT)          (runs day-to-day)         (pay rent,
-   connects bank            staff, vendors            see water,
-   via payments KYC)                                  raise tickets)
+   (receives settlement)    (ops only — no rent     (pay into ESCROW,
+   bank KYC internal)       wallet)                  see water, tickets)
          ▲
-         │  payout
-   Payment Provider (Stripe Connect / Paystack / Flutterwave / etc.)
+         │ scheduled payout (not via RRCO)
+   Escrow ledger ← Payment rails into ONE merchant/escrow account
 ```
 
 | Who | Pays / receives | For what |
 |---|---|---|
-| **Resident** | Pays rent (+ optional utilities) | Occupancy of unit/flat |
-| **Building owner** | **Receives rent** (net of optional PM fee / platform fee) | Ownership of building |
-| **Property manager** (if separate) | May receive **management fee** split from rent or billed separately | Operating the building |
-| **Your platform** | Subscription + optional small payment fee | Software, sensors, collection rails |
-| **Payment provider** | Card/bank fees | Processing |
+| **Resident** | Pays rent into **escrow** | Occupancy of unit/flat |
+| **Building owner** | **Receives settlement** from escrow (net of PM/platform fees) | Ownership; KYC only inside our DB |
+| **Property manager** | Visible management fee from escrow split | Operating the building — never holds rent |
+| **Your platform** | Subscription ± fee; operates escrow | Software, sensors, collection rails |
+| **Payment provider** | Card/bank fees into platform merchant | Processing |
+| **RRCO** | **No owner roster export from us** | Owners self-file PIT with their statements |
 
-**Critical legal/ops rule:** Platform is a **facilitator**, not the landlord. Owner completes KYC on a **connected account**. Funds route **to owner** (destination charge / split). Platform does not “own” tenant rent balances as company revenue.
+**Critical legal/ops rule:** Platform (or escrow legal entity) is **collector of record** into escrow, then remits to owners. Platform does not treat rent as SaaS revenue. **Owner directory is never exported to RRCO.** Recommend local counsel for TDS/PIT; this is a data-boundary design, not tax advice.
 
 ---
 
@@ -52,27 +56,30 @@ This is the #1 ops failure for many buildings today:
 ### Product rule (non-negotiable)
 
 ```text
-Resident MUST pay into the platform payment rail
-        → money settles to BUILDING OWNER account
+Resident MUST pay into PLATFORM ESCROW (not manager personal account)
+        → escrow ledger: held → settled
+        → scheduled payout to BUILDING OWNER bank (internal KYC)
 Manager NEVER receives rent into personal wallet/bank as the default path
-Manager fee is a VISIBLE split (or separate invoice) — never “whatever is left”
+Manager fee is a VISIBLE escrow split — never “whatever is left”
 Owner sees expected vs collected vs outstanding in real time — independent of manager
+NO owner roster / rent roll API or file to RRCO
 ```
 
 ### Hard controls in software
 
 | Control | How it works |
 |---|---|
-| **Pay-to-owner only** | Card/bank/USSD checkout → owner connected account |
+| **Escrow only** | Card/bank/USSD → **one** platform merchant/escrow account |
 | **No silent “mark paid”** | Manager cannot clear an invoice without a payment webhook **or** owner-approved cash exception |
 | **Cash exception (rare)** | Log cash → photo proof + **owner OTP/approve** → then marked paid; still auditable |
-| **Immutable ledger** | Payments cannot be deleted; only void/refund with reason + actor |
+| **Immutable ledger** | `escrow_ledger_entries` cannot be deleted; void/refund with reason + actor |
 | **Expected rent board** | Every active lease auto-invoices; vacancies are owner-visible |
 | **Manager fee capped** | Config: fixed % or flat; shown on every receipt |
-| **Dual visibility** | Owner + resident both see same provider receipt ID |
+| **Dual visibility** | Owner + resident both see same receipt / escrow payment id |
 | **Arrears alerts to owner** | Overdue notifies owner directly — not only manager |
+| **RRCO boundary** | No export of owner PII, unit roster, or rent rolls to RRCO |
 | **Audit log** | Who changed lease, rent, vacancy, fee — forever |
-| **Bank mismatch report** | Owner payouts vs invoices paid — weekly |
+| **Bank mismatch report** | Escrow inflows vs owner payouts — weekly |
 
 ### What the manager *is* allowed to do
 
@@ -175,9 +182,10 @@ CEO / Founder
         ▼                   ▼                   ▼
 ┌───────────────┐   ┌───────────────┐   ┌──────────────────────────┐
 │  PostgreSQL   │   │ Redis         │   │ Payment provider         │
-│  + RLS RBAC   │   │ cache/pubsub  │   │ Stripe Connect / regional│
-│  + readings   │   │               │   │ Owner connected accounts │
+│  + RLS RBAC   │   │ cache/pubsub  │   │ Local rails → ESCROW     │
+│  + readings   │   │               │   │ escrow_ledger + payouts  │
 │  (Timescale)  │   │               │   │ Webhooks → ledger        │
+│  No RRCO sync │   │               │   │ Owner KYC internal only  │
 └───────▲───────┘   └───────────────┘   └──────────────────────────┘
         │
         │ writes readings / last_level
@@ -201,66 +209,79 @@ CEO / Founder
 | **Portfolio** | org, property, building, floor, unit | Physical structure |
 | **People** | users, memberships, roles | RBAC |
 | **Leasing** | lease, occupant, deposit | Who lives where |
-| **Rent** | invoice, line_item, payment, payout, arrears | Money to owner |
+| **Rent / escrow** | invoice, escrow_accounts, escrow_ledger_entries, owner_payouts, arrears | Money via escrow to owner |
 | **IoT** | asset (tank), sensor, reading, alert | Water ops |
 | **Ops** | work_order, vendor, SLA | Maintenance |
 | **Audit** | audit_log, webhook_event | Compliance |
 
 ---
 
-## 5. Rent collection — money flow (owner receives funds)
+## 5. Rent collection — escrow money flow (owner receives settlement)
 
-### Chosen pattern: **Direct-to-owner (destination / split)**
+### Chosen pattern: **Platform escrow account**
 
 ```text
 Resident pays invoice (card / bank / USSD / etc.)
         │
         ▼
-Payment Provider charge
+Payment rail → PLATFORM ESCROW bank (merchant of record)
         │
-        ├──► Building Owner connected account  ≈  rent amount
-        ├──► (optional) PM connected account   ≈  management fee
-        └──► Platform account                  ≈  small collection fee
-                    │
-                    ▼
-           Owner bank payout (provider schedule)
+        ├─ ledger: payment held (invoice paid / escrow_held)
+        ├─ split recorded: owner_amount, pm_fee, platform_fee
+        │
+        ▼
+Scheduled settlement job (e.g. T+1 or weekly)
+        ├──► Owner bank payout          ≈  owner_amount
+        ├──► PM bank (optional)         ≈  management fee
+        └──► Platform SaaS fee          ≈  collection fee
+
+RRCO ◄── X ── no owner roster / rent-roll feed from platform
+Owner ──self-files PIT──► RRCO (using settlement PDF + receipts)
 ```
 
-**Platform never treats rent as company revenue.** Ledger records:
+**Platform never treats escrow rent as SaaS revenue.** Tables:
 
-- `invoice` owed by resident for unit/period  
-- `payment_intent` / charge id  
-- `split`: owner_amount, pm_fee, platform_fee  
-- `receipt` visible to resident + owner  
+- `escrow_accounts` — platform escrow bank metadata  
+- `invoices` — owed by resident  
+- `escrow_ledger_entries` — inflows, holds, fees, voids  
+- `owner_payouts` — settlement batches to owner banks  
+- `receipt` — resident money receipt; owner settlement statement  
+
+### RRCO data boundary
+
+| Allowed | Not allowed |
+|---|---|
+| Money receipt to resident | Bulk export of landlords to RRCO |
+| Settlement PDF to owner for their PIT | Sharing unit-by-unit rent rolls with RRCO |
+| Aggregate platform accounting (our books) | Payment-provider KYC that forces public owner directory to tax office via our APIs |
 
 ### Operational rent cycle
 
 ```text
 1. Lease active on unit
-2. Cron / calendar: generate monthly invoice (rent ± utilities ± late fee)
-3. Notify resident (push + email/SMS)
-4. Resident pays in app
-5. Webhook: payment succeeded → mark invoice paid → update ledger
-6. Owner balance increases on connected account → auto/manual payout to bank
-7. If unpaid past due date → dunning (reminders) → arrears flag → PM workflow
-8. Partial pay / dispute / refund → accounts clerk handles with audit trail
+2. Cron: generate monthly invoice
+3. Notify resident
+4. Resident pays → funds hit escrow → webhook → ledger held
+5. Settlement job: payout to owner bank from internal KYC
+6. Unpaid → dunning → arrears → PM workflow (owner still sees board)
+7. Partial / dispute / refund → accounts + audit
 ```
 
-### Owner onboarding (KYC) — required before first rent
+### Owner onboarding (KYC) — internal only
 
 1. Admin links **building → legal owner entity**  
-2. Owner completes payment-provider KYC (ID, bank)  
-3. Status `payouts_enabled` → rent collection unlocked for that building  
-4. Without KYC: invoices can be generated as **offline/manual** only (record cash/cheque), no card collection  
+2. Owner completes **internal** KYC (ID, bank) stored encrypted under RLS  
+3. Status `payouts_enabled` → escrow collection unlocked  
+4. Without KYC: offline/manual invoice logging only  
+5. **No step** that uploads owner list to RRCO  
 
 ### Regional payment note
 
-| Region | Typical rails |
+| Region | Typical rails into escrow |
 |---|---|
-| US/EU/UK | Stripe Connect |
-| Africa (NG/GH/KE/etc.) | Paystack / Flutterwave + split settlements |
-| India | Razorpay Route / similar |
-| Always | Keep provider behind an internal `PaymentsPort` so you can swap |
+| Bhutan | Local bank / mobile rails into **one** platform merchant account |
+| Elsewhere | Same pattern: single merchant → escrow ledger → owner payouts |
+| Always | `PaymentsPort` abstraction; prefer escrow over per-owner Connect |
 
 ---
 
@@ -294,6 +315,16 @@ Payment Provider charge
 2. Rules: `% < low` → alert PM + facilities; `% < critical` → push + optional SMS + auto work order  
 3. Staff acknowledge → dispatch pump/tanker vendor  
 4. Resolve → close WO; reading returns above threshold  
+
+### D2) Cleaning ops
+
+1. Schedule job for zone/unit  
+2. Worker **biometric check-in** + CCTV clip (or QR+geo selfie)  
+3. Work + optional checklist photos  
+4. **Biometric check-out** + proof  
+5. Below min duration or missing proof → failed / no-show alert to PM (owner optional)  
+
+See [`CLEANING_OPS.md`](./CLEANING_OPS.md).
 
 ### E) Maintenance ops
 
@@ -365,11 +396,12 @@ Enforced in **Postgres RLS** + app checks; payment webhooks use service role wit
 
 ## 10. Compliance & risk (rent + IoT)
 
-- Owner KYC before live card collection  
+- Owner KYC (internal) before live escrow collection  
 - Clear fee disclosure (platform fee + processor fee)  
 - Receipts and audit logs immutable  
 - Chargebacks: freeze disputed invoice; owner notified  
-- Trust accounting rules vary by country — if law requires **client trust account**, switch mode from direct-to-owner to **PM-managed trust** for that jurisdiction (config flag per org)  
+- **Escrow / client money** account at bank; recommend local counsel for Bhutan rules  
+- **No owner roster to RRCO**; owners self-file PIT with settlement PDFs  
 - Sensor data is operational, not payment PII — still org-scoped via RLS  
 
 ---
@@ -379,15 +411,12 @@ Enforced in **Postgres RLS** + app checks; payment webhooks use service role wit
 ### MVP (systems that must work together)
 - Portfolio + RBAC  
 - Leases + residents  
-- Invoices + **pay-to-owner** collection + receipts  
-- Water sensors + alerts + basic work orders  
-- Web admin + mobile for resident pay + staff alerts  
+- Escrow rent + cleaning biometric/CCTV proof + building water IoT  
+- Web admin + mobile for resident pay + staff/cleaning alerts  
 
 ### Later
-- Autopay, late-fee policies, multi-currency  
-- Full owner statements / tax exports  
-- Predictive tank refill logistics  
-- PMS/accounting export (QuickBooks, Xero)  
+- Autopay; cleaning payroll from verified minutes  
+- **Pamtsho / main-source WTP ERP** for Thromde  
 - Multi-owner splits on one building  
 
 ---
@@ -395,17 +424,15 @@ Enforced in **Postgres RLS** + app checks; payment webhooks use service role wit
 ## 12. One-picture summary
 
 ```text
-RESIDENT ──pays rent──► PAYMENTS RAIL ──payout──► BUILDING OWNER
-    │                         │
-    │                         └── small fee ──► PLATFORM
-    │
-    ├── uses app for dues / receipts / tickets
-    └── sees shared water status
+RESIDENT ──pays──► ESCROW BANK ──settlement──► BUILDING OWNER
+                       │
+                       ├── PM fee ──► Manager
+                       └── SaaS fee ──► PLATFORM
+
+RRCO ◄── X ── no owner roster from platform
+Owner ──self-files PIT──► RRCO
 
 SENSORS ──MQTT──► PLATFORM ──alerts──► FACILITIES / PM ──WO──► STAFF/VENDOR
-
-PM / ACCOUNTS ──operate leases, arrears, buildings──► same PLATFORM
-OWNER ──sees money + portfolio + risk──► same PLATFORM
 ```
 
-**Business in one sentence:** You sell software and sensor ops that help run buildings; **rent money belongs to the building owner**; you earn subscription (and optionally a thin collection fee), not the rent itself.
+**Business in one sentence:** You run escrow rent + property ops for owners, and a separate **Pamtsho WTP ERP** for Thromde; rent money settles to owners without exposing their roster to RRCO.

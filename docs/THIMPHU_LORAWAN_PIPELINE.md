@@ -1,35 +1,32 @@
 # Thimphu Source → Building Tank — LoRaWAN + CCTV Pipeline
 
-**Scope:** Monitor the **entire water journey** from Thimphu main source to the **building owner tank**, with process sensors + CCTV at critical points.  
-**Networking:** **LoRaWAN for sensors** · **separate backhaul for CCTV** (video cannot ride LoRaWAN).  
-**Fits product:** Same property platform (owner dashboard, RBAC, alerts, rent later).
+**Scope:** Monitor and operate the **entire water journey** for Thimphu — anchor **Pamtsho / Jungzhina–Pamtsho WTP + distribution** — with process sensors + CCTV, feeding our **Water Utility ERP**.  
+**Networking:** **LoRaWAN for sensors** · **separate backhaul for CCTV**.  
+**Fits product:** Independent platform for Thromde (paper SCADA is not relied on) + optional private building tanks under a separate property tenant. Full ERP groundwork → [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md).
 
 ---
 
 ## 1. What you are building
 
 ```text
-SOURCE (Thimphu intake / WTP / reservoir)
+SOURCE (Thimphu intake / Pamtsho WTP)
     │  sensors + CCTV
     ▼
-TRANSMISSION / MAINS (hills → city)
-    │  pressure + flow nodes along line
+TRANSMISSION / MAINS
+    │  pressure + flow nodes
     ▼
-ZONE / INTERMEDIATE TANKS
+ZONE / INTERMEDIATE TANKS (Pamtsho–Jungzhina / Jagom reservoirs)
     │  level + outflow
     ▼
-BUILDING INLET / METER
-    │  flow into property
+BUILDING INLET / METER  (Thromde metering later)
+    │
     ▼
-OWNER ROOFTOP / GROUND TANK
-    │  level (your current product heart)
-    ▼
-FLATS / UNITS
+OWNER ROOFTOP TANK  (property SaaS tenant — isolated)
 ```
 
-**Goal:** Owner and ops see *where water is* and *where it was lost* — not only “tank empty.”
+**Goal:** Thromde operators run the plant in our ERP; owners (separate product) see private tank alerts.
 
-Thimphu Thromde already uses SCADA / flow monitoring on some schemes (e.g. Jungzhina–Pamtsho, Chamgang). Your product can start as **building + private feeder** monitoring and optionally **align/export** with municipal SCADA later — do not assume you replace Thromde’s network on day one.
+Thromde documents may mention SCADA on Jungzhina–Pamtsho — treat that as **paper / incomplete**. **Our ERP + field kit is the live system of record**, presented as a **separate municipal platform** to Thromde (not a bolt-on to non-existent SCADA).
 
 ---
 
@@ -194,7 +191,7 @@ Camera (source / pump house / owner tank)
 4. One CCTV at source *or* pump (if you have access)  
 5. Dashboard: **source → … → my tank** status strip  
 
-Full city mains = partnership / permit with Thromde — plan private feeder first if access is blocked.
+Full city mains = **Pamtsho WTP ERP** sold to Thromde — see blueprint. Private building tanks stay on the property tenant.
 
 ---
 
@@ -228,25 +225,27 @@ Problem C:  Inlet flow OK + owner tank not rising      → Local pump/float/valv
 Problem D:  Tank empty + CCTV shows source full        → Distribution fault (prove with data + video)
 ```
 
-This stops blame games: **manager / Thromde / building** — data shows which stage failed.
+This stops blame games: **Thromde ops / network / building** — data shows which stage failed.
 
-**Alerts from source:** see [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md) — triggers, who is notified, push/SMS, escalation.
+**Alerts from source:** see [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md).  
+**Complete ERP (physical + network + software):** [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md).
 
 ---
 
 ## 9. Phased rollout (Thimphu)
 
-1. **Pilot one building:** owner tank level + inlet meter + ChirpStack + 1 gateway  
-2. **Add one upstream:** nearest zone tank or feeder pressure node  
-3. **Add CCTV** at accessible pump/source point (permits!)  
-4. **Corridor densify:** more pressure/flow chambers along *your* feeder  
-5. **Integrate / coexist** with Thromde SCADA if they open APIs or Modbus  
+1. **Pamtsho WTP ERP MVP** — edge cabinet, gateway, control room, plant tags, alarms, assets, stores  
+2. Instrument source + plant + one reservoir  
+3. CCTV at WTP/intake (permits)  
+4. Feeder densify + leak logic  
+5. Lab + reports; meters/billing hooks  
+6. **Do not** wait on Thromde paper SCADA — we are the live platform  
 
 ---
 
 ## 10. Summary
 
-- **LoRaWAN** = nervous system for the whole water path (tiny telemetry, long range, solar).  
-- **CCTV** = eyes at main source (and key sites) on **4G/fiber**, linked to alerts.  
-- **App** = owner sees full strip from source → tank; rent/anti-skimming stays separate money plane.  
-- Start with **owner tank + feeder**, expand upstream as access and gateways allow.
+- **LoRaWAN** = field telemetry for WTP + network.  
+- **CCTV** = eyes at source/plant on 4G/fiber.  
+- **ERP** = complete municipal system for Thromde at Pamtsho.  
+- **Property escrow SaaS** = separate tenant for owners (rent + private tanks).

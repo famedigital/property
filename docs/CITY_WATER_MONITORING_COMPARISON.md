@@ -65,76 +65,47 @@ Not asked as primary, but useful benchmark:
 
 ---
 
-## 5. Thimphu (Thromde + sources)
+## 5. Thimphu reality + our phasing
 
-**Maturity: early / emerging digital utility — not Seoul/Tokyo scale.**
+**Thromde SCADA on paper ≠ live.** We keep a full Pamtsho WTP ERP blueprint for **later**.
 
-| Capability | What exists publicly |
-|---|---|
-| New schemes | e.g. **Jungzhina–Pamtsho**: WTP + ~23 km network + **SCADA** + **~260 automated meters** (ADB-backed) |
-| Other works | Chamgang / Motithang etc. upgrades; AMR pilots (e.g. Upper Motithang historically); climate-smart flow monitoring tenders at WTP |
-| Wastewater | Babesa plant with PLC/SCADA (separate from drinking supply) |
-| Citywide density | **Not** Tokyo-style 24k-point citywide ops center for every main |
-| Building / private tanks | Often **outside** Thromde visibility — rooftop tanks, local pumps, manager ops |
-| Pain today | Irregular supply in areas, limited end-to-end visibility, cash/manager opacity on buildings |
+**NOW:** individual buildings — escrow rent, cleaning proof, local water IoT (you already have local IoT).
 
-**Thimphu source reality:** Multiple intakes / WTPs / reservoirs serving zones (hills → city). Instrumentation is **project-by-project**, not yet one continuous “source → every building tank” citizen-facing strip like your product vision.
-
----
-
-## 6. Side-by-side comparison
-
-| Dimension | Seoul / Tokyo (+ SG) | Thimphu today | Your product fit |
-|---|---|---|---|
-| **Operator** | Strong municipal / national utility | Thromde + project packages | Private/building layer + optional Thromde partner |
-| **Control room** | 24/7 SCADA centers | Local SCADA on new plants/schemes | Cloud dashboard + push/SMS (lighter) |
-| **Sensor density** | Citywide pressure/flow + plants + meters | Sparse; growing on new lines | LoRaWAN corridor you can afford |
-| **Smart meters** | Mass / multi-year full coverage | Hundreds–pilots | Building inlet + tank first |
-| **AI / twin** | Active roadmap | Not the priority yet | Rules-based alerts first; AI later |
-| **Who gets alert** | Utility staff → then citizen services | Mostly utility / site staff | **Building owner** from source stage |
-| **CCTV** | Plants, some assets / drainage | Limited / site-specific | Source + pump house clips |
-| **Money / rent** | Separate billing utilities | Thromde tariffs ≠ building rent | Your anti-skimming rent rail |
-| **Capex** | Billions / multi-decade | ADB + RGoB project finance | Startup + solar LoRa nodes |
+| Layer | Now | Later |
+|---|---|---|
+| Building gateway + tank/inlet | **Yes** | Expand |
+| Cleaning biometric + CCTV proof | **Yes** | Payroll from minutes |
+| Escrow rent | **Yes** | Autopay |
+| Pamtsho / main source ERP | Blueprint only | Thromde sale |
 
 ```text
-Seoul/Tokyo:  SOURCE ════════════════════════ CITY GRID ════════ HOUSE METER
-              (dense SCADA)                 (dense SCADA)      (smart meter)
-
-Thimphu:      SOURCE ─── some SCADA ─── zones ─── ??? ─── BUILDING TANK
-                                              ↑
-                                    visibility gap (your wedge)
-
-Your MVP:     SOURCE node ── LoRa path ── OWNER TANK + alerts to owner
+NOW:   BUILDING IoT + escrow + cleaning proof
+LATER: PAMTSHO WTP ERP (become Thromde ops system)
 ```
 
----
-
-## 7. What this means for Thimphu source strategy
-
-1. **Do not try to clone Tokyo’s control center** on day one — wrong cost and mandate.  
-2. **Do copy their logic:** source + pressure/flow anomalies → **automatic warning** (Tokyo already does this in ops).  
-3. **Do copy Seoul’s citizen notify idea** — but target **building owners** (and optional residents) for **supply disruption from source**, not only indoor plumbing leaks.  
-4. **Coexist with Thromde SCADA** on new WTPs: your system covers the **last mile + owner tank + source-path alerts** Thromde may not push to private owners.  
-5. **LoRaWAN** is the right *affordable* density tech for Thimphu hills; Seoul/Tokyo often use utility fiber / dedicated telemetry / cellular AMI — different budget.
+See [`PROJECT_FOCUS.md`](./PROJECT_FOCUS.md) and [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md).
 
 ---
 
-## 8. Realistic ambition ladder
+## 6. Side-by-side (context only)
 
-| Level | Like… | Thimphu path |
-|---|---|---|
-| L1 | Building tank + inlet + push | Your MVP |
-| L2 | Source/zone node + path alerts + CCTV clip | Your “from source” plan |
-| L3 | Multi-building corridor + leak between nodes | Expand LoRaWAN |
-| L4 | Data share / API with Thromde SCADA | Partnership |
-| L5 | City DMA + AMI everywhere | Thromde / national program (Seoul/Tokyo scale) |
+| Dimension | Seoul / Tokyo | Thimphu | Our NOW fit |
+|---|---|---|---|
+| Control room | Dense SCADA | Paper SCADA | Building dashboards first |
+| Last mile | AMI | Weak | **Building water IoT** |
+| Labour proof | Mature FM | Cleaning no-shows | **Biometric + CCTV** |
+| Rent | Separate | Manager leakage | **Escrow** |
 
 ---
 
-## 9. Bottom line
+## 7. Strategy
 
-**Seoul & Tokyo** run **utility-owned, dense, 24/7 SCADA + expanding smart meters + AI roadmaps** — state/city systems of record for *public* water.
+1. Finish **local building** stack first.  
+2. Do not block on main-source access.  
+3. When ready, present Pamtsho ERP as separate Thromde platform.  
 
-**Thimphu** is **building toward that** scheme-by-scheme (SCADA on new WTPs, AMR pilots) but still has a large **visibility gap** from municipal source to **private building tanks**, and almost no **owner-facing source alerts**.
+---
 
-**Your wedge:** affordable **source → tank** sensing (LoRaWAN) + **notifications to the building owner** — the layer mega-cities eventually cover with AMI/apps, but Thimphu owners need *now*, without waiting for a full Arisu/Tokyo-class grid.
+## 8. Bottom line
+
+Mega-cities = dense utility grids. Thimphu paper SCADA is not your day-one dependency. **Win buildings first** (rent + cleaning proof + tank IoT), then municipal source ERP.
