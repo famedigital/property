@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Velora — Brand</title>
+  <title>Pema — Brand</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -52,15 +52,12 @@
         radial-gradient(700px 380px at 10% 20%, color-mix(in oklch, var(--primary) 14%, transparent), transparent 60%),
         radial-gradient(500px 280px at 90% 70%, color-mix(in oklch, var(--secondary) 10%, transparent), transparent 55%);
     }
-    .mark {
-      display: inline-flex; align-items: center; gap: .65rem;
-    }
-    .mark svg { width: 28px; height: 28px; }
+    .mark svg { width: 36px; height: 36px; display: block; }
     .wordmark {
       font-size: clamp(2.75rem, 8vw, 4.5rem); font-weight: 600;
       letter-spacing: -0.03em; line-height: 1; margin: 0;
     }
-    .wordmark .v { color: var(--primary); }
+    .wordmark .p { color: var(--primary); }
     .tagline {
       font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted-foreground);
       margin: 0; max-width: 28ch;
@@ -90,9 +87,9 @@
       background: oklch(0.97 0 0); color: oklch(0.21 0.03 265);
     }
     .logo-card.on-light .wm { color: oklch(0.21 0.03 265); }
-    .logo-card.on-light .wm .v { color: oklch(0.67 0.14 48); }
+    .logo-card.on-light .wm .p { color: oklch(0.67 0.14 48); }
     .logo-card .wm { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
-    .logo-card .wm .v { color: var(--primary); }
+    .logo-card .wm .p { color: var(--primary); }
     .logo-card .cap { margin-top: .6rem; font-size: .7rem; color: var(--muted-foreground); }
     .logo-card.on-light .cap { color: oklch(0.45 0.02 265); }
 
@@ -119,7 +116,7 @@
 </head>
 <body>
   <div class="toolbar">
-    <div><strong style="color:var(--primary)">Velora</strong> · Brand</div>
+    <div><strong style="color:var(--primary)">Pema</strong> · Brand</div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap">
       <a id="dl" href="BRAND.html" download="BRAND.html">Download HTML</a>
       <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory</a>
@@ -130,26 +127,28 @@
   <div class="wrap">
     <header class="hero">
       <div class="mark" aria-hidden="true">
-        <!-- Soft portal / lintel mark -->
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 26V10.5C8 9.12 9.12 8 10.5 8h11c1.38 0 2.5 1.12 2.5 2.5V26"
-                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M12 26V14h8v12" stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.5" opacity=".7"/>
+        <!-- Abstract lotus / petal — not a cartoon flower -->
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
+                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
+                stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
+          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.7214 0.1337 49.9802)"/>
         </svg>
       </div>
-      <h1 class="wordmark"><span class="v">V</span>elora</h1>
+      <h1 class="wordmark"><span class="p">P</span>ema</h1>
       <p class="tagline">Property, settled.</p>
-      <span class="say">veh-LOR-ah · quiet building ops</span>
+      <span class="say">PEH-mah · lotus · quiet building ops</span>
     </header>
 
     <section>
-      <h2>Why Velora</h2>
+      <h2>Why Pema</h2>
       <p>
-        Same soft <strong>-ora</strong> family as Finora / Linora, but calmer and less finance-coded.
-        Settled ownership energy: escrow, care, water — without noise.
+        <strong>PEMA</strong> kept clear. Dzongkha / Tibetan for <strong>lotus</strong> —
+        calm growth, settled ground. Short enough for a sidebar; soft enough to not shout PropTech.
       </p>
       <p style="margin-top:.75rem">
-        <strong>Alternate:</strong> Linora (swap wordmark only; system stays the same).
+        <strong>Alternate:</strong> Pemora (PEMA + soft *-ora* ending).
       </p>
     </section>
 
@@ -157,14 +156,14 @@
       <section>
         <h2>Wordmark · dark</h2>
         <div class="logo-card">
-          <div class="wm"><span class="v">V</span>elora</div>
+          <div class="wm"><span class="p">P</span>ema</div>
           <div class="cap">Primary — sidebar, splash, PDF</div>
         </div>
       </section>
       <section>
         <h2>Wordmark · light</h2>
         <div class="logo-card on-light">
-          <div class="wm"><span class="v">V</span>elora</div>
+          <div class="wm"><span class="p">P</span>ema</div>
           <div class="cap">Print / light sheets only</div>
         </div>
       </section>
@@ -185,7 +184,7 @@
     <section>
       <h2>Voice · UI chips</h2>
       <div>
-        <span class="ui-chip">Ask Velora</span>
+        <span class="ui-chip">Ask Pema</span>
         <span class="ui-chip cta">Pay security</span>
         <span class="ui-chip">Held until secured</span>
         <span class="ui-chip">No vacant units.</span>
@@ -199,12 +198,12 @@
       <table>
         <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
         <tbody>
-          <tr><td>Owner / PM sidebar</td><td><strong>Velora</strong> wordmark</td></tr>
+          <tr><td>Owner / PM sidebar</td><td><strong>Pema</strong> wordmark</td></tr>
           <tr><td>Login / splash</td><td>Wordmark + tagline</td></tr>
-          <tr><td>Prospect listings</td><td>“Listed on Velora”</td></tr>
+          <tr><td>Prospect listings</td><td>“Listed on Pema”</td></tr>
           <tr><td>Resident app</td><td>Splash · Property, settled.</td></tr>
-          <tr><td>Worker app</td><td>Velora Cleaning</td></tr>
-          <tr><td>AI</td><td>Ask Velora</td></tr>
+          <tr><td>Worker app</td><td>Pema Cleaning</td></tr>
+          <tr><td>AI</td><td>Ask Pema</td></tr>
         </tbody>
       </table>
     </section>
@@ -212,14 +211,16 @@
     <section>
       <h2>Mark</h2>
       <p>
-        Optional portal / lintel glyph (soft door frame) — suggests threshold and settled shelter.
-        Never a cartoon house or water drop as the brand mark.
+        Abstract lotus / petal — nods to the meaning without a literal flower sticker.
+        Amber outline, soft teal inner petal, small center.
       </p>
       <div style="margin-top:1rem">
-        <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 26V10.5C8 9.12 9.12 8 10.5 8h11c1.38 0 2.5 1.12 2.5 2.5V26"
-                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M12 26V14h8v12" stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.5" opacity=".7"/>
+        <svg width="72" height="72" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
+                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
+                stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
+          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.7214 0.1337 49.9802)"/>
         </svg>
       </div>
     </section>

@@ -1,4 +1,4 @@
-# Velora — Architecture Plan
+# Pema — Architecture Plan
 
 **Brand:** [`BRAND.md`](./BRAND.md) — *Property, settled.*  
 **Status:** Proposed (plan only — no implementation yet)  
