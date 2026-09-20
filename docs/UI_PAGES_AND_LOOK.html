@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEMA — UI Inventory · Northern Lights · 52 Screens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: oklch(0.9824 0.0013 286.3757);
+      --foreground: oklch(0.3211 0 0);
+      --card: oklch(1.0000 0 0);
+      --card-foreground: oklch(0.3211 0 0);
+      --primary: oklch(0.6487 0.1538 150.3071);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.6746 0.1414 261.3380);
+      --secondary-foreground: oklch(1.0000 0 0);
+      --muted: oklch(0.8828 0.0285 98.1033);
+      --muted-foreground: oklch(0.5382 0 0);
+      --accent: oklch(0.8269 0.1080 211.9627);
+      --accent-foreground: oklch(0.3211 0 0);
+      --destructive: oklch(0.6368 0.2078 25.3313);
+      --border: oklch(0.8699 0 0);
+      --sidebar: oklch(0.9824 0.0013 286.3757);
+      --radius: 0.5rem;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .toolbar {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      align-items: center; justify-content: space-between;
+      padding: .75rem 1.25rem;
+      background: color-mix(in oklch, var(--background) 88%, white);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .toolbar strong { color: var(--primary); font-weight: 600; }
+    .toolbar .actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .toolbar a, .toolbar button {
+      font-family: var(--font); font-size: .8rem; font-weight: 600;
+      padding: .4rem .85rem; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--primary); color: var(--primary-foreground); text-decoration: none;
+    }
+    .toolbar a.ghost, .toolbar button.ghost {
+      background: var(--card); color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+
+    .hero {
+      margin: 1.25rem 0 2rem; padding: 2rem 1.75rem;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(800px 400px at 0% 0%, color-mix(in oklch, var(--primary) 18%, transparent), transparent 55%),
+        radial-gradient(600px 300px at 100% 20%, color-mix(in oklch, var(--secondary) 12%, transparent), transparent 50%),
+        var(--card);
+    }
+    .hero .eyebrow {
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--primary); font-weight: 600; margin: 0 0 .75rem;
+    }
+    .hero h1 {
+      margin: 0 0 .75rem; font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700; letter-spacing: -0.02em; max-width: 22ch;
+    }
+    .hero p { margin: 0 0 1.25rem; color: var(--muted-foreground); max-width: 52rem; font-size: .95rem; }
+    .count-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .count {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .65rem .9rem; min-width: 6.5rem;
+    }
+    .count .n { display: block; font-size: 1.5rem; font-weight: 700; color: var(--primary); font-family: var(--mono); }
+    .count .l { font-size: .7rem; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .04em; }
+
+    nav.toc {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 1.75rem;
+    }
+    nav.toc h2 { margin: 0 0 .6rem; font-size: .95rem; color: var(--primary); }
+    nav.toc ol { margin: 0; padding-left: 1.2rem; columns: 2; gap: 1.5rem; font-size: .88rem; }
+    @media (max-width: 700px) { nav.toc ol { columns: 1; } }
+
+    section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.3rem 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
+    }
+    section h2 {
+      margin: 0 0 .35rem; font-size: 1.2rem; font-weight: 700;
+      color: var(--foreground); letter-spacing: -0.01em;
+    }
+    section .lede { color: var(--muted-foreground); margin: 0 0 1rem; font-size: .9rem; }
+    h3 { margin: 1.2rem 0 .45rem; font-size: .95rem; color: var(--primary); }
+
+    table { width: 100%; border-collapse: collapse; font-size: .8rem; margin: .75rem 0; }
+    th, td { border: 1px solid var(--border); padding: .45rem .55rem; text-align: left; vertical-align: top; }
+    th { background: var(--muted); color: var(--foreground); font-weight: 600; }
+    td code, .route {
+      font-family: var(--mono); font-size: .75rem;
+      color: var(--primary); background: color-mix(in oklch, var(--primary) 12%, transparent);
+      padding: .1rem .35rem; border-radius: 4px;
+    }
+    .who { color: var(--muted-foreground); font-size: .75rem; white-space: nowrap; }
+
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .6rem; margin: 1rem 0; }
+    .swatch {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+      background: var(--muted);
+    }
+    .swatch .chip { height: 40px; }
+    .swatch .meta { padding: .45rem .55rem; font-size: .72rem; }
+    .swatch .meta strong { display: block; color: var(--foreground); }
+
+    /* Mock console shell */
+    .mock-shell {
+      display: grid; grid-template-columns: 180px 1fr; min-height: 320px;
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+      margin: 1rem 0; background: var(--background);
+    }
+    @media (max-width: 700px) {
+      .mock-shell { grid-template-columns: 1fr; }
+      .mock-side { display: none; }
+    }
+    .mock-side {
+      background: var(--sidebar); border-right: 1px solid var(--border);
+      padding: .75rem .6rem; font-size: .72rem;
+    }
+    .mock-side .logo {
+      color: var(--primary); font-weight: 700; padding: .4rem .5rem .85rem;
+      letter-spacing: 0.08em; font-size: .85rem;
+    }
+    .mock-nav { list-style: none; margin: 0; padding: 0; }
+    .mock-nav li {
+      padding: .4rem .55rem; border-radius: calc(var(--radius) - 2px);
+      color: var(--muted-foreground); margin-bottom: .15rem;
+    }
+    .mock-nav li.active {
+      background: color-mix(in oklch, var(--primary) 18%, transparent);
+      color: var(--primary); font-weight: 600;
+    }
+    .mock-main { display: flex; flex-direction: column; min-width: 0; }
+    .mock-top {
+      display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+      padding: .55rem .85rem; border-bottom: 1px solid var(--border);
+      font-size: .72rem; color: var(--muted-foreground);
+    }
+    .mock-ask {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: 999px; padding: .25rem .7rem; color: var(--primary); font-weight: 600;
+    }
+    .mock-body { padding: .85rem; display: flex; flex-direction: column; gap: .65rem; }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .45rem; }
+    @media (max-width: 700px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+    .kpi {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 2px); padding: .55rem .6rem;
+    }
+    .kpi .label { font-size: .65rem; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .04em; }
+    .kpi .val { font-size: 1.1rem; font-weight: 700; font-family: var(--mono); color: var(--foreground); margin-top: .15rem; }
+    .kpi .val.green { color: var(--primary); }
+    .kpi .val.blue { color: var(--secondary); }
+    .ai-strip {
+      background: color-mix(in oklch, var(--primary) 10%, var(--muted));
+      border: 1px solid color-mix(in oklch, var(--primary) 35%, var(--border));
+      border-radius: calc(var(--radius) - 2px); padding: .5rem .7rem; font-size: .72rem;
+    }
+    .ai-strip strong { color: var(--primary); }
+    .mock-table { width: 100%; font-size: .68rem; }
+    .mock-table th { background: transparent; color: var(--muted-foreground); font-weight: 500; border-color: var(--border); }
+    .mock-table td { border-color: var(--border); }
+    .badge {
+      display: inline-block; font-size: .65rem; font-weight: 600;
+      padding: .12rem .4rem; border-radius: 4px; font-family: var(--mono);
+    }
+    .badge.vacant { background: color-mix(in oklch, var(--secondary) 25%, transparent); color: var(--secondary); }
+    .badge.listed { background: color-mix(in oklch, var(--primary) 22%, transparent); color: var(--primary); }
+    .badge.secured { background: color-mix(in oklch, var(--secondary) 35%, transparent); color: oklch(0.75 0.05 196); }
+    .badge.overdue { background: color-mix(in oklch, var(--destructive) 30%, transparent); color: oklch(0.75 0.08 196); }
+    .badge.p0 { background: color-mix(in oklch, var(--primary) 30%, transparent); color: var(--primary); }
+
+    /* Mobile mock */
+    .phones { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .phone {
+      border: 1px solid var(--border); border-radius: 1.25rem; overflow: hidden;
+      background: var(--background); max-width: 260px;
+    }
+    .phone-notch {
+      height: 22px; background: var(--muted); display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; color: var(--muted-foreground);
+    }
+    .phone-body { padding: .75rem; min-height: 220px; font-size: .72rem; }
+    .phone-tabs {
+      display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border);
+      padding: .4rem 0; font-size: .55rem; text-align: center; color: var(--muted-foreground);
+    }
+    .phone-tabs .on { color: var(--primary); font-weight: 600; }
+    .big-cta {
+      display: block; text-align: center; margin-top: .75rem;
+      background: var(--primary); color: var(--primary-foreground);
+      font-weight: 700; padding: .55rem; border-radius: calc(var(--radius) - 2px); font-size: .75rem;
+    }
+    .gauge {
+      height: 10px; border-radius: 999px; background: var(--muted); margin: .5rem 0; overflow: hidden;
+    }
+    .gauge > span {
+      display: block; height: 100%; width: 62%;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      border-radius: 999px;
+    }
+
+    /* Listing gallery mock */
+    .listing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; margin: 1rem 0;
+    }
+    @media (max-width: 700px) { .listing-grid { grid-template-columns: 1fr 1fr; } }
+    .listing-card {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--muted);
+    }
+    .listing-card .img {
+      height: 72px;
+      background:
+        linear-gradient(135deg, color-mix(in oklch, var(--accent) 80%, black), color-mix(in oklch, var(--muted) 60%, var(--secondary)));
+    }
+    .listing-card .txt { padding: .45rem .5rem; font-size: .68rem; }
+    .listing-card .price { color: var(--primary); font-weight: 700; font-family: var(--mono); }
+
+    /* Listing DETAIL mock — better than portal clones */
+    .ld {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: var(--card); margin: 1rem 0;
+      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
+    }
+    .ld-top {
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+      padding: .65rem 1rem; border-bottom: 1px solid var(--border); background: var(--background);
+      font-size: .75rem;
+    }
+    .ld-top .brand { font-weight: 700; letter-spacing: .08em; color: var(--primary); }
+    .ld-top .crumb { color: var(--muted-foreground); }
+    .ld-body {
+      display: grid; grid-template-columns: minmax(220px, 0.38fr) 1fr; gap: 0;
+    }
+    @media (max-width: 800px) { .ld-body { grid-template-columns: 1fr; } }
+    .ld-info { padding: 1.15rem 1.1rem 1.25rem; border-right: 1px solid var(--border); }
+    @media (max-width: 800px) { .ld-info { border-right: 0; border-bottom: 1px solid var(--border); } }
+    .ld-actions { display: flex; gap: .75rem; color: var(--muted-foreground); font-size: .7rem; margin-bottom: .75rem; }
+    .ld-addr { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; line-height: 1.25; }
+    .ld-specs { display: flex; flex-wrap: wrap; gap: .55rem; font-size: .78rem; color: var(--muted-foreground); margin-bottom: .85rem; }
+    .ld-specs b { color: var(--foreground); font-family: var(--mono); }
+    .ld-price { font-size: 1.35rem; font-weight: 700; font-family: var(--mono); color: var(--foreground); margin: 0; }
+    .ld-bond { font-size: .8rem; color: var(--muted-foreground); margin: .25rem 0 .85rem; }
+    .ld-bond strong { color: var(--foreground); }
+    .ld-status {
+      display: inline-block; font-size: .7rem; font-weight: 600; font-family: var(--mono);
+      padding: .2rem .5rem; border-radius: 4px; margin-bottom: 1rem;
+      background: color-mix(in oklch, var(--primary) 15%, transparent); color: var(--primary);
+    }
+    .ld-ctas { display: flex; flex-direction: column; gap: .45rem; }
+    .ld-cta {
+      display: block; text-align: center; font-weight: 700; font-size: .82rem;
+      padding: .65rem .75rem; border-radius: var(--radius); text-decoration: none;
+    }
+    .ld-cta.primary { background: var(--primary); color: var(--primary-foreground); }
+    .ld-cta.ghost { background: transparent; color: var(--foreground); border: 1px solid var(--border); }
+    .ld-note { font-size: .68rem; color: var(--muted-foreground); margin-top: .65rem; line-height: 1.4; }
+    .ld-media { display: flex; flex-direction: column; min-height: 280px; }
+    .ld-hero {
+      flex: 1; min-height: 200px; position: relative;
+      background:
+        linear-gradient(160deg, color-mix(in oklch, var(--accent) 35%, white), color-mix(in oklch, var(--muted) 70%, var(--secondary)));
+    }
+    .ld-hero-label {
+      position: absolute; left: .75rem; bottom: .75rem;
+      background: color-mix(in oklch, var(--card) 88%, transparent); backdrop-filter: blur(6px);
+      border: 1px solid var(--border); border-radius: 6px; padding: .3rem .55rem;
+      font-size: .68rem; font-weight: 600; color: var(--foreground);
+    }
+    .ld-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; padding: .45rem; background: var(--background); }
+    .ld-thumb {
+      height: 64px; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border);
+      background: color-mix(in oklch, var(--muted) 80%, var(--secondary));
+      display: flex; align-items: flex-end; justify-content: flex-start; padding: .35rem;
+      font-size: .62rem; font-weight: 600; color: var(--foreground); position: relative; overflow: hidden;
+    }
+    .ld-thumb.t2 { background: color-mix(in oklch, var(--accent) 40%, var(--muted)); }
+    .ld-thumb.t3 { background: color-mix(in oklch, var(--primary) 18%, var(--muted)); }
+    .ld-thumb .more {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: color-mix(in oklch, var(--foreground) 45%, transparent); color: white; font-size: .9rem;
+    }
+    .better-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .85rem 0 0; font-size: .78rem;
+    }
+    @media (max-width: 700px) { .better-grid { grid-template-columns: 1fr; } }
+    .better-grid div {
+      border: 1px solid var(--border); border-radius: var(--radius); padding: .65rem .75rem; background: var(--background);
+    }
+    .better-grid .bad { color: var(--muted-foreground); }
+    .better-grid .good { color: var(--foreground); }
+    .better-grid strong { display: block; margin-bottom: .25rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; }
+    .better-grid .good strong { color: var(--primary); }
+
+    .check-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .5rem; margin: .75rem 0;
+    }
+    .check {
+      border: 1px solid var(--border); border-radius: calc(var(--radius) - 2px);
+      padding: .55rem .7rem; font-size: .78rem; background: var(--muted);
+    }
+    .check::before { content: "☐ "; color: var(--primary); }
+
+    .flow {
+      display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: 1rem 0; font-size: .75rem;
+    }
+    .flow .step {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: 999px; padding: .3rem .7rem; font-weight: 600;
+    }
+    .flow .step.hot { background: color-mix(in oklch, var(--primary) 20%, var(--muted)); color: var(--primary); border-color: color-mix(in oklch, var(--primary) 40%, var(--border)); }
+    .flow .arrow { color: var(--muted-foreground); }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: .35rem; margin: .6rem 0; }
+    .pill {
+      background: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+      padding: .2rem .55rem; font-size: .7rem; font-weight: 600; color: var(--muted-foreground);
+    }
+
+    .callout {
+      border-left: 3px solid var(--primary); background: color-mix(in oklch, var(--primary) 8%, var(--muted));
+      padding: .75rem .9rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1rem 0; font-size: .85rem;
+    }
+
+    footer.page-foot {
+      text-align: center; color: var(--muted-foreground); font-size: .8rem; padding: 1.5rem 0;
+    }
+
+    @media print {
+      .toolbar { display: none !important; }
+      body { background: #111; }
+      section, .hero, nav.toc { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div><strong style="color:var(--primary)">PEMA</strong> · UI Inventory · 52 screens</div>
+    <div class="actions">
+      <a id="dl" href="UI_PAGES_AND_LOOK.html" download="UI_PAGES_AND_LOOK.html">Download HTML</a>
+      <button type="button" class="ghost" onclick="window.print()">Print / PDF</button>
+      <a class="ghost" href="COMPLETE_SYSTEM_PLAN.html">System plan</a>
+      <a class="ghost" href="#toc">Contents</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">PEMA · Theme · tweakcn.com/r/themes/northern-lights.json</p>
+      <h1>How PEMA looks — every page, everything needed</h1>
+      <p>
+        Light Northern Lights ops console, aurora green CTAs, Plus Jakarta Sans throughout.
+        <strong style="color:var(--foreground)">52 screens NOW</strong> across public listings,
+        Owner/PM web, resident app, and cleaning worker app.
+        Install: <code style="font-family:var(--mono);color:var(--primary);font-size:.85em">npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json</code>
+      </p>
+      <div class="count-row">
+        <div class="count"><span class="n">5</span><span class="l">Auth</span></div>
+        <div class="count"><span class="n">6</span><span class="l">Prospect</span></div>
+        <div class="count"><span class="n">28</span><span class="l">Owner / PM</span></div>
+        <div class="count"><span class="n">8</span><span class="l">Resident</span></div>
+        <div class="count"><span class="n">5</span><span class="l">Worker</span></div>
+        <div class="count"><span class="n">52</span><span class="l">Total NOW</span></div>
+      </div>
+    </header>
+
+    <nav class="toc" id="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#look">How UI looks (Northern Lights)</a></li>
+        <li><a href="#shell">Owner/PM shell mock</a></li>
+        <li><a href="#prospect-mock">Prospect listings look</a></li>
+        <li><a href="#listing-detail">Listing detail (better than portals)</a></li>
+        <li><a href="#mobile-mock">Resident + worker mobile</a></li>
+        <li><a href="#count">Page count summary</a></li>
+        <li><a href="#auth">A. Auth (5)</a></li>
+        <li><a href="#prospect">B. Prospect (6)</a></li>
+        <li><a href="#console">C. Owner/PM console (28)</a></li>
+        <li><a href="#resident">D. Resident mobile (8)</a></li>
+        <li><a href="#worker">E. Worker mobile (5)</a></li>
+        <li><a href="#needed">Things needed</a></li>
+        <li><a href="#order">MVP UI build order</a></li>
+      </ol>
+    </nav>
+
+    <!-- LOOK -->
+    <section id="look">
+      <h2>1. How the UI will look</h2>
+      <p class="lede">Default = <strong style="color:var(--foreground)">light</strong>. Dark optional via same CSS vars. Settled ops UI — clear, not loud.</p>
+
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:var(--background)"></div><div class="meta"><strong>Background</strong> soft white oklch ~0.98</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--foreground)"></div><div class="meta"><strong>Foreground</strong> charcoal text</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--primary)"></div><div class="meta"><strong>Primary</strong> aurora green — CTAs, Ask PEMA</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--secondary)"></div><div class="meta"><strong>Secondary</strong> cool blue — water</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--muted)"></div><div class="meta"><strong>Muted</strong> panels / rows</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--destructive)"></div><div class="meta"><strong>Destructive</strong> warm red</div></div>
+      </div>
+
+      <h3>Layout language</h3>
+      <ul style="font-size:.88rem;color:var(--muted-foreground)">
+        <li><strong style="color:var(--foreground)">Owner/PM web:</strong> left sidebar + top bar (“Ask PEMA”) + dense tables</li>
+        <li><strong style="color:var(--foreground)">Prospect:</strong> full-bleed listing gallery, minimal chrome</li>
+        <li><strong style="color:var(--foreground)">Resident / Worker:</strong> bottom tabs, large green primary CTAs</li>
+        <li>Cards only for listing gallery + proof packs — ops stays tables</li>
+        <li>Status chips: <span class="badge vacant">vacant</span> <span class="badge listed">listed</span> <span class="badge secured">secured</span> <span class="badge overdue">overdue</span> <span class="badge p0">P0</span></li>
+        <li>Fonts: <strong style="color:var(--foreground)">Plus Jakarta Sans</strong> UI · <strong style="color:var(--foreground)">JetBrains Mono</strong> IDs/code</li>
+        <li>Radius <code class="route">0.5rem</code></li>
+      </ul>
+    </section>
+
+    <!-- SHELL MOCK -->
+    <section id="shell">
+      <h2>2. Owner / PM console — visual mock</h2>
+      <p class="lede">What staff see every day: Northern Lights sidebar, green “Ask PEMA”, KPI row, AI risk strip, vacancy table.</p>
+
+      <div class="mock-shell" aria-label="Owner PM dashboard mock">
+        <aside class="mock-side">
+          <div class="logo">PEMA</div>
+          <ul class="mock-nav">
+            <li class="active">Dashboard</li>
+            <li>Units</li>
+            <li>Listings</li>
+            <li>Applications</li>
+            <li>Rent</li>
+            <li>Cleaning</li>
+            <li>Water</li>
+            <li>People</li>
+            <li>Settings</li>
+          </ul>
+        </aside>
+        <div class="mock-main">
+          <div class="mock-top">
+            <span>Building · Pamtsho Block A ▾</span>
+            <span class="mock-ask">Ask PEMA ⌘K</span>
+          </div>
+          <div class="mock-body">
+            <div class="kpi-row">
+              <div class="kpi"><div class="label">Vacant</div><div class="val green">7</div></div>
+              <div class="kpi"><div class="label">Listed</div><div class="val">12</div></div>
+              <div class="kpi"><div class="label">Escrow due</div><div class="val green">Nu 1.2L</div></div>
+              <div class="kpi"><div class="label">Tank</div><div class="val blue">62%</div></div>
+            </div>
+            <div class="ai-strip">
+              <strong>AI risk ·</strong> Unit 4B vacant 41d · Cleaning job #882 no biometric checkout · Tank trend −8% / 6h
+            </div>
+            <table class="mock-table">
+              <thead><tr><th>Unit</th><th>Status</th><th>Days</th><th>Rent</th></tr></thead>
+              <tbody>
+                <tr><td>2A</td><td><span class="badge vacant">vacant</span></td><td>12</td><td>—</td></tr>
+                <tr><td>4B</td><td><span class="badge listed">listed</span></td><td>41</td><td>18,000</td></tr>
+                <tr><td>5C</td><td><span class="badge secured">secured</span></td><td>0</td><td>22,000</td></tr>
+                <tr><td>1D</td><td><span class="badge overdue">overdue</span></td><td>—</td><td>15,500</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROSPECT -->
+    <section id="prospect-mock">
+      <h2>3. Prospect / public listings — look</h2>
+      <p class="lede">Same job as portals like realestate.com.au: browse → detail → apply. PEMA stays light, calmer, and escrow-native.</p>
+      <div class="listing-grid">
+        <div class="listing-card"><div class="img"></div><div class="txt">Block A · 2BHK<br><span class="price">Nu 18,000</span> · listed</div></div>
+        <div class="listing-card"><div class="img" style="opacity:.85"></div><div class="txt">Block B · Studio<br><span class="price">Nu 12,500</span> · listed</div></div>
+        <div class="listing-card"><div class="img" style="opacity:.7"></div><div class="txt">Block A · 3BHK<br><span class="price">Nu 28,000</span> · +3D</div></div>
+      </div>
+      <div class="flow">
+        <span class="step">Browse</span><span class="arrow">→</span>
+        <span class="step">Detail + photos</span><span class="arrow">→</span>
+        <span class="step">Apply</span><span class="arrow">→</span>
+        <span class="step hot">Pay security</span><span class="arrow">→</span>
+        <span class="step hot">Secured</span>
+      </div>
+    </section>
+
+    <!-- LISTING DETAIL -->
+    <section id="listing-detail">
+      <h2>3b. Listing detail — like portals, better</h2>
+      <p class="lede">
+        Yes: light page, address + beds/baths, big gallery, Apply CTA — same genre as the screenshot.
+        Better: PEMA brand, no heavy agency bar, escrow security → secured, standard photo slots, optional 3D, Ask PEMA.
+      </p>
+
+      <div class="ld" aria-label="PEMA listing detail mock">
+        <div class="ld-top">
+          <span class="brand">PEMA</span>
+          <span class="crumb">Rent · Thimphu · Pamtsho · Flat · Unit 4B</span>
+          <span style="font-size:.7rem;font-weight:600;color:var(--primary)">Ask PEMA</span>
+        </div>
+        <div class="ld-body">
+          <div class="ld-info">
+            <div class="ld-actions"><span>Share</span><span>Save</span></div>
+            <h3 class="ld-addr">Unit 4B, Block A<br>Pamtsho, Thimphu</h3>
+            <div class="ld-specs">
+              <span><b>2</b> bed</span>
+              <span><b>1</b> bath</span>
+              <span><b>1</b> park</span>
+              <span>Flat</span>
+            </div>
+            <p class="ld-price">Nu 18,000<span style="font-size:.75rem;font-weight:500;color:var(--muted-foreground)"> / month</span></p>
+            <p class="ld-bond">Security <strong>Nu 36,000</strong> · held in escrow until lease secured</p>
+            <span class="ld-status">listed · available now</span>
+            <div class="ld-ctas">
+              <a class="ld-cta primary" href="#prospect">Apply</a>
+              <a class="ld-cta ghost" href="#prospect">Pay security (after approval)</a>
+            </div>
+            <p class="ld-note">Owner identity stays private. Money settles through PEMA escrow — not a portal lead form that goes nowhere.</p>
+          </div>
+          <div class="ld-media">
+            <div class="ld-hero">
+              <span class="ld-hero-label">Living · slot 2/8</span>
+            </div>
+            <div class="ld-thumbs">
+              <div class="ld-thumb">3D tour</div>
+              <div class="ld-thumb t2">Exterior</div>
+              <div class="ld-thumb t3"><span class="more">+11</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="better-grid">
+        <div class="bad">
+          <strong>Typical portal</strong>
+          Heavy agency strip · lead spam · weak after “enquire” · no escrow · no building ops link
+        </div>
+        <div class="good">
+          <strong>PEMA (better)</strong>
+          Clean light chrome · guided photo slots · optional 3D · Apply → escrow security → secured · Ask PEMA · same system as rent + cleaning + water
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE -->
+    <section id="mobile-mock">
+      <h2>4. Resident + cleaning worker — mobile look</h2>
+      <p class="lede">Expo apps. Same Northern Lights tokens. Bottom tabs. Large green CTAs for pay / check-in.</p>
+      <div class="phones">
+        <div class="phone">
+          <div class="phone-notch">Resident</div>
+          <div class="phone-body">
+            <div style="font-weight:700;margin-bottom:.35rem">Home</div>
+            <div style="color:var(--muted-foreground)">Due this month</div>
+            <div style="font-family:var(--mono);font-size:1.2rem;color:var(--primary);font-weight:700">Nu 18,000</div>
+            <div style="margin-top:.65rem;color:var(--muted-foreground)">Building tank</div>
+            <div class="gauge"><span></span></div>
+            <div style="color:var(--secondary);font-size:.65rem">62% · normal</div>
+            <a class="big-cta" href="#resident">Pay rent (escrow)</a>
+            <div style="margin-top:.5rem;font-size:.65rem;color:var(--primary);text-align:center">Ask PEMA · rent / water</div>
+          </div>
+          <div class="phone-tabs">
+            <div class="on">Home</div><div>Pay</div><div>Water</div><div>AI</div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-notch">Worker</div>
+          <div class="phone-body">
+            <div style="font-weight:700;margin-bottom:.5rem">Jobs today</div>
+            <div style="border:1px solid var(--border);border-radius:8px;padding:.5rem;margin-bottom:.4rem;background:var(--muted)">
+              <div style="font-weight:600">#882 · Block A lobby</div>
+              <div style="color:var(--muted-foreground);font-size:.65rem">09:00–11:00 · checklist 6</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:8px;padding:.5rem;background:var(--muted)">
+              <div style="font-weight:600">#883 · Unit 4B</div>
+              <div style="color:var(--muted-foreground);font-size:.65rem">14:00 · handover clean</div>
+            </div>
+            <a class="big-cta" href="#worker">Check in · biometric</a>
+          </div>
+          <div class="phone-tabs">
+            <div class="on">Jobs</div><div>History</div><div>Proof</div><div>Me</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUNT -->
+    <section id="count">
+      <h2>5. Page count summary</h2>
+      <table>
+        <thead><tr><th>Surface</th><th>Pages</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Auth &amp; shared</td><td><strong>5</strong></td><td>Login, signup, forgot, invite, 404</td></tr>
+          <tr><td>Public / prospect web</td><td><strong>6</strong></td><td>Browse → pay security → secured status</td></tr>
+          <tr><td>Owner / PM web</td><td><strong>28</strong></td><td>Full ops console</td></tr>
+          <tr><td>Resident mobile</td><td><strong>8</strong></td><td>Home, pay, water, AI…</td></tr>
+          <tr><td>Cleaning worker mobile</td><td><strong>5</strong></td><td>Jobs + biometric check-in</td></tr>
+          <tr><td>Overlays</td><td>—</td><td>AI drawer, dialogs, upload sheets (not full pages)</td></tr>
+          <tr><td><strong>TOTAL NOW</strong></td><td><strong>52</strong></td><td>Pamtsho WTP ERP later (+18–25)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- AUTH -->
+    <section id="auth">
+      <h2>A. Auth &amp; shared — 5 pages</h2>
+      <table>
+        <thead><tr><th>#</th><th>Route</th><th>Who</th><th>UI look / purpose</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="route">/login</span></td><td class="who">All</td><td>Centered card, PEMA wordmark, green primary button</td></tr>
+          <tr><td>2</td><td><span class="route">/signup</span></td><td class="who">Prospect / invite</td><td>Same shell; role from invite token</td></tr>
+          <tr><td>3</td><td><span class="route">/forgot-password</span></td><td class="who">All</td><td>Email reset</td></tr>
+          <tr><td>4</td><td><span class="route">/invite/[token]</span></td><td class="who">Staff/owner</td><td>Accept membership</td></tr>
+          <tr><td>5</td><td><span class="route">/404</span></td><td class="who">All</td><td>Minimal dark empty state</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PROSPECT PAGES -->
+    <section id="prospect">
+      <h2>B. Public / prospect — 6 pages</h2>
+      <table>
+        <thead><tr><th>#</th><th>Route</th><th>UI look / purpose</th></tr></thead>
+        <tbody>
+          <tr><td>6</td><td><span class="route">/listings</span></td><td>Filter bar + <strong>photo card grid</strong></td></tr>
+          <tr><td>7</td><td><span class="route">/listings/[id]</span></td><td>Gallery (standard slots), optional 3D embed, rent/deposit, Apply CTA</td></tr>
+          <tr><td>8</td><td><span class="route">/listings/[id]/apply</span></td><td>Multi-step form (ID, contacts)</td></tr>
+          <tr><td>9</td><td><span class="route">/listings/[id]/pay-security</span></td><td>Checkout — escrow copy, amount, green Pay</td></tr>
+          <tr><td>10</td><td><span class="route">/applications/[id]/status</span></td><td>Timeline: applied → approved → pay → <span class="badge secured">secured</span></td></tr>
+          <tr><td>11</td><td><span class="route">/favorites</span></td><td>Saved listings (optional MVP)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CONSOLE -->
+    <section id="console">
+      <h2>C. Owner / PM web console — 28 pages</h2>
+      <p class="lede">Shell: <span class="route">/app/(console)/…</span> with Northern Lights sidebar. Dense tables + mono badges.</p>
+      <table>
+        <thead><tr><th>#</th><th>Route</th><th>Purpose / UI</th></tr></thead>
+        <tbody>
+          <tr><td>12</td><td><span class="route">/app</span></td><td><strong>Command dashboard</strong> — KPI tiles, AI risk strip, Ask PEMA</td></tr>
+          <tr><td>13</td><td><span class="route">/app/buildings</span></td><td>Table of buildings</td></tr>
+          <tr><td>14</td><td><span class="route">/app/buildings/new</span></td><td>Create building form</td></tr>
+          <tr><td>15</td><td><span class="route">/app/buildings/[id]</span></td><td>Building overview (units, water, cleaning)</td></tr>
+          <tr><td>16</td><td><span class="route">/app/units</span></td><td><strong>Vacancy board</strong> — status filters, days vacant</td></tr>
+          <tr><td>17</td><td><span class="route">/app/units/new</span></td><td>Add unit</td></tr>
+          <tr><td>18</td><td><span class="route">/app/units/[id]</span></td><td>Unit detail + status machine</td></tr>
+          <tr><td>19</td><td><span class="route">/app/listings</span></td><td>All listings table</td></tr>
+          <tr><td>20</td><td><span class="route">/app/listings/new</span></td><td>Create listing (rent, deposit, amenities)</td></tr>
+          <tr><td>21</td><td><span class="route">/app/listings/[id]</span></td><td>Edit listing</td></tr>
+          <tr><td>22</td><td><span class="route">/app/listings/[id]/media</span></td><td><strong>Photo slot uploader</strong> + optional 3D URL</td></tr>
+          <tr><td>23</td><td><span class="route">/app/applications</span></td><td>Inbox — pending approvals</td></tr>
+          <tr><td>24</td><td><span class="route">/app/applications/[id]</span></td><td>Approve/reject + jump to pay status</td></tr>
+          <tr><td>25</td><td><span class="route">/app/leases</span></td><td>Active / past leases</td></tr>
+          <tr><td>26</td><td><span class="route">/app/leases/[id]</span></td><td>Lease + <strong>handover checklist</strong></td></tr>
+          <tr><td>27</td><td><span class="route">/app/rent</span></td><td>Escrow board: expected / collected / outstanding</td></tr>
+          <tr><td>28</td><td><span class="route">/app/rent/invoices/[id]</span></td><td>Invoice + ledger lines</td></tr>
+          <tr><td>29</td><td><span class="route">/app/rent/payouts</span></td><td>Owner settlement batches</td></tr>
+          <tr><td>30</td><td><span class="route">/app/cleaning</span></td><td>Schedule calendar / list</td></tr>
+          <tr><td>31</td><td><span class="route">/app/cleaning/jobs/[id]</span></td><td>Job + <strong>proof pack</strong> (biometric + CCTV/selfie)</td></tr>
+          <tr><td>32</td><td><span class="route">/app/cleaning/workers</span></td><td>Workers / enrollment status</td></tr>
+          <tr><td>33</td><td><span class="route">/app/water</span></td><td>Building tanks overview</td></tr>
+          <tr><td>34</td><td><span class="route">/app/water/[buildingId]</span></td><td>Live level, chart, alerts</td></tr>
+          <tr><td>35</td><td><span class="route">/app/alerts</span></td><td>Alert inbox (water + cleaning no-show)</td></tr>
+          <tr><td>36</td><td><span class="route">/app/work-orders</span></td><td>WO list</td></tr>
+          <tr><td>37</td><td><span class="route">/app/work-orders/[id]</span></td><td>WO detail</td></tr>
+          <tr><td>38</td><td><span class="route">/app/people</span></td><td>Members + roles</td></tr>
+          <tr><td>39</td><td><span class="route">/app/settings</span></td><td>Org profile + escrow + notification prefs (tabs)</td></tr>
+        </tbody>
+      </table>
+      <p class="lede" style="margin-top:.5rem">Dashboard+buildings 4 · units 3 · listings 4 · applications 2 · leases 2 · rent 3 · cleaning 3 · water 2 · alerts 1 · WO 2 · people 1 · settings 1 = <strong style="color:var(--foreground)">28</strong>. Ask PEMA + notifications = overlays, not extra pages.</p>
+    </section>
+
+    <!-- RESIDENT -->
+    <section id="resident">
+      <h2>D. Resident mobile — 8 screens</h2>
+      <table>
+        <thead><tr><th>#</th><th>Screen</th><th>UI</th></tr></thead>
+        <tbody>
+          <tr><td>40</td><td>Home</td><td>Dues chip, tank gauge, Ask PEMA, quick pay</td></tr>
+          <tr><td>41</td><td>Pay rent</td><td>Escrow checkout</td></tr>
+          <tr><td>42</td><td>Receipts</td><td>List + PDF</td></tr>
+          <tr><td>43</td><td>Tickets</td><td>Create / list</td></tr>
+          <tr><td>44</td><td>Water</td><td>Tank status + history</td></tr>
+          <tr><td>45</td><td>AI chat</td><td>Resident assistant</td></tr>
+          <tr><td>46</td><td>Notifications</td><td>List</td></tr>
+          <tr><td>47</td><td>Profile</td><td>Account</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- WORKER -->
+    <section id="worker">
+      <h2>E. Cleaning worker mobile — 5 screens</h2>
+      <table>
+        <thead><tr><th>#</th><th>Screen</th><th>UI</th></tr></thead>
+        <tbody>
+          <tr><td>48</td><td>Jobs today</td><td>List with time windows</td></tr>
+          <tr><td>49</td><td>Job detail</td><td>Checklist + map/address</td></tr>
+          <tr><td>50</td><td>Check-in / out</td><td>Biometric prompt + CCTV/alt proof capture</td></tr>
+          <tr><td>51</td><td>History</td><td>Past jobs</td></tr>
+          <tr><td>52</td><td>Profile</td><td>Worker profile</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Canonical: Auth 5 + Prospect 6 + Owner/PM 28 + Resident 8 + Worker 5 = <strong>52 screens NOW</strong>.</div>
+    </section>
+
+    <!-- NEEDED -->
+    <section id="needed">
+      <h2>6. Things needed to build this UI</h2>
+
+      <h3>6.1 Theme &amp; design system</h3>
+      <div class="check-grid">
+        <div class="check">Next.js + Tailwind v4 / shadcn init</div>
+        <div class="check">Add Northern Lights theme JSON (tweakcn)</div>
+        <div class="check">Plus Jakarta Sans + JetBrains Mono loaded</div>
+        <div class="check">Dark default; light toggle optional</div>
+        <div class="check">Tokens in globals.css</div>
+      </div>
+
+      <h3>6.2 shadcn components to install</h3>
+      <div class="pill-row">
+        <span class="pill">button</span><span class="pill">input</span><span class="pill">label</span><span class="pill">textarea</span>
+        <span class="pill">select</span><span class="pill">checkbox</span><span class="pill">radio-group</span><span class="pill">switch</span>
+        <span class="pill">form</span><span class="pill">dialog</span><span class="pill">sheet</span><span class="pill">drawer</span>
+        <span class="pill">dropdown-menu</span><span class="pill">popover</span><span class="pill">table</span><span class="pill">card</span>
+        <span class="pill">badge</span><span class="pill">avatar</span><span class="pill">separator</span><span class="pill">tabs</span>
+        <span class="pill">calendar</span><span class="pill">command</span><span class="pill">sonner</span><span class="pill">sidebar</span>
+        <span class="pill">breadcrumb</span><span class="pill">scroll-area</span><span class="pill">skeleton</span><span class="pill">progress</span>
+        <span class="pill">alert</span><span class="pill">chart</span>
+      </div>
+
+      <h3>6.3 Custom / domain components</h3>
+      <div class="check-grid">
+        <div class="check">VacancyStatusBadge</div>
+        <div class="check">PhotoSlotGrid</div>
+        <div class="check">ListingGallery</div>
+        <div class="check">Embed3D</div>
+        <div class="check">EscrowPayButton</div>
+        <div class="check">TankLevelGauge</div>
+        <div class="check">ProofPackViewer</div>
+        <div class="check">AiChatPanel / AiRiskStrip</div>
+        <div class="check">KpiStat</div>
+      </div>
+
+      <h3>6.4 Infra the UI depends on</h3>
+      <div class="check-grid">
+        <div class="check">R2/S3 — photos, CCTV, proof selfies</div>
+        <div class="check">Escrow payment checkout (web)</div>
+        <div class="check">Expo push notifications</div>
+        <div class="check">Biometric SDK or supervised capture</div>
+        <div class="check">Maps (optional, worker address)</div>
+        <div class="check">AI_GATEWAY_API_KEY for Ask PEMA</div>
+      </div>
+
+      <h3>6.5 Roles → default home</h3>
+      <table>
+        <thead><tr><th>Role</th><th>Lands on</th></tr></thead>
+        <tbody>
+          <tr><td>Owner</td><td><span class="route">/app</span> dashboard</td></tr>
+          <tr><td>PM</td><td><span class="route">/app</span> or vacancy board</td></tr>
+          <tr><td>Accounts</td><td><span class="route">/app/rent</span></td></tr>
+          <tr><td>Prospect</td><td><span class="route">/listings</span></td></tr>
+          <tr><td>Resident</td><td>Mobile Home</td></tr>
+          <tr><td>Cleaning worker</td><td>Jobs today</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order">
+      <h2>7. MVP UI build order</h2>
+      <ol style="font-size:.88rem;color:var(--muted-foreground)">
+        <li><strong style="color:var(--foreground)">Auth + shell</strong> (Northern Lights sidebar)</li>
+        <li><strong style="color:var(--foreground)">Buildings / units / vacancy board</strong></li>
+        <li><strong style="color:var(--foreground)">Listings + photo slots + public detail</strong></li>
+        <li><strong style="color:var(--foreground)">Apply → pay security → secured</strong></li>
+        <li><strong style="color:var(--foreground)">Escrow rent board + resident pay</strong></li>
+        <li><strong style="color:var(--foreground)">Cleaning jobs + proof viewer + worker check-in</strong></li>
+        <li><strong style="color:var(--foreground)">Building water gauge + alerts</strong></li>
+        <li><strong style="color:var(--foreground)">Ask PEMA drawer</strong> wired to tools</li>
+      </ol>
+      <p class="lede" style="margin-top:1rem">Later (not NOW): Pamtsho WTP ERP ~20+ municipal screens — see PAMTSHO_WTP_ERP_BLUEPRINT.md</p>
+    </section>
+
+    <footer class="page-foot">
+      Source: <a href="UI_PAGES_AND_LOOK.md">UI_PAGES_AND_LOOK.md</a> · Theme:
+      <a href="https://tweakcn.com/r/themes/northern-lights.json" rel="noopener">northern-lights.json</a> ·
+      Updated 2026-09-20
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var a = document.getElementById("dl");
+      if (!a) return;
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        var blob = new Blob([document.documentElement.outerHTML], { type: "text/html;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "UI_PAGES_AND_LOOK.html";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      });
+    })();
+  </script>
+</body>
+</html>

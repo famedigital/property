@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEMA — Brand · Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: oklch(0.9824 0.0013 286.3757);
+      --foreground: oklch(0.3211 0 0);
+      --card: oklch(1.0000 0 0);
+      --primary: oklch(0.6487 0.1538 150.3071);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.6746 0.1414 261.3380);
+      --muted: oklch(0.8828 0.0285 98.1033);
+      --muted-foreground: oklch(0.5382 0 0);
+      --accent: oklch(0.8269 0.1080 211.9627);
+      --border: oklch(0.8699 0 0);
+      --radius: 0.5rem;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font); background: var(--background);
+      color: var(--foreground); line-height: 1.55;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    .toolbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      align-items: center; justify-content: space-between;
+      padding: .75rem 1.25rem; border-bottom: 1px solid var(--border);
+      background: color-mix(in oklch, var(--background) 88%, white);
+      backdrop-filter: blur(8px);
+    }
+    .toolbar a {
+      font-family: var(--font); font-size: .8rem; font-weight: 600;
+      padding: .4rem .85rem; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--primary); color: var(--primary-foreground); text-decoration: none;
+    }
+    .toolbar a.ghost {
+      background: var(--card); color: var(--foreground); border: 1px solid var(--border);
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+    .hero {
+      min-height: 68vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 1rem;
+      padding: 2.5rem 0 3.5rem;
+      background:
+        radial-gradient(700px 380px at 8% 15%, color-mix(in oklch, var(--primary) 16%, transparent), transparent 58%),
+        radial-gradient(520px 300px at 92% 70%, color-mix(in oklch, var(--secondary) 12%, transparent), transparent 55%),
+        radial-gradient(400px 240px at 40% 100%, color-mix(in oklch, var(--accent) 20%, transparent), transparent 50%);
+    }
+    .mark svg { width: 36px; height: 36px; display: block; }
+    .wordmark {
+      font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 700;
+      letter-spacing: 0.06em; line-height: 1; margin: 0; color: var(--foreground);
+    }
+    .wordmark .p { color: var(--primary); }
+    .lockup {
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--secondary); margin: 0;
+    }
+    .acronym {
+      display: flex; flex-wrap: wrap; gap: .45rem; margin: .25rem 0 0;
+    }
+    .acronym span {
+      font-size: .72rem; font-family: var(--mono);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; padding: .35rem .55rem; color: var(--muted-foreground);
+    }
+    .acronym span b { color: var(--primary); font-weight: 700; }
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted-foreground);
+      margin: .35rem 0 0; max-width: 32ch;
+    }
+
+    section {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--card); padding: 1.35rem 1.25rem; margin-bottom: 1.1rem;
+      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
+    }
+    section h2 { margin: 0 0 .5rem; font-size: 1.05rem; color: var(--primary); }
+    section p { font-size: .88rem; color: var(--muted-foreground); }
+    section strong { color: var(--foreground); }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .logo-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.75rem 1.25rem; text-align: center; background: var(--background);
+    }
+    .logo-card .wm { font-size: 1.75rem; font-weight: 700; letter-spacing: 0.08em; }
+    .logo-card .wm .p { color: var(--primary); }
+    .logo-card .sub {
+      margin-top: .35rem; font-size: .7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--secondary); font-weight: 600;
+    }
+    .logo-card .cap { margin-top: .55rem; font-size: .7rem; color: var(--muted-foreground); }
+
+    .swatches { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .sw { width: 72px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .sw i { display: block; height: 36px; }
+    .sw span { display: block; padding: .3rem; font-size: .62rem; background: var(--muted); }
+
+    table { width: 100%; border-collapse: collapse; font-size: .8rem; margin-top: .5rem; }
+    th, td { border: 1px solid var(--border); padding: .45rem .55rem; text-align: left; }
+    th { background: var(--muted); }
+
+    .ui-chip {
+      display: inline-block; margin: .2rem .25rem .2rem 0;
+      padding: .35rem .7rem; border-radius: 6px; font-size: .75rem;
+      background: var(--muted); border: 1px solid var(--border);
+    }
+    .ui-chip.cta { background: var(--primary); color: var(--primary-foreground); border-color: transparent; font-weight: 600; }
+
+    footer { text-align: center; color: var(--muted-foreground); font-size: .78rem; padding: 1.5rem 0; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div><strong style="color:var(--primary)">PEMA</strong> · Brand</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <a id="dl" href="BRAND.html" download="BRAND.html">Download HTML</a>
+      <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory</a>
+      <a class="ghost" href="COMPLETE_SYSTEM_PLAN.html">System plan</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
+                stroke="oklch(0.6487 0.1538 150.3071)" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
+                stroke="oklch(0.6746 0.1414 261.3380)" stroke-width="1.4" opacity=".8" stroke-linejoin="round"/>
+          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
+        </svg>
+      </div>
+      <h1 class="wordmark"><span class="p">P</span>EMA</h1>
+      <p class="lockup">Real Estate</p>
+      <div class="acronym">
+        <span><b>P</b>roperty</span>
+        <span><b>E</b>state</span>
+        <span><b>M</b>anagement</span>
+        <span><b>A</b>pplication</span>
+      </div>
+      <p class="tagline">Property, settled.</p>
+    </header>
+
+    <section>
+      <h2>Why PEMA Real Estate</h2>
+      <p>
+        <strong>PEMA</strong> = <strong>P</strong>roperty · <strong>E</strong>state · <strong>M</strong>anagement · <strong>A</strong>pplication.
+        Short in the sidebar; clear as a product category. Full lockup
+        <strong>PEMA Real Estate</strong> (not “realstate”) when you need the public phrase.
+      </p>
+      <p style="margin-top:.7rem">
+        Separates you from bare given-name “Pema”, hotels, Realm-style brands, and clinics —
+        while keeping the PEMA sound you wanted.
+      </p>
+    </section>
+
+    <div class="grid2">
+      <section>
+        <h2>App wordmark</h2>
+        <div class="logo-card">
+          <div class="wm"><span class="p">P</span>EMA</div>
+          <div class="cap">Sidebar · splash · Ask PEMA</div>
+        </div>
+      </section>
+      <section>
+        <h2>Public lockup</h2>
+        <div class="logo-card">
+          <div class="wm"><span class="p">P</span>EMA</div>
+          <div class="sub">Real Estate</div>
+          <div class="cap">Marketing · footer · legal</div>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <h2>Color (Northern Lights · light)</h2>
+      <div class="swatches">
+        <div class="sw"><i style="background:var(--background)"></i><span>Bg</span></div>
+        <div class="sw"><i style="background:var(--primary)"></i><span>Green</span></div>
+        <div class="sw"><i style="background:var(--secondary)"></i><span>Blue</span></div>
+        <div class="sw"><i style="background:var(--accent)"></i><span>Accent</span></div>
+        <div class="sw"><i style="background:var(--muted)"></i><span>Muted</span></div>
+      </div>
+      <p style="margin-top:.85rem">Plus Jakarta Sans · radius 0.5rem · <strong>light default</strong></p>
+    </section>
+
+    <section>
+      <h2>UI chips</h2>
+      <div>
+        <span class="ui-chip">Ask PEMA</span>
+        <span class="ui-chip cta">Pay security</span>
+        <span class="ui-chip">Held until secured</span>
+        <span class="ui-chip">Listed on PEMA</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Where it appears</h2>
+      <table>
+        <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <tr><td>Sidebar / app</td><td><strong>PEMA</strong></td></tr>
+          <tr><td>Login</td><td>PEMA + Real Estate + tagline</td></tr>
+          <tr><td>About (once)</td><td>Property, Estate, Management Application</td></tr>
+          <tr><td>Prospect</td><td>Listed on PEMA</td></tr>
+          <tr><td>AI</td><td>Ask PEMA</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>Source: <a href="BRAND.md">BRAND.md</a> · Northern Lights light · 2026-09-20</footer>
+  </div>
+
+  <script>
+    document.getElementById("dl").addEventListener("click", function (e) {
+      e.preventDefault();
+      var blob = new Blob([document.documentElement.outerHTML], { type: "text/html;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = "BRAND.html";
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
