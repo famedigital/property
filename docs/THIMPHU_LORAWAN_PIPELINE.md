@@ -2,7 +2,7 @@
 
 **Scope:** Monitor and operate the **entire water journey** for Thimphu — anchor **Pamtsho / Jungzhina–Pamtsho WTP + distribution** — with process sensors + CCTV, feeding our **Water Utility ERP**.  
 **Networking:** **LoRaWAN for sensors** · **separate backhaul for CCTV**.  
-**Fits product:** Independent platform for Thromde (paper SCADA is not relied on) + optional private building tanks under a separate property tenant. Full ERP groundwork → [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md).
+**Fits product:** **Building-first** — local IoT, escrow rent, cleaning proof, per-building water. Main source / Pamtsho ERP is **later** ([`PROJECT_FOCUS.md`](./PROJECT_FOCUS.md), [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md)).
 
 ---
 
