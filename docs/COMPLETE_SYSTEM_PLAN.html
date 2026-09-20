@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complete System Plan — Property · Rent-to-Owner · Thimphu Water</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --ink: #0f1c24;
+      --muted: #4a5c68;
+      --paper: #f7faf8;
+      --card: #ffffff;
+      --line: #d5e0e6;
+      --teal: #0d6e6e;
+      --teal-deep: #084848;
+      --sand: #e8f0ec;
+      --alert: #b45309;
+      --danger: #9f1239;
+      --ok: #047857;
+      --shadow: 0 12px 40px rgba(15, 28, 36, 0.08);
+      --radius: 14px;
+      --font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --display: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #d7ebe8 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #e6efe8 0%, transparent 50%),
+        linear-gradient(180deg, #eef5f2 0%, var(--paper) 28%, #f3f7f5 100%);
+      line-height: 1.55;
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      background: rgba(15, 28, 36, 0.92);
+      color: #e8f2ef;
+      backdrop-filter: blur(8px);
+    }
+    .toolbar a, .toolbar button {
+      color: #0f1c24;
+      background: #e8f2ef;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.45rem 0.95rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .toolbar a.ghost, .toolbar button.ghost {
+      background: transparent;
+      color: #e8f2ef;
+      border: 1px solid rgba(232, 242, 239, 0.35);
+    }
+    .toolbar .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+    .hero {
+      margin: 1.5rem 0 2rem;
+      padding: 2.25rem 2rem;
+      border-radius: calc(var(--radius) + 4px);
+      background:
+        linear-gradient(135deg, rgba(13, 110, 110, 0.95), rgba(8, 72, 72, 0.98)),
+        var(--teal-deep);
+      color: #f4fffc;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% 40%;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 65%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin: 0 0 0.6rem;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+      position: relative;
+    }
+    .hero .promise {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      max-width: 42rem;
+      margin: 0 0 1.25rem;
+      position: relative;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.45rem; position: relative; }
+    .badge {
+      display: inline-block;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .meta { margin-top: 1.25rem; font-size: 0.85rem; opacity: 0.8; position: relative; }
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    nav.toc h2 { margin: 0 0 0.6rem; font-size: 1rem; color: var(--teal-deep); }
+    nav.toc ol { margin: 0; padding-left: 1.2rem; columns: 2; gap: 1.5rem; }
+    nav.toc a { color: var(--teal); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+    @media (max-width: 700px) { nav.toc ol { columns: 1; } }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.4rem 1.6rem;
+      margin-bottom: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+    section h2 {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      margin: 0 0 0.35rem;
+      color: var(--teal-deep);
+      letter-spacing: -0.01em;
+    }
+    section .lede { color: var(--muted); margin: 0 0 1rem; }
+    h3 { margin: 1.2rem 0 0.45rem; font-size: 1.05rem; color: var(--ink); }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.4rem 0 0.6rem; padding-left: 1.25rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 0.25rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--sand); color: var(--teal-deep); font-weight: 700; }
+    .mermaid {
+      background: #fbfefd;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .mermaid-fallback {
+      display: none;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      background: #0f1c24;
+      color: #d7ebe8;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .corridor {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 800px) { .corridor { grid-template-columns: 1fr; } }
+    .stage {
+      background: linear-gradient(180deg, #f4fbf9, #e7f2ef);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.85rem 0.75rem;
+      position: relative;
+      min-height: 110px;
+    }
+    .stage::after {
+      content: "→";
+      position: absolute;
+      right: -0.55rem;
+      top: 45%;
+      color: var(--teal);
+      font-weight: 700;
+      z-index: 1;
+    }
+    .stage:last-child::after { content: none; }
+    @media (max-width: 800px) {
+      .stage::after { content: "↓"; right: 50%; top: auto; bottom: -0.85rem; transform: translateX(50%); }
+    }
+    .stage .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .stage strong { display: block; margin: 0.25rem 0; font-size: 0.95rem; }
+    .stage span { font-size: 0.8rem; color: var(--muted); }
+    .callout {
+      border-left: 4px solid var(--teal);
+      background: var(--sand);
+      padding: 0.85rem 1rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1rem 0;
+    }
+    .callout.warn { border-left-color: var(--alert); background: #fff7ed; }
+    .callout.danger { border-left-color: var(--danger); background: #fff1f2; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0; }
+    .pill {
+      background: var(--sand);
+      color: var(--teal-deep);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .checklist li { margin: 0.35rem 0; }
+    footer.page-foot {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0 0.5rem;
+    }
+    @media print {
+      .toolbar { display: none !important; }
+      body { background: #fff; }
+      section, .hero, nav.toc { box-shadow: none; break-inside: avoid; }
+      .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div><strong>Complete System Plan</strong> · Property · Water · Rent</div>
+    <div class="actions">
+      <a id="dl" href="COMPLETE_SYSTEM_PLAN.html" download="COMPLETE_SYSTEM_PLAN.html">Download HTML</a>
+      <button type="button" onclick="window.print()">Print / Save PDF</button>
+      <a class="ghost" href="#toc">Contents</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <h1>Property · Rent-to-Owner · Thimphu Water</h1>
+      <p class="promise">If the source fails, the building owner is notified from the source — before the rooftop tank runs dry. Rent settles to the owner, not the manager’s pocket.</p>
+      <div class="badges">
+        <span class="badge">Next.js + Expo</span>
+        <span class="badge">Postgres RLS RBAC</span>
+        <span class="badge">LoRaWAN → ChirpStack</span>
+        <span class="badge">Pay-to-owner</span>
+        <span class="badge">AI Gateway</span>
+        <span class="badge">Source alerts</span>
+      </div>
+      <p class="meta">Architecture plan · Visual edition · 2026-09-20 · Status: proposed (docs only)</p>
+    </header>
+
+    <nav class="toc" id="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#business">Business model</a></li>
+        <li><a href="#org">Organogram</a></li>
+        <li><a href="#rent">Anti-skimming &amp; rent flow</a></li>
+        <li><a href="#systems">Systems map</a></li>
+        <li><a href="#corridor">Thimphu water corridor</a></li>
+        <li><a href="#network">Networking</a></li>
+        <li><a href="#alerts">Source alerts</a></li>
+        <li><a href="#compare">City comparison</a></li>
+        <li><a href="#ai">AI &amp; API keys</a></li>
+        <li><a href="#stack">Tech stack &amp; deploy</a></li>
+        <li><a href="#mvp">MVP roadmap</a></li>
+        <li><a href="#decisions">Open decisions</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 Business -->
+    <section id="business">
+      <h2>1. Business model</h2>
+      <p class="lede">B2B SaaS + IoT for property operators. Platform earns subscription (± thin collection fee). Rent money belongs to the building owner.</p>
+      <div class="mermaid">
+flowchart TB
+  Platform["Your platform SaaS + IoT"]
+  Owner["Building owner receives RENT"]
+  PM["Property manager day-to-day ops"]
+  Residents["Residents pay rent + see water"]
+  Pay["Payment provider Connect-style"]
+  Platform --> Owner
+  Platform --> PM
+  Platform --> Residents
+  Residents -->|pays| Pay
+  Pay -->|payout| Owner
+  Pay -->|thin fee| Platform
+      </div>
+      <table>
+        <thead><tr><th>Who</th><th>Pays / receives</th><th>For what</th></tr></thead>
+        <tbody>
+          <tr><td>Resident</td><td>Pays rent</td><td>Unit / flat occupancy</td></tr>
+          <tr><td>Building owner</td><td><strong>Receives rent</strong></td><td>Ownership; KYC connected account</td></tr>
+          <tr><td>Property manager</td><td>Visible management fee</td><td>Operations — does not hold rent</td></tr>
+          <tr><td>Platform</td><td>Subscription ± fee</td><td>Software, sensors, collection rails</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Platform is a facilitator, not the landlord. Funds route to the owner’s connected account.</div>
+    </section>
+
+    <!-- 2 Organogram -->
+    <section id="org">
+      <h2>2. Organogram</h2>
+      <p class="lede">Customer-side roles map directly to database RBAC.</p>
+      <div class="mermaid">
+flowchart TB
+  OwnerNode["Building owner / society board"]
+  Org["Property management org"]
+  Admin["Org admin RBAC + KYC"]
+  PMNode["Property manager"]
+  Accounts["Accounts / rent clerk"]
+  Fac["Facilities / water"]
+  Staff["Maintenance + site supervisor"]
+  Res["Residents / tenants"]
+  Vendors["Vendors"]
+  OwnerNode --> Org
+  Org --> Admin
+  Org --> PMNode
+  Org --> Accounts
+  Org --> Fac
+  PMNode --> Staff
+  Fac --> Staff
+  Staff --> Res
+  Staff --> Vendors
+      </div>
+      <table>
+        <thead><tr><th>Role</th><th>Function</th><th>App focus</th></tr></thead>
+        <tbody>
+          <tr><td>Owner</td><td>Portfolio, payouts, water risk</td><td>Dashboard, statements</td></tr>
+          <tr><td>Admin</td><td>Buildings, users, roles, owner KYC</td><td>Setup</td></tr>
+          <tr><td>PM</td><td>Leases, tickets, chase rent — no rent wallet</td><td>Ops</td></tr>
+          <tr><td>Accounts</td><td>Invoices, arrears, receipts</td><td>Ledger</td></tr>
+          <tr><td>Facilities</td><td>Tanks, sensors, vendors</td><td>Alerts / WO</td></tr>
+          <tr><td>Resident</td><td>Pay rent, see tank, report issues</td><td>Mobile</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3 Rent -->
+    <section id="rent">
+      <h2>3. Anti-skimming &amp; rent flow</h2>
+      <p class="lede">Stop “manager eating the money”: residents never pay into the manager’s personal account by default.</p>
+      <div class="callout danger">
+        <strong>Broken today:</strong> cash/transfer to manager → under-reporting, fake vacancies, Excel receipts.
+        <br /><strong>Product rule:</strong> pay-to-owner rail · immutable ledger · owner sees expected vs collected live.
+      </div>
+      <div class="mermaid">
+flowchart LR
+  Resident2["Resident"] -->|invoice pay| Rail["Payment rail"]
+  Rail -->|rent| OwnerBank["Owner bank"]
+  Rail -->|optional fee| PMFee["PM fee"]
+  Rail -->|thin fee| PlatFee["Platform"]
+  OwnerDash["Owner dashboard"] -.->|expected vs paid| OwnerBank
+      </div>
+      <h3>Hard controls</h3>
+      <ul>
+        <li>No silent “mark paid” without webhook or owner OTP for cash</li>
+        <li>Payments cannot be deleted — void/refund with audit only</li>
+        <li>Every active lease auto-invoices; vacancies visible to owner</li>
+        <li>Manager fee capped %/flat on every receipt</li>
+        <li>Arrears alerts go to owner directly</li>
+      </ul>
+    </section>
+
+    <!-- 4 Systems -->
+    <section id="systems">
+      <h2>4. Systems map</h2>
+      <p class="lede">One cloud brain for portfolio, money, water, and AI assist.</p>
+      <div class="mermaid">
+flowchart TB
+  subgraph clients [Client apps]
+    Web["Next.js web"]
+    Mobile["Expo mobile"]
+  end
+  subgraph platform [Application platform]
+    Auth["Auth + RBAC context"]
+    API["API / rent / WO / alerts"]
+    AINode["AI Gateway enrich"]
+  end
+  subgraph data [Data plane]
+    PG["PostgreSQL + RLS"]
+    Redis["Redis"]
+    PayAPI["Payments provider"]
+  end
+  subgraph iot [IoT plane]
+    Sensors["LoRaWAN sensors"]
+    GW["Gateway + ChirpStack"]
+    CCTV["CCTV 4G/fiber"]
+  end
+  Web --> API
+  Mobile --> API
+  API --> Auth
+  API --> PG
+  API --> Redis
+  API --> PayAPI
+  API --> AINode
+  Sensors --> GW --> API
+  CCTV --> API
+      </div>
+      <div class="grid-2">
+        <div>
+          <h3>Domains</h3>
+          <div class="pill-row">
+            <span class="pill">Portfolio</span>
+            <span class="pill">People / RBAC</span>
+            <span class="pill">Leasing</span>
+            <span class="pill">Rent ledger</span>
+            <span class="pill">IoT assets</span>
+            <span class="pill">Work orders</span>
+            <span class="pill">Audit</span>
+          </div>
+        </div>
+        <div>
+          <h3>Promise split</h3>
+          <ul>
+            <li>Rules engine = P0/P1 truth</li>
+            <li>AI = wording &amp; advice only</li>
+            <li>Payments = owner settlement</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Corridor -->
+    <section id="corridor">
+      <h2>5. Thimphu water corridor</h2>
+      <p class="lede">Instrument the full journey from municipal source to the building owner tank.</p>
+      <div class="corridor" aria-label="Water path stages">
+        <div class="stage">
+          <div class="label">Source</div>
+          <strong>Intake / WTP</strong>
+          <span>Level, flow, pump, CCTV</span>
+        </div>
+        <div class="stage">
+          <div class="label">Main</div>
+          <strong>Transmission</strong>
+          <span>Pressure + flow nodes</span>
+        </div>
+        <div class="stage">
+          <div class="label">Zone</div>
+          <strong>Intermediate tanks</strong>
+          <span>Level + outlet flow</span>
+        </div>
+        <div class="stage">
+          <div class="label">Building</div>
+          <strong>Inlet meter</strong>
+          <span>Flow into property</span>
+        </div>
+        <div class="stage">
+          <div class="label">Owner</div>
+          <strong>Rooftop tank</strong>
+          <span>Level % / liters</span>
+        </div>
+      </div>
+      <div class="mermaid">
+flowchart LR
+  S["SOURCE"] --> M["MAIN"] --> Z["ZONE"] --> B["BUILDING"] --> T["OWNER TANK"]
+  S -.->|alert stage tag| Phone["Owner phone"]
+  M -.-> Phone
+  T -.-> Phone
+      </div>
+      <table>
+        <thead><tr><th>Problem pattern</th><th>Reading</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>Source OK + mid-line pressure collapse</td><td>Leak between nodes</td></tr>
+          <tr><td>B</td><td>Source low + all downstream empty</td><td>Source shortage</td></tr>
+          <tr><td>C</td><td>Inlet flowing + tank not rising</td><td>Local pump / valve fault</td></tr>
+          <tr><td>D</td><td>Tank empty + CCTV source full</td><td>Distribution fault</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Thromde already adds SCADA on some schemes. Your wedge is source→private tank visibility + owner alerts — complement, don’t clone a mega-city control room on day one.</div>
+    </section>
+
+    <!-- 6 Network -->
+    <section id="network">
+      <h2>6. Networking</h2>
+      <p class="lede">LoRaWAN for sensor bytes; CCTV never rides LoRaWAN.</p>
+      <table>
+        <thead><tr><th>Traffic</th><th>Network</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Level, flow, pressure, battery</td><td><strong>LoRaWAN</strong> (plan AS923)</td><td>Long range, solar, mountain-friendly</td></tr>
+          <tr><td>CCTV video</td><td><strong>4G / fiber / NVR</strong></td><td>Needs Mbps; LoRa is too small</td></tr>
+          <tr><td>Apps, rent, AI</td><td>Internet HTTPS</td><td>Same cloud platform</td></tr>
+        </tbody>
+      </table>
+      <div class="mermaid">
+flowchart LR
+  Node["Sensor node"] -->|LoRa RF| LGW["LoRaWAN gateway solar + 4G"]
+  LGW --> CS["ChirpStack NS"]
+  CS -->|MQTT| Bridge["mqtt-bridge"]
+  Bridge --> Cloud2["Your cloud"]
+  Cam["CCTV"] -->|4G/fiber| VMS["NVR / VMS / R2 clips"]
+  VMS --> Cloud2
+      </div>
+      <p>Private ChirpStack on VPS; OTAA per device; topics scoped by org/building/sensor.</p>
+    </section>
+
+    <!-- 7 Alerts -->
+    <section id="alerts">
+      <h2>7. Source water issue alerts</h2>
+      <p class="lede">Notify from the SOURCE stage — not only when the rooftop tank is empty.</p>
+      <div class="mermaid">
+sequenceDiagram
+  participant Sen as Source sensor
+  participant CS as ChirpStack
+  participant Alert as Alert rules
+  participant AI as AI enrich
+  participant Own as Owner phone
+  participant Fac as Facilities
+  Sen->>CS: LoRaWAN uplink
+  CS->>Alert: MQTT reading
+  Alert->>Alert: Threshold / rate rules
+  Alert->>Own: Push + SMS if P0
+  Alert->>Fac: Push + SMS
+  Alert-->>AI: Optional explain copy
+  AI-->>Own: Human message
+      </div>
+      <table>
+        <thead><tr><th>Code</th><th>Severity</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>SRC_LEVEL_CRITICAL</td><td>P0</td><td>Source nearly dry</td></tr>
+          <tr><td>SRC_FLOW_ZERO</td><td>P0</td><td>No water leaving source</td></tr>
+          <tr><td>SRC_PUMP_FAIL</td><td>P0</td><td>Equipment failure</td></tr>
+          <tr><td>SRC_LEVEL_LOW / FLOW_DROP</td><td>P1</td><td>Shortage starting</td></tr>
+          <tr><td>SRC_NODE_OFFLINE</td><td>P2</td><td>Blind — risk</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warn">Owner always sees open source alerts even if the manager acknowledges — manager cannot be the only channel.</div>
+    </section>
+
+    <!-- 8 Compare -->
+    <section id="compare">
+      <h2>8. Seoul / Tokyo vs Thimphu</h2>
+      <p class="lede">Mega-cities run dense utility SCADA + smart meters. Thimphu is emerging scheme-by-scheme.</p>
+      <table>
+        <thead><tr><th>Dimension</th><th>Seoul / Tokyo</th><th>Thimphu</th><th>Your fit</th></tr></thead>
+        <tbody>
+          <tr><td>Operator</td><td>Strong city utility</td><td>Thromde + projects</td><td>Building layer + partner</td></tr>
+          <tr><td>Control room</td><td>24/7 dense SCADA</td><td>SCADA on new WTPs</td><td>Cloud + push/SMS</td></tr>
+          <tr><td>Smart meters</td><td>Mass rollout</td><td>Pilots / hundreds</td><td>Inlet + tank first</td></tr>
+          <tr><td>Owner alert from source</td><td>Utility-mediated</td><td>Usually none</td><td><strong>Core wedge</strong></td></tr>
+          <tr><td>Private rooftop tanks</td><td>Less central</td><td>Common gap</td><td>Instrument &amp; alert</td></tr>
+        </tbody>
+      </table>
+      <div class="mermaid">
+flowchart LR
+  subgraph mega [Seoul_Tokyo]
+    MS["SOURCE"] --> MG["CITY GRID"] --> MM["HOUSE METER"]
+  end
+  subgraph th [Thimphu]
+    TS["SOURCE"] --> TZ["zones"] --> Gap["visibility gap"] --> TT["BUILDING TANK"]
+  end
+  Gap -.->|your product| App["Owner alerts"]
+      </div>
+    </section>
+
+    <!-- 9 AI -->
+    <section id="ai">
+      <h2>9. AI &amp; API keys</h2>
+      <p class="lede">Vercel AI SDK + AI Gateway. One server key. Mobile never holds provider keys.</p>
+      <div class="mermaid">
+flowchart LR
+  UI["Web / Mobile"] -->|auth API| Server["Next.js server"]
+  Server -->|AI_GATEWAY_API_KEY| GW["AI Gateway"]
+  GW --> Models["Claude / GPT / etc"]
+  Rules["Sensor rules P0/P1"] -->|always fire| Notify["Push / SMS"]
+  Server -->|enrich only| Notify
+      </div>
+      <table>
+        <thead><tr><th>Feature</th><th>AI job</th></tr></thead>
+        <tbody>
+          <tr><td>Source alert explain</td><td>Human copy from sensor codes</td></tr>
+          <tr><td>Root-cause assist</td><td>Source vs leak vs building pump</td></tr>
+          <tr><td>Work-order draft</td><td>Ticket text + CCTV link</td></tr>
+          <tr><td>Owner morning brief</td><td>Water + rent overnight summary</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        Env: <code>AI_GATEWAY_API_KEY</code> in <code>.env.local</code> / Vercel only — never <code>EXPO_PUBLIC_*</code>.
+        If AI is down, template alerts still send.
+      </div>
+    </section>
+
+    <!-- 10 Stack -->
+    <section id="stack">
+      <h2>10. Tech stack &amp; deploy</h2>
+      <p class="lede">TypeScript monorepo; cheap core; AWS later if required.</p>
+      <table>
+        <thead><tr><th>Layer</th><th>Choice</th></tr></thead>
+        <tbody>
+          <tr><td>Monorepo</td><td>pnpm + Turborepo</td></tr>
+          <tr><td>Web</td><td>Next.js App Router</td></tr>
+          <tr><td>Mobile</td><td>Expo (iOS + Android)</td></tr>
+          <tr><td>DB</td><td>PostgreSQL 16+ RLS + Timescale/partitions</td></tr>
+          <tr><td>ORM</td><td>Drizzle</td></tr>
+          <tr><td>Auth</td><td>Supabase Auth</td></tr>
+          <tr><td>IoT</td><td>LoRaWAN → ChirpStack → MQTT bridge</td></tr>
+          <tr><td>AI</td><td>Vercel AI SDK + Gateway</td></tr>
+          <tr><td>Deploy MVP</td><td>Supabase + Vercel + Hetzner (MQTT/ChirpStack)</td></tr>
+          <tr><td>Objects</td><td>Cloudflare R2 / S3-compatible</td></tr>
+        </tbody>
+      </table>
+      <h3>Repo shape</h3>
+      <pre class="mermaid-fallback" style="display:block;background:#0f1c24;color:#d7ebe8;padding:1rem;border-radius:10px;font-size:0.82rem;overflow:auto;">apps/web · apps/mobile · apps/mqtt-bridge
+packages/db · packages/shared
+infra/docker-compose · docs/</pre>
+    </section>
+
+    <!-- 11 MVP -->
+    <section id="mvp">
+      <h2>11. MVP roadmap</h2>
+      <ol class="checklist">
+        <li><strong>Foundation</strong> — monorepo, Postgres schema + RLS RBAC, auth, seed</li>
+        <li><strong>Property CRUD</strong> — orgs, buildings, units, memberships</li>
+        <li><strong>Rent-to-owner</strong> — leases, invoices, Connect-style payout, owner ledger</li>
+        <li><strong>Owner tank + LoRaWAN</strong> — 1 gateway, ChirpStack, live level</li>
+        <li><strong>Source alerts</strong> — upstream node + push/SMS P0/P1</li>
+        <li><strong>AI enrich</strong> — alert explain + owner brief behind Gateway key</li>
+        <li><strong>CCTV link</strong> — source clip on critical alerts (permits)</li>
+        <li><strong>Edge sync</strong> — gateway local buffer when 4G drops</li>
+        <li><strong>Phase 2</strong> — corridor densify, autopay, Thromde coexist</li>
+      </ol>
+    </section>
+
+    <!-- 12 Decisions -->
+    <section id="decisions">
+      <h2>12. Open decisions</h2>
+      <ul>
+        <li>Cloud: Supabase + Vercel + Hetzner MQTT (recommended) vs full AWS day one</li>
+        <li>Mobile: Expo default (plan) vs Flutter if rejecting React Native</li>
+        <li>Sensor hardware: ultrasonic / pressure / Modbus gateway</li>
+        <li>Data region / residency</li>
+        <li>Residents in MVP vs managers/owners only</li>
+        <li>Payment rails for Bhutan / region (Connect-style or local)</li>
+        <li>Which Thimphu source corridor for pilot + Thromde access for CCTV</li>
+      </ul>
+      <div class="callout">
+        Related markdown: <code>ARCHITECTURE.md</code>, <code>SYSTEMS_AND_OPERATIONS.md</code>,
+        <code>THIMPHU_LORAWAN_PIPELINE.md</code>, <code>WATER_SOURCE_ALERTS.md</code>,
+        <code>CITY_WATER_MONITORING_COMPARISON.md</code>, <code>AI_AND_API_KEYS.md</code>
+      </div>
+    </section>
+
+    <footer class="page-foot">
+      Complete System Plan · Download this HTML or Print → Save as PDF · Not for production secrets
+    </footer>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#d7ebe8",
+        primaryTextColor: "#0f1c24",
+        primaryBorderColor: "#0d6e6e",
+        lineColor: "#4a5c68",
+        secondaryColor: "#e8f0ec",
+        tertiaryColor: "#f7faf8",
+        fontFamily: "Segoe UI, Helvetica Neue, Arial, sans-serif"
+      },
+      securityLevel: "loose"
+    });
+    // Prefer blob download when opened from file:// or nested paths
+    (function () {
+      var a = document.getElementById("dl");
+      if (!a) return;
+      a.addEventListener("click", function (e) {
+        try {
+          var html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+          var blob = new Blob([html], { type: "text/html;charset=utf-8" });
+          var url = URL.createObjectURL(blob);
+          a.href = url;
+          a.download = "COMPLETE_SYSTEM_PLAN.html";
+          setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+        } catch (err) { /* fallback to static href */ }
+      });
+    })();
+  </script>
+</body>
+</html>
