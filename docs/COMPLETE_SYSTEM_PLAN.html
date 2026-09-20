@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Complete System Plan — Building-First · Escrow · Cleaning · Water IoT</title>
+  <title>Complete System Plan — Listings · Escrow · Cleaning · Water · Full AI</title>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <style>
     :root {
@@ -23,13 +23,13 @@
       background:rgba(15,28,36,.92);color:#e8f2ef}
     .toolbar a,.toolbar button{color:#0f1c24;background:#e8f2ef;border:0;border-radius:999px;
       padding:.45rem .95rem;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer}
-    .toolbar a.ghost,.toolbar button.ghost{background:transparent;color:#e8f2ef;border:1px solid rgba(232,242,239,.35)}
+    .toolbar a.ghost{background:transparent;color:#e8f2ef;border:1px solid rgba(232,242,239,.35)}
     .toolbar .actions{display:flex;flex-wrap:wrap;gap:.5rem}
     .wrap{max-width:980px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
     .hero{margin:1.5rem 0 2rem;padding:2.25rem 2rem;border-radius:18px;color:#f4fffc;
       background:linear-gradient(135deg,rgba(13,110,110,.95),rgba(8,72,72,.98));box-shadow:var(--shadow)}
-    .hero h1{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 .6rem;max-width:18ch}
-    .hero .promise{font-size:1.05rem;opacity:.95;max-width:42rem;margin:0 0 1.25rem}
+    .hero h1{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 .6rem;max-width:20ch}
+    .hero .promise{font-size:1.05rem;opacity:.95;max-width:44rem;margin:0 0 1.25rem}
     .badges{display:flex;flex-wrap:wrap;gap:.45rem}
     .badge{padding:.28rem .7rem;border-radius:999px;background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.22);font-size:.78rem;font-weight:600}
@@ -44,9 +44,10 @@
       padding:1.5rem 1.4rem 1.6rem;margin-bottom:1.35rem;box-shadow:var(--shadow)}
     section h2{font-family:var(--display);font-size:1.45rem;margin:0 0 .35rem;color:var(--teal-deep)}
     section .lede{color:var(--muted);margin:0 0 1rem}
-    h3{margin:1.2rem 0 .45rem;font-size:1.05rem}
-    table{width:100%;border-collapse:collapse;font-size:.9rem;margin:.75rem 0}
-    th,td{border:1px solid var(--line);padding:.55rem .65rem;text-align:left;vertical-align:top}
+    h3{margin:1.15rem 0 .4rem;font-size:1.05rem}
+    ul,ol{margin:.4rem 0 .7rem;padding-left:1.25rem}
+    table{width:100%;border-collapse:collapse;font-size:.88rem;margin:.75rem 0}
+    th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
     th{background:var(--sand);color:var(--teal-deep)}
     .mermaid{background:#fbfefd;border:1px dashed var(--line);border-radius:10px;padding:.75rem;margin:1rem 0;overflow-x:auto}
     .callout{border-left:4px solid var(--teal);background:var(--sand);padding:.85rem 1rem;
@@ -56,13 +57,20 @@
     .phase{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
     @media(max-width:700px){.phase{grid-template-columns:1fr}}
     .phase-box{border:1px solid var(--line);border-radius:12px;padding:1rem;background:var(--sand)}
-    .phase-box.later{opacity:.85;background:#f3f7f5}
+    .phase-box.later{opacity:.9;background:#f3f7f5}
     .phase-box h3{margin:0 0 .5rem;color:var(--teal-deep)}
+    .slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin:1rem 0}
+    @media(max-width:700px){.slots{grid-template-columns:repeat(2,1fr)}}
+    .slot{border:1px dashed var(--teal);border-radius:10px;padding:.65rem;text-align:center;
+      background:#f4fbf9;font-size:.8rem;font-weight:600;color:var(--teal-deep)}
     .corridor{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:1rem 0}
     @media(max-width:800px){.corridor{grid-template-columns:1fr}}
     .stage{background:linear-gradient(180deg,#f4fbf9,#e7f2ef);border:1px solid var(--line);
-      border-radius:12px;padding:.85rem .75rem;min-height:100px}
+      border-radius:12px;padding:.85rem .75rem;min-height:95px}
     .stage .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);font-weight:700}
+    .pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0}
+    .pill{background:var(--sand);border:1px solid var(--line);border-radius:999px;
+      padding:.25rem .65rem;font-size:.78rem;font-weight:600;color:var(--teal-deep)}
     footer.page-foot{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 0}
     @media print{.toolbar{display:none!important} body{background:#fff}
       section,.hero,nav.toc{box-shadow:none;break-inside:avoid}
@@ -71,7 +79,7 @@
 </head>
 <body>
   <div class="toolbar">
-    <div><strong>Complete System Plan</strong> · Building-first</div>
+    <div><strong>Complete System Plan</strong> · Building-first PMS</div>
     <div class="actions">
       <a id="dl" href="COMPLETE_SYSTEM_PLAN.html" download="COMPLETE_SYSTEM_PLAN.html">Download HTML</a>
       <button type="button" onclick="window.print()">Print / Save PDF</button>
@@ -81,106 +89,162 @@
 
   <div class="wrap">
     <header class="hero">
-      <h1>Building-first property ops</h1>
-      <p class="promise">Local building IoT first. Now: <strong>list vacancies</strong>, photos (+ optional 3D), <strong>pay security → secured</strong>, <strong>escrow rent</strong>, <strong>cleaning biometric + CCTV</strong>, <strong>building water IoT</strong>. Pamtsho WTP later. No owner roster to RRCO.</p>
+      <h1>Complete property ops plan</h1>
+      <p class="promise">
+        <strong>NOW:</strong> unit listings &amp; vacancies · standard photos (+ optional 3D) · pay security → secured ·
+        escrow rent · cleaning biometric + CCTV proof · building water IoT ·
+        <strong>full AI</strong> for dashboards &amp; clients.
+        <strong>LATER:</strong> Pamtsho WTP ERP. No owner roster to RRCO.
+      </p>
       <div class="badges">
-        <span class="badge">Unit listings</span>
-        <span class="badge">Photos / 3D opt</span>
+        <span class="badge">Listings / vacancies</span>
+        <span class="badge">Photos + 3D opt</span>
         <span class="badge">Security → secured</span>
         <span class="badge">Escrow rent</span>
-        <span class="badge">Cleaning biometric</span>
+        <span class="badge">Cleaning proof</span>
+        <span class="badge">Building water</span>
         <span class="badge">Full AI copilots</span>
+        <span class="badge">Pamtsho later</span>
       </div>
-      <p class="meta">Visual edition · 2026-09-20 · Focus: individual buildings</p>
+      <p class="meta">Updated 2026-09-20 · Download or Print → PDF · All plan docs consolidated</p>
     </header>
 
     <nav class="toc" id="toc">
       <h2>Contents</h2>
       <ol>
         <li><a href="#phasing">Phasing</a></li>
-        <li><a href="#listing">Listing &amp; security → secured</a></li>
+        <li><a href="#org">Organogram</a></li>
+        <li><a href="#listing">Listings · photos · 3D · security</a></li>
         <li><a href="#escrow">Escrow rent + RRCO</a></li>
-        <li><a href="#cleaning">Cleaning proof</a></li>
+        <li><a href="#cleaning">Cleaning biometric / CCTV</a></li>
         <li><a href="#water">Building water IoT</a></li>
-        <li><a href="#systems">Systems map</a></li>
         <li><a href="#ai">Full AI dashboards &amp; clients</a></li>
-        <li><a href="#later">Later: Pamtsho WTP</a></li>
-        <li><a href="#stack">Stack</a></li>
+        <li><a href="#systems">Systems map</a></li>
+        <li><a href="#later">Later: Pamtsho WTP ERP</a></li>
+        <li><a href="#stack">Tech stack</a></li>
         <li><a href="#mvp">MVP checklist</a></li>
       </ol>
     </nav>
 
+    <!-- 1 -->
     <section id="phasing">
-      <h2>1. Phasing (groundwork)</h2>
-      <p class="lede">You already have / prioritize local building IoT. Fix main source after buildings work.</p>
+      <h2>1. Phasing</h2>
+      <p class="lede">Local building IoT first (you already have it). Main source / Pamtsho after buildings work.</p>
       <div class="phase">
         <div class="phase-box">
-          <h3>NOW — buildings</h3>
+          <h3>NOW — individual buildings</h3>
           <ul>
             <li>Vacancy board + unit listings</li>
-            <li>Standard photos (+ optional 3D)</li>
-            <li>Pay security → secured lease</li>
-            <li>Escrow monthly rent</li>
-            <li>Cleaning + biometric + CCTV/proof</li>
-            <li>Water IoT per building</li>
+            <li>Standard photo slots (+ optional 3D tour)</li>
+            <li>Pay security deposit → secured lease</li>
+            <li>Monthly escrow rent</li>
+            <li>Cleaning + biometric + CCTV/alt proof</li>
+            <li>Per-building water IoT + alerts</li>
+            <li>Full AI for Owner/PM dashboards + clients</li>
           </ul>
         </div>
         <div class="phase-box later">
-          <h3>LATER — main source</h3>
+          <h3>LATER — municipal</h3>
           <ul>
             <li>Pamtsho / Jungzhina WTP complete ERP</li>
-            <li>Source corridor sensors + Thromde control room</li>
-            <li>Blueprint already written — do not block NOW</li>
+            <li>Source corridor sensors + control room</li>
+            <li>Thromde as buyer (paper SCADA not relied on)</li>
+            <li>Blueprint kept in docs — do not block NOW</li>
           </ul>
         </div>
       </div>
       <div class="mermaid">
 flowchart LR
-  LocalIoT["Local building IoT"] --> List["List vacancy photos"]
+  IoT["Local building IoT"] --> List["List + photos + 3D"]
   List --> Sec["Pay security escrow"]
   Sec --> Lease["Secured lease"]
-  Lease --> Rent["Monthly escrow rent"]
-  LocalIoT --> Clean["Cleaning biometric CCTV"]
-  LocalIoT --> WaterB["Building water IoT"]
-  WaterB -.->|later| Source["Pamtsho main source ERP"]
+  Lease --> Rent["Monthly escrow"]
+  IoT --> Clean["Cleaning proof"]
+  IoT --> Water["Building water"]
+  Lease --> AI["AI dashboards clients"]
+  Water -.->|later| Pamtsho["Pamtsho WTP ERP"]
       </div>
     </section>
 
+    <!-- 2 -->
+    <section id="org">
+      <h2>2. Organogram</h2>
+      <p class="lede">Roles map to Postgres RBAC. Manager never holds rent money.</p>
+      <div class="mermaid">
+flowchart TB
+  Owner["Building owner"] --> Org["Property org"]
+  Org --> Admin["Admin"]
+  Org --> PM["Property manager"]
+  Org --> Accounts["Accounts"]
+  Org --> Fac["Facilities"]
+  PM --> CleanCrew["Cleaning workers"]
+  PM --> Staff["Maintenance"]
+  Fac --> Staff
+  Org --> Prospect["Prospects"]
+  Org --> Resident["Residents"]
+      </div>
+    </section>
+
+    <!-- 3 Listing -->
     <section id="listing">
-      <h2>2. Listing · vacancy · photos / 3D · security → secured</h2>
-      <p class="lede">Standard PMS leasing funnel — not only collecting rent on existing tenants.</p>
+      <h2>3. Listings · vacancies · photos · optional 3D · pay security → secured</h2>
+      <p class="lede">Standard PMS leasing funnel — like AppFolio/Entrata-style list → apply → deposit → lease.</p>
       <div class="mermaid">
 flowchart LR
-  Vacant["Unit vacant"] --> Listed["Listing + photos"]
-  Listed --> Tour["Optional 3D tour"]
-  Listed --> Apply["Application"]
-  Apply --> Reserve["Reserved"]
-  Reserve --> PaySec["Pay security into escrow"]
-  PaySec --> Secured["Secured lease"]
-  Secured --> Handover["Handover + access"]
+  Vacant["vacant"] --> Listed["listed + photos"]
+  Listed --> Opt3D["optional 3D tour"]
+  Listed --> Apply["application"]
+  Apply --> Reserved["reserved"]
+  Reserved --> Pay["pay security into escrow"]
+  Pay --> Secured["secured lease"]
+  Secured --> Hand["handover + access"]
       </div>
+
+      <h3>Unit vacancy statuses</h3>
       <table>
-        <thead><tr><th>Feature</th><th>MVP</th></tr></thead>
+        <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
         <tbody>
-          <tr><td>Vacancy board / unit statuses</td><td>Yes</td></tr>
-          <tr><td>Public or link listings</td><td>Yes</td></tr>
-          <tr><td>Standard photo slots (living, kitchen, beds…)</td><td>Yes</td></tr>
-          <tr><td>Optional 3D / 360 embed</td><td>Yes (URL field)</td></tr>
-          <tr><td>Apply → approve</td><td>Yes</td></tr>
-          <tr><td>Pay security deposit in escrow</td><td>Yes</td></tr>
-          <tr><td>Unit becomes secured; listing closes</td><td>Yes</td></tr>
+          <tr><td><code>occupied</code></td><td>Active lease</td></tr>
+          <tr><td><code>notice</code></td><td>Tenant giving notice; may pre-list</td></tr>
+          <tr><td><code>vacant</code></td><td>Empty; ready to list</td></tr>
+          <tr><td><code>listed</code></td><td>Published for prospects</td></tr>
+          <tr><td><code>reserved</code></td><td>Approved; awaiting security payment</td></tr>
+          <tr><td><code>secured</code></td><td>Security paid; lease active</td></tr>
+          <tr><td><code>maintenance</code></td><td>Repairs/cleaning before list</td></tr>
         </tbody>
       </table>
+
+      <h3>Standard photo options (guided slots)</h3>
+      <div class="slots">
+        <div class="slot">Exterior</div>
+        <div class="slot">Living</div>
+        <div class="slot">Kitchen</div>
+        <div class="slot">Bedroom(s)</div>
+        <div class="slot">Bathroom(s)</div>
+        <div class="slot">Balcony / view</div>
+        <div class="slot">Other</div>
+        <div class="slot">3D / 360 (opt)</div>
+      </div>
+      <p>Min N photos to publish. Optional 3D: Matterport/Kuula embed or 360 package if they like — photos alone are enough for MVP.</p>
+
+      <h3>Pay security → get secured</h3>
+      <ol>
+        <li>Prospect applies → PM/Owner approves → unit <code>reserved</code></li>
+        <li>Prospect pays <strong>security deposit</strong> (+ optional first rent) into <strong>escrow</strong></li>
+        <li>Webhook confirms → lease created → unit <strong>secured</strong> → listing closes</li>
+        <li>Handover checklist + keys/access → monthly escrow rent begins</li>
+      </ol>
       <div class="callout">Secured = deposit cleared in escrow + lease active — not “manager said they paid.”</div>
     </section>
 
+    <!-- 4 Escrow -->
     <section id="escrow">
-      <h2>3. Escrow rent + RRCO boundary</h2>
+      <h2>4. Escrow rent + RRCO boundary</h2>
       <p class="lede">Residents pay into platform escrow. Owners get scheduled settlement. Manager never holds rent.</p>
-      <div class="callout danger"><strong>RRCO:</strong> Do not export owner roster / rent rolls. Owners self-file PIT using settlement PDFs.</div>
+      <div class="callout danger"><strong>RRCO:</strong> No export of owner roster / rent rolls. Owners self-file PIT with settlement PDFs. Platform keeps KYC internal.</div>
       <div class="mermaid">
 flowchart LR
-  Res["Resident"] -->|pays| Escrow["Platform escrow bank"]
+  Res["Resident / prospect"] -->|rent or security| Escrow["Platform escrow bank"]
   Escrow -->|settlement| Owner["Owner bank"]
   Escrow -->|PM fee| PM["Manager"]
   Escrow -->|SaaS fee| Plat["Platform"]
@@ -188,157 +252,186 @@ flowchart LR
   Owner -->|self files PIT| RRCO
       </div>
       <ul>
-        <li>Tables: <code>escrow_accounts</code>, <code>escrow_ledger_entries</code>, <code>owner_payouts</code></li>
-        <li>No silent mark-paid; immutable ledger; owner sees expected vs collected</li>
+        <li>Tables: <code>escrow_accounts</code>, <code>escrow_ledger_entries</code>, <code>owner_payouts</code>, security deposit entries</li>
+        <li>Immutable ledger; no silent mark-paid; owner sees expected vs collected</li>
       </ul>
     </section>
 
+    <!-- 5 Cleaning -->
     <section id="cleaning">
-      <h2>3. Cleaning — biometric + CCTV proof</h2>
-      <p class="lede">Workers skip or fake jobs. Closing a job requires identity + presence proof.</p>
+      <h2>5. Cleaning — biometric + CCTV proof</h2>
+      <p class="lede">Stops fake “done” jobs. Job cannot close without identity + presence proof.</p>
       <div class="mermaid">
 sequenceDiagram
-  participant PM as PM schedule
+  participant Sched as Schedule
   participant W as Worker
   participant Bio as Biometric
-  participant Cam as CCTV_or_alt
-  participant App as ERP
-  PM->>App: Create cleaning job
+  participant Cam as CCTV_or_QR_selfie
+  participant App as System
+  Sched->>App: Create job
   W->>Bio: Check-in
-  Bio->>App: biometric_ok in
-  Cam->>App: clip or geo selfie
+  Bio->>App: biometric in
+  Cam->>App: presence proof
   W->>Bio: Check-out
-  Bio->>App: biometric_ok out
-  App->>PM: Job done with proof pack
+  Bio->>App: biometric out
+  App->>Sched: Done with proof pack
       </div>
       <table>
         <thead><tr><th>Proof</th><th>Purpose</th></tr></thead>
         <tbody>
           <tr><td>Biometric in + out</td><td>Real worker identity</td></tr>
           <tr><td>CCTV clip (preferred)</td><td>Presence at building</td></tr>
-          <tr><td>Alternate: QR + geo selfie</td><td>When CCTV not installed yet</td></tr>
-          <tr><td>Min duration</td><td>Block fake 2-minute “done”</td></tr>
+          <tr><td>Alternate: QR + geo selfie</td><td>If CCTV not installed yet</td></tr>
+          <tr><td>Minimum duration</td><td>Block 2-minute fake visits</td></tr>
         </tbody>
       </table>
-      <div class="callout warn">No biometric or proof → job cannot close as done (no-show / failed). Owner can review proof pack.</div>
+      <div class="callout warn">Vacant units often trigger cleaning before status becomes <code>listed</code>.</div>
     </section>
 
+    <!-- 6 Water -->
     <section id="water">
-      <h2>4. Water IoT — individual buildings</h2>
-      <p class="lede">Tank / inlet on the same local gateway as cleaning CCTV where possible.</p>
+      <h2>6. Building water IoT</h2>
+      <p class="lede">Per-building tank / inlet on local gateways. Main source / Pamtsho later.</p>
       <div class="corridor">
-        <div class="stage"><div class="label">Building</div><strong>Gateway + sensors</strong><br/><span>LoRa / local IoT you have</span></div>
-        <div class="stage"><div class="label">Tank</div><strong>Level % / liters</strong><br/><span>Low / critical alerts</span></div>
-        <div class="stage"><div class="label">Owner</div><strong>Push / SMS</strong><br/><span>PM + owner notified</span></div>
+        <div class="stage"><div class="label">Building</div><strong>Local gateway</strong><br/><span>IoT you already deploy</span></div>
+        <div class="stage"><div class="label">Tank / inlet</div><strong>Level + optional flow</strong><br/><span>Low / critical rules</span></div>
+        <div class="stage"><div class="label">Notify</div><strong>Owner + PM</strong><br/><span>Push / SMS + AI copy</span></div>
       </div>
       <div class="mermaid">
 flowchart LR
-  Tank["Building tank sensor"] --> GW["Local gateway"]
-  Inlet["Inlet meter optional"] --> GW
-  GW --> Cloud["Cloud + alerts"]
-  Cloud --> OwnerPhone["Owner / PM"]
+  Tank["Tank sensor"] --> GW["Building gateway"]
+  Inlet["Inlet meter"] --> GW
+  GW --> Cloud["Cloud alerts"]
+  Cloud --> Phone["Owner / PM"]
+  Cloud --> AICopy["AI explain copy"]
       </div>
     </section>
 
-    <section id="systems">
-      <h2>5. Systems map (NOW)</h2>
+    <!-- 7 AI -->
+    <section id="ai">
+      <h2>7. Full AI — control dashboards &amp; clients</h2>
+      <p class="lede">AI operates Owner/PM dashboards and prospect/resident clients via RBAC tool agents. Money and safety rules stay source of truth.</p>
       <div class="mermaid">
 flowchart TB
-  subgraph clients [Apps]
-    Web["Next.js"]
+  Dash["Owner / PM Ask AI"] --> Agent["Server agent + RLS"]
+  Client["Prospect / resident AI"] --> Agent
+  Agent --> Gateway["AI Gateway API key"]
+  Agent --> Tools["Tools: listings escrow cleaning water widgets"]
+  Tools --> Actions["Pin widgets draft listing remind"]
+  Truth["Escrow webhook / biometric / P0 water"] -.->|always wins| Ledger["System of record"]
+      </div>
+      <table>
+        <thead><tr><th>AI surface</th><th>What it controls</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Owner/PM command dashboard</strong></td><td>Risk ranking, NL queries, widget focus, morning briefs, confirmable actions</td></tr>
+          <tr><td><strong>Prospect client</strong></td><td>Listing Q&amp;A, apply help, “pay security → secured” steps</td></tr>
+          <tr><td><strong>Resident client</strong></td><td>Rent FAQ, tank status, raise tickets in chat</td></tr>
+          <tr><td><strong>Cleaning / water ops</strong></td><td>No-show risk, WO drafts, alert explain</td></tr>
+          <tr><td><strong>Listing media</strong></td><td>Photo-slot completeness, captions</td></tr>
+        </tbody>
+      </table>
+      <div class="pill-row">
+        <span class="pill">Autopilot: Off</span>
+        <span class="pill">Assist (draft + approve)</span>
+        <span class="pill">Auto (safe actions only)</span>
+      </div>
+      <div class="callout">
+        Env: <code>AI_GATEWAY_API_KEY</code> server-only (Vercel AI Gateway + AI SDK).
+        Never in mobile <code>EXPO_PUBLIC_*</code>.
+        AI cannot invent “paid”, “secured”, or “cleaning done”.
+      </div>
+    </section>
+
+    <!-- 8 Systems -->
+    <section id="systems">
+      <h2>8. Systems map</h2>
+      <div class="mermaid">
+flowchart TB
+  subgraph apps [Clients]
+    Web["Next.js web"]
     Mobile["Expo mobile"]
+    AIUI["Ask AI panels"]
   end
-  subgraph core [Platform]
-    API["API RBAC"]
-    EscrowMod["Escrow rent"]
+  subgraph platform [Platform]
+    API["API + RBAC"]
+    ListMod["Listings / leases"]
+    EscrowMod["Escrow ledger"]
     CleanMod["Cleaning jobs"]
     WaterMod["Building water"]
+    AIAgent["AI agent + tools"]
   end
   subgraph field [Building field]
-    Bio["Biometric terminal"]
+    Bio["Biometric"]
     Cam["CCTV"]
     Sensors["Tank sensors"]
-    GW2["Local IoT gateway"]
+    GW2["Local gateway"]
   end
   Web --> API
   Mobile --> API
+  AIUI --> AIAgent
+  API --> ListMod
   API --> EscrowMod
   API --> CleanMod
   API --> WaterMod
+  AIAgent --> API
   Bio --> CleanMod
   Cam --> CleanMod
   Sensors --> GW2 --> WaterMod
       </div>
     </section>
 
-    <section id="ai">
-      <h2>6. Full AI — dashboards &amp; clients</h2>
-      <p class="lede">AI controls dashboards and client chats via tool-calling agents. Escrow, biometric, and sensor rules stay source of truth.</p>
-      <div class="mermaid">
-flowchart TB
-  OwnerPM["Owner / PM dashboard chat"] --> Agent["RBAC AI agent"]
-  Client["Prospect / resident AI"] --> Agent
-  Agent --> GW["AI Gateway API key"]
-  Agent --> Tools["Tools: listings escrow cleaning water"]
-  Tools --> UI["Pin widgets draft listing remind"]
-  Rules["Escrow webhook / biometric / P0 water"] -.->|always win| Truth["System of record"]
-      </div>
-      <table>
-        <thead><tr><th>AI surface</th><th>Controls</th></tr></thead>
-        <tbody>
-          <tr><td>Owner/PM command dashboard</td><td>Risk rank, NL query, widget focus, briefs, confirmable actions</td></tr>
-          <tr><td>Prospect client</td><td>Listing Q&amp;A, apply help, security-pay steps</td></tr>
-          <tr><td>Resident client</td><td>Rent FAQ, tank status, raise ticket</td></tr>
-          <tr><td>Cleaning / water ops</td><td>No-show risk, WO drafts, alert explain</td></tr>
-          <tr><td>Listing media</td><td>Photo-slot checker, captions</td></tr>
-        </tbody>
-      </table>
-      <div class="callout">Key: <code>AI_GATEWAY_API_KEY</code> server-only. Autopilot toggles: Off / Assist / Auto (never auto-close money or cleaning without proofs).</div>
-    </section>
-
+    <!-- 9 Later -->
     <section id="later">
-      <h2>7. Later — Pamtsho WTP ERP</h2>
-      <p class="lede">Complete municipal ERP (ops, CMMS, stores, lab, network) when buildings are stable. Blueprint: <code>PAMTSHO_WTP_ERP_BLUEPRINT.md</code>.</p>
+      <h2>9. Later — Pamtsho WTP complete ERP</h2>
+      <p class="lede">Municipal product for Thromde when building PMS is live. Paper SCADA is not relied on — we become the ops system.</p>
       <ul>
-        <li>Physical edge cabinet + LoRaWAN + control room</li>
-        <li>OT/IT VLANs, WireGuard, dual-SIM</li>
-        <li>Independent Thromde product (paper SCADA not relied on)</li>
-        <li>Hard tenant isolation from escrow landlords</li>
+        <li>Physical: intake, plant, edge cabinet, control room, reservoirs, network nodes</li>
+        <li>Network: OT/IT VLANs, LoRaWAN, WireGuard, dual-SIM, CCTV on 4G/LAN</li>
+        <li>Software: ops, alarms, CMMS, stores, lab, distribution, metering hooks</li>
+        <li>Hard tenant isolation from private escrow landlords</li>
       </ul>
+      <p>Detail: <code>PAMTSHO_WTP_ERP_BLUEPRINT.md</code></p>
     </section>
 
+    <!-- 10 Stack -->
     <section id="stack">
-      <h2>8. Tech stack</h2>
+      <h2>10. Tech stack</h2>
       <table>
         <thead><tr><th>Layer</th><th>Choice</th></tr></thead>
         <tbody>
           <tr><td>Web / Mobile</td><td>Next.js + Expo</td></tr>
-          <tr><td>DB</td><td>Postgres + RLS</td></tr>
-          <tr><td>Listing / lease</td><td>Vacancies, photos, optional 3D, security → secured</td></tr>
-          <tr><td>Rent</td><td>Escrow merchant + ledger</td></tr>
-          <tr><td>Cleaning</td><td>Biometric + CCTV / alternate proof</td></tr>
-          <tr><td>Building water</td><td>Local IoT / LoRaWAN → MQTT</td></tr>
-          <tr><td>AI</td><td><strong>Full copilots</strong> — AI Gateway + tool agents</td></tr>
-          <tr><td>Deploy</td><td>Supabase + Vercel + Hetzner IoT</td></tr>
+          <tr><td>DB / auth</td><td>Postgres + RLS · Supabase Auth</td></tr>
+          <tr><td>Listing / lease</td><td>Vacancies, photo slots, optional 3D, security → secured</td></tr>
+          <tr><td>Money</td><td>Platform escrow merchant + ledger + owner payouts</td></tr>
+          <tr><td>Cleaning</td><td>Biometric terminals + CCTV / QR+selfie proof</td></tr>
+          <tr><td>Building water</td><td>Local IoT / LoRaWAN → MQTT bridge</td></tr>
+          <tr><td>AI</td><td>Vercel AI SDK + AI Gateway · dashboard &amp; client agents</td></tr>
+          <tr><td>Objects</td><td>R2/S3 photos, clips, 3D embeds</td></tr>
+          <tr><td>Deploy</td><td>Supabase + Vercel + Hetzner (IoT)</td></tr>
         </tbody>
       </table>
     </section>
 
+    <!-- 11 MVP -->
     <section id="mvp">
-      <h2>9. MVP checklist (NOW)</h2>
+      <h2>11. MVP checklist (NOW)</h2>
       <ol>
-        <li>Units + vacancy board + listings + standard photos (+ optional 3D URL)</li>
-        <li>Pay security into escrow → secured lease</li>
-        <li>Monthly escrow rent + settlements (no RRCO roster)</li>
-        <li>Cleaning schedules + biometric in/out + CCTV/alt proof</li>
-        <li>Building tank IoT + alerts</li>
-        <li><strong>AI:</strong> Owner/PM chat tools + briefs + listing helper + resident FAQ</li>
-        <li>Hold Pamtsho WTP ERP until building product is live</li>
+        <li>Buildings + units + vacancy board + RBAC</li>
+        <li>Listings with standard photo slots (+ optional 3D URL)</li>
+        <li>Applications → pay security into escrow → secured lease + handover</li>
+        <li>Monthly escrow rent + owner settlements (no RRCO roster)</li>
+        <li>Cleaning schedules + biometric in/out + CCTV/alt proof viewer</li>
+        <li>Building tank IoT + alerts on local gateway</li>
+        <li><strong>AI:</strong> Owner/PM chat + tools + briefs; listing helper; resident FAQ</li>
+        <li>Hold Pamtsho WTP ERP until this building product is live</li>
       </ol>
-      <div class="callout">Docs: LISTING_AND_LEASING · AI_AND_API_KEYS · CLEANING_OPS · PROJECT_FOCUS · PAMTSHO blueprint (later)</div>
+      <div class="callout">
+        Source markdown: PROJECT_FOCUS · LISTING_AND_LEASING · AI_AND_API_KEYS · SYSTEMS_AND_OPERATIONS ·
+        CLEANING_OPS · PAMTSHO_WTP_ERP_BLUEPRINT (later)
+      </div>
     </section>
 
-    <footer class="page-foot">Building-first plan · Download HTML or Print → PDF</footer>
+    <footer class="page-foot">Complete System Plan · Download HTML or Print → Save as PDF</footer>
   </div>
 
   <script>
@@ -351,14 +444,15 @@ flowchart TB
         fontFamily: "Segoe UI, Helvetica Neue, Arial, sans-serif"
       }, securityLevel: "loose"
     });
-    document.getElementById("dl").addEventListener("click", function (e) {
+    document.getElementById("dl").addEventListener("click", function () {
       try {
         var html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
         var blob = new Blob([html], { type: "text/html;charset=utf-8" });
         var url = URL.createObjectURL(blob);
-        this.href = url; this.download = "COMPLETE_SYSTEM_PLAN.html";
+        this.href = url;
+        this.download = "COMPLETE_SYSTEM_PLAN.html";
         setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
-      } catch (err) {}
+      } catch (e) {}
     });
   </script>
 </body>
