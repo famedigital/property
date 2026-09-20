@@ -1,34 +1,38 @@
-# Pemakhang — Brand
+# PEMA — Brand
 
-**Name:** Pemakhang  
-**Pronunciation:** *peh-mah-KHANG*  
-**Parts:** **Pema** (lotus, Dzongkha/Tibetan པདྨ་) + **khang** (house / building)  
+**Name:** PEMA  
+**Expansion:** **P**roperty · **E**state · **M**anagement · **A**pplication  
+**Lockup:** PEMA Real Estate  
+**Pronunciation:** *PEE-mah* or letter-by-letter *P-E-M-A* in formal contexts  
 **Tagline:** Property, settled.  
 **Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) — **light default**  
 `npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`
 
 ---
 
-## Why not bare “Pema”
+## Why this works
 
-Bare **Pema** collides hard in market search and conversation: hotels, “Pema Realm”, clinics/hospitals, and countless personal names.  
-**Pemakhang** keeps PEMA, but locks meaning to **buildings** — this product — so it doesn’t sound like another Pema brand.
-
-| Considered | Why not |
+| Piece | Role |
 |---|---|
-| Pema (alone) | Too many market collisions |
-| Pema Realm–style | Occupied vibe / easy confusion |
-| Pemora | Soft *-ora*; weaker “building” signal |
-| PemaHold | Escrow-clear, less cultural |
-| Velora | Dropped earlier |
+| **PEMA** | Short product wordmark (sidebar, app icon, AI) |
+| **Acronym** | Clear category: property / estate / management software — not a hotel, hospital, or “Realm” |
+| **PEMA Real Estate** | Public / legal lockup when you need the full phrase |
+| **Lotus echo** | Optional cultural nod (Dzongkha *pema*) — never the primary explanation in UI |
 
-**Alternate:** **Pemora** (if you want shorter wordmark later).
+Bare given-name “Pema” alone was too crowded in market. **PEMA** as an **acronym product**, plus **Real Estate**, separates you in search and conversation.
+
+| Considered | Why not primary |
+|---|---|
+| Pema (name only) | Collides with Realm, clinics, given names |
+| Pemakhang | Strong “house” meaning; longer; acronym story is clearer for PMS |
+| Pemora | Soft; weaker category signal |
+| “Pema Realstate” | Spelling → **Real Estate** (two words) |
 
 ---
 
 ## One-line product
 
-**Pemakhang** is quiet building ops: listings → security escrow → secured lease, escrow rent, cleaning proof, building water — with Ask Pemakhang when you need it.
+**PEMA** (Property, Estate, Management Application) runs quiet building ops: listings → security escrow → secured lease, escrow rent, cleaning proof, building water — with Ask PEMA when you need it.
 
 ---
 
@@ -36,17 +40,20 @@ Bare **Pema** collides hard in market search and conversation: hotels, “Pema R
 
 | Do | Don’t |
 |---|---|
-| Calm, precise, short | Hype, “disrupt” |
-| “Escrow settled to owner” | Sounding like a hospital or hotel |
-| Clear status chips | Over-explaining lotus on every screen |
+| “PEMA” in caps in product UI | Spelling it “Pema Realstate” |
+| Spell out acronym once on About / login | Expanding it on every screen |
+| Calm, precise ops copy | Hype / hospital or hotel vibes |
 
 **Sample UI strings**
 
-- Sidebar: `Pemakhang`
+- Sidebar: `PEMA`
+- Login subtitle: `Real Estate · Property, settled.`
 - Empty vacancy: `No vacant units.`
 - Pay CTA: `Pay security`
-- Escrow: `Held until lease is secured`
-- AI: `Ask Pemakhang`
+- AI: `Ask PEMA`
+
+**First-run / About line (once):**  
+*PEMA — Property, Estate, Management Application*
 
 ---
 
@@ -55,28 +62,30 @@ Bare **Pema** collides hard in market search and conversation: hotels, “Pema R
 | Element | Spec |
 |---|---|
 | **Default mode** | **Light** |
-| **Wordmark** | `Pemakhang` in **Plus Jakarta Sans**, semibold |
-| **Accent** | Aurora **green** on **P** / lotus mark |
-| **Mark** | Abstract lotus petal (green + cool blue) |
-| **Surfaces** | Soft cool-white bg, white cards, muted sand-gray panels |
-| **Secondary** | Cool blue-violet — water / secondary |
+| **Wordmark** | `PEMA` in **Plus Jakarta Sans**, bold/semibold, tracking slightly open |
+| **Lockup** | `PEMA` + smaller `Real Estate` under or beside |
+| **Accent** | Aurora **green** on the wordmark or lotus mark |
+| **Mark** | Abstract lotus petal (optional cultural echo) — not a house cartoon |
+| **Surfaces** | Soft cool-white bg, white cards |
 | **Radius** | `0.5rem` |
-| **Fonts** | Plus Jakarta Sans · JetBrains Mono (IDs) · Source Serif 4 optional |
+| **Fonts** | Plus Jakarta Sans · JetBrains Mono (IDs) |
 
 ### Wordmark treatments
 
 ```text
-Pemakhang           ← primary (sidebar, login, PDF)
-PEMAKHANG           ← rare; legal / invoice header
-Ask Pemakhang       ← AI
-Listed on Pemakhang ← prospect footer
+PEMA                      ← primary (sidebar, splash, app)
+PEMA Real Estate          ← marketing / footer / legal
+Ask PEMA                  ← AI
+Listed on PEMA            ← prospect footer
+PEMA — Property, Estate,  ← About / login once
+Management Application
 ```
 
 ### Don’t
 
-- Dark-first as default (dark remains optional later)  
-- Bare “Pema” as the product wordmark  
-- Cartoon house or hospital-cross marks  
+- Lead with bare lowercase “pema” as if it’s only a personal name  
+- “Realstate” as one word  
+- Dark as default (dark optional later)  
 
 ---
 
@@ -84,20 +93,20 @@ Listed on Pemakhang ← prospect footer
 
 | Role | Sees |
 |---|---|
-| Owner / PM | Sidebar **Pemakhang** |
-| Prospect | “Listed on Pemakhang” |
-| Resident | Splash: **Pemakhang** · Property, settled. |
-| Worker | **Pemakhang** Cleaning |
+| Owner / PM | Sidebar **PEMA** |
+| Prospect | “Listed on PEMA” / footer **PEMA Real Estate** |
+| Resident | Splash: **PEMA** · Property, settled. |
+| Worker | **PEMA** Cleaning |
 
 ---
 
 ## Domains / handles (check before buy)
 
-Prefer: `pemakhang.com`, `pemakhang.app`, `pemakhang.bt`, `@pemakhang`  
-Avoid leading with bare `pema.*` as the product identity.
+Prefer: `pema.app`, `getpema.com`, `pemarealestate.com`, `pema.bt`  
+Pair domain with **Real Estate** or **Application** in title tags so search doesn’t confuse you with unrelated Pema brands.
 
 ---
 
 ## Legal note
 
-Working brand for this repo. Confirm trademark/domain before launch. Compound form reduces collision with given-name and unrelated “Pema …” businesses — still search Bhutan + regional registries.
+Protect **PEMA** + **Real Estate** / property-software class. Acronym + category lockup reduces collision with given-name and unrelated “Pema …” businesses — still clear trademark search in Bhutan and target markets.

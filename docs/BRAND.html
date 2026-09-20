@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pemakhang — Brand</title>
+  <title>PEMA — Brand · Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* Northern Lights — light */
     :root {
       --background: oklch(0.9824 0.0013 286.3757);
       --foreground: oklch(0.3211 0 0);
@@ -35,10 +34,10 @@
       display: flex; flex-wrap: wrap; gap: .5rem;
       align-items: center; justify-content: space-between;
       padding: .75rem 1.25rem; border-bottom: 1px solid var(--border);
-      background: color-mix(in oklch, var(--background) 90%, white);
+      background: color-mix(in oklch, var(--background) 88%, white);
       backdrop-filter: blur(8px);
     }
-    .toolbar a, .toolbar button {
+    .toolbar a {
       font-family: var(--font); font-size: .8rem; font-weight: 600;
       padding: .4rem .85rem; border-radius: 999px; border: 0; cursor: pointer;
       background: var(--primary); color: var(--primary-foreground); text-decoration: none;
@@ -50,36 +49,44 @@
 
     .hero {
       min-height: 68vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start; gap: 1.15rem;
+      justify-content: center; align-items: flex-start; gap: 1rem;
       padding: 2.5rem 0 3.5rem;
       background:
         radial-gradient(700px 380px at 8% 15%, color-mix(in oklch, var(--primary) 16%, transparent), transparent 58%),
         radial-gradient(520px 300px at 92% 70%, color-mix(in oklch, var(--secondary) 12%, transparent), transparent 55%),
-        radial-gradient(400px 240px at 50% 100%, color-mix(in oklch, var(--accent) 18%, transparent), transparent 50%);
+        radial-gradient(400px 240px at 40% 100%, color-mix(in oklch, var(--accent) 20%, transparent), transparent 50%);
     }
     .mark svg { width: 36px; height: 36px; display: block; }
     .wordmark {
-      font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 700;
-      letter-spacing: -0.03em; line-height: 1; margin: 0;
+      font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 700;
+      letter-spacing: 0.06em; line-height: 1; margin: 0; color: var(--foreground);
     }
     .wordmark .p { color: var(--primary); }
+    .lockup {
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--secondary); margin: 0;
+    }
+    .acronym {
+      display: flex; flex-wrap: wrap; gap: .45rem; margin: .25rem 0 0;
+    }
+    .acronym span {
+      font-size: .72rem; font-family: var(--mono);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; padding: .35rem .55rem; color: var(--muted-foreground);
+    }
+    .acronym span b { color: var(--primary); font-weight: 700; }
     .tagline {
       font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted-foreground);
-      margin: 0; max-width: 32ch;
-    }
-    .say {
-      font-size: .78rem; color: var(--muted-foreground); font-family: var(--mono);
-      border: 1px solid var(--border); border-radius: 999px;
-      padding: .3rem .75rem; background: var(--card);
+      margin: .35rem 0 0; max-width: 32ch;
     }
 
     section {
       border: 1px solid var(--border); border-radius: var(--radius);
       background: var(--card); padding: 1.35rem 1.25rem; margin-bottom: 1.1rem;
-      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.06);
+      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
     }
     section h2 { margin: 0 0 .5rem; font-size: 1.05rem; color: var(--primary); }
-    section p, section li { font-size: .88rem; color: var(--muted-foreground); }
+    section p { font-size: .88rem; color: var(--muted-foreground); }
     section strong { color: var(--foreground); }
 
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -87,22 +94,18 @@
 
     .logo-card {
       border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 2rem 1.5rem; text-align: center; background: var(--background);
+      padding: 1.75rem 1.25rem; text-align: center; background: var(--background);
     }
-    .logo-card.on-dark {
-      background: oklch(0.2303 0.0125 264.2926); color: oklch(0.92 0 0);
-    }
-    .logo-card.on-dark .wm { color: oklch(0.92 0 0); }
-    .logo-card.on-dark .wm .p { color: var(--primary); }
-    .logo-card.on-dark .cap { color: oklch(0.72 0 0); }
-    .logo-card .wm { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo-card .wm { font-size: 1.75rem; font-weight: 700; letter-spacing: 0.08em; }
     .logo-card .wm .p { color: var(--primary); }
-    .logo-card .cap { margin-top: .6rem; font-size: .7rem; color: var(--muted-foreground); }
+    .logo-card .sub {
+      margin-top: .35rem; font-size: .7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--secondary); font-weight: 600;
+    }
+    .logo-card .cap { margin-top: .55rem; font-size: .7rem; color: var(--muted-foreground); }
 
     .swatches { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
-    .sw {
-      width: 72px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
-    }
+    .sw { width: 72px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
     .sw i { display: block; height: 36px; }
     .sw span { display: block; padding: .3rem; font-size: .62rem; background: var(--muted); }
 
@@ -117,17 +120,12 @@
     }
     .ui-chip.cta { background: var(--primary); color: var(--primary-foreground); border-color: transparent; font-weight: 600; }
 
-    .callout {
-      border-left: 3px solid var(--primary); background: color-mix(in oklch, var(--primary) 8%, var(--muted));
-      padding: .75rem .9rem; border-radius: 0 var(--radius) var(--radius) 0; margin: .75rem 0 0; font-size: .85rem;
-    }
-
     footer { text-align: center; color: var(--muted-foreground); font-size: .78rem; padding: 1.5rem 0; }
   </style>
 </head>
 <body>
   <div class="toolbar">
-    <div><strong style="color:var(--primary)">Pemakhang</strong> · Brand</div>
+    <div><strong style="color:var(--primary)">PEMA</strong> · Brand</div>
     <div style="display:flex;gap:.5rem;flex-wrap:wrap">
       <a id="dl" href="BRAND.html" download="BRAND.html">Download HTML</a>
       <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory</a>
@@ -146,36 +144,44 @@
           <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
         </svg>
       </div>
-      <h1 class="wordmark"><span class="p">P</span>emakhang</h1>
+      <h1 class="wordmark"><span class="p">P</span>EMA</h1>
+      <p class="lockup">Real Estate</p>
+      <div class="acronym">
+        <span><b>P</b>roperty</span>
+        <span><b>E</b>state</span>
+        <span><b>M</b>anagement</span>
+        <span><b>A</b>pplication</span>
+      </div>
       <p class="tagline">Property, settled.</p>
-      <span class="say">peh-mah-KHANG · lotus + house · light theme</span>
     </header>
 
     <section>
-      <h2>Why Pemakhang (not bare Pema)</h2>
+      <h2>Why PEMA Real Estate</h2>
       <p>
-        <strong>Pema</strong> alone collides with hotels, “Pema Realm”, clinics, and common given names.
-        <strong>Pemakhang</strong> = <strong>Pema</strong> (lotus) + <strong>khang</strong> (house / building) —
-        PEMA kept, meaning locked to <em>this</em> property product.
+        <strong>PEMA</strong> = <strong>P</strong>roperty · <strong>E</strong>state · <strong>M</strong>anagement · <strong>A</strong>pplication.
+        Short in the sidebar; clear as a product category. Full lockup
+        <strong>PEMA Real Estate</strong> (not “realstate”) when you need the public phrase.
       </p>
-      <div class="callout">
-        Alternate shorter mark: <strong>Pemora</strong>. Avoid leading with bare “Pema” as the product name.
-      </div>
+      <p style="margin-top:.7rem">
+        Separates you from bare given-name “Pema”, hotels, Realm-style brands, and clinics —
+        while keeping the PEMA sound you wanted.
+      </p>
     </section>
 
     <div class="grid2">
       <section>
-        <h2>Wordmark · light (default)</h2>
+        <h2>App wordmark</h2>
         <div class="logo-card">
-          <div class="wm"><span class="p">P</span>emakhang</div>
-          <div class="cap">Sidebar, splash, PDF</div>
+          <div class="wm"><span class="p">P</span>EMA</div>
+          <div class="cap">Sidebar · splash · Ask PEMA</div>
         </div>
       </section>
       <section>
-        <h2>Wordmark · dark (optional)</h2>
-        <div class="logo-card on-dark">
-          <div class="wm"><span class="p">P</span>emakhang</div>
-          <div class="cap">Optional dark mode later</div>
+        <h2>Public lockup</h2>
+        <div class="logo-card">
+          <div class="wm"><span class="p">P</span>EMA</div>
+          <div class="sub">Real Estate</div>
+          <div class="cap">Marketing · footer · legal</div>
         </div>
       </section>
     </div>
@@ -184,44 +190,39 @@
       <h2>Color (Northern Lights · light)</h2>
       <div class="swatches">
         <div class="sw"><i style="background:var(--background)"></i><span>Bg</span></div>
-        <div class="sw"><i style="background:var(--foreground)"></i><span>Text</span></div>
         <div class="sw"><i style="background:var(--primary)"></i><span>Green</span></div>
         <div class="sw"><i style="background:var(--secondary)"></i><span>Blue</span></div>
         <div class="sw"><i style="background:var(--accent)"></i><span>Accent</span></div>
         <div class="sw"><i style="background:var(--muted)"></i><span>Muted</span></div>
       </div>
-      <p style="margin-top:.85rem">Font: Plus Jakarta Sans. Radius 0.5rem. <strong>Default light.</strong></p>
+      <p style="margin-top:.85rem">Plus Jakarta Sans · radius 0.5rem · <strong>light default</strong></p>
     </section>
 
     <section>
-      <h2>Voice · UI chips</h2>
+      <h2>UI chips</h2>
       <div>
-        <span class="ui-chip">Ask Pemakhang</span>
+        <span class="ui-chip">Ask PEMA</span>
         <span class="ui-chip cta">Pay security</span>
         <span class="ui-chip">Held until secured</span>
-        <span class="ui-chip">No vacant units.</span>
-        <span class="ui-chip">Escrow settled</span>
+        <span class="ui-chip">Listed on PEMA</span>
       </div>
     </section>
 
     <section>
-      <h2>Where the name appears</h2>
+      <h2>Where it appears</h2>
       <table>
         <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
         <tbody>
-          <tr><td>Owner / PM sidebar</td><td><strong>Pemakhang</strong></td></tr>
-          <tr><td>Login / splash</td><td>Wordmark + tagline</td></tr>
-          <tr><td>Prospect listings</td><td>“Listed on Pemakhang”</td></tr>
-          <tr><td>Resident app</td><td>Splash · Property, settled.</td></tr>
-          <tr><td>Worker app</td><td>Pemakhang Cleaning</td></tr>
-          <tr><td>AI</td><td>Ask Pemakhang</td></tr>
+          <tr><td>Sidebar / app</td><td><strong>PEMA</strong></td></tr>
+          <tr><td>Login</td><td>PEMA + Real Estate + tagline</td></tr>
+          <tr><td>About (once)</td><td>Property, Estate, Management Application</td></tr>
+          <tr><td>Prospect</td><td>Listed on PEMA</td></tr>
+          <tr><td>AI</td><td>Ask PEMA</td></tr>
         </tbody>
       </table>
     </section>
 
-    <footer>
-      Source: <a href="BRAND.md">BRAND.md</a> · Northern Lights light · 2026-09-20
-    </footer>
+    <footer>Source: <a href="BRAND.md">BRAND.md</a> · Northern Lights light · 2026-09-20</footer>
   </div>
 
   <script>
