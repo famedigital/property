@@ -208,8 +208,8 @@ CEO / Founder
 |---|---|---|
 | **Portfolio** | org, property, building, floor, unit | Physical structure |
 | **People** | users, memberships, roles | RBAC |
-| **Leasing** | lease, occupant, deposit | Who lives where |
-| **Rent / escrow** | invoice, escrow_accounts, escrow_ledger_entries, owner_payouts, arrears | Money via escrow to owner |
+| **Leasing / listing** | unit status, listings, media, applications, handover | Vacancy → list → secure |
+| **Rent / escrow** | invoice, escrow_*, owner_payouts, security deposits | Escrow money |
 | **IoT** | asset (tank), sensor, reading, alert | Water ops |
 | **Ops** | work_order, vendor, SLA | Maintenance |
 | **Audit** | audit_log, webhook_event | Compliance |
@@ -296,10 +296,21 @@ Owner ──self-files PIT──► RRCO (using settlement PDF + receipts)
 5. Import or create leases + residents  
 6. Go-live checklist: first invoice dry-run, sensor heartbeat OK  
 
-### B) Move-in / lease
+### B) Listing → security → secured (standard PMS)
 
-1. Unit marked vacant → create lease  
-2. Resident user invited; deposit recorded  
+1. Unit `vacant` (after move-out / cleaning)  
+2. Create **listing** + **standard photo slots** (+ optional 3D URL)  
+3. Prospect inquires / applies  
+4. PM/Owner approves → `reserved`  
+5. Prospect **pays security into escrow** → lease created → unit **secured**  
+6. Handover checklist; then monthly escrow rent  
+
+See [`LISTING_AND_LEASING.md`](./LISTING_AND_LEASING.md).
+
+### B2) Move-in / lease (legacy short form)
+
+1. Unit marked vacant → create lease (or via listing funnel above)  
+2. Resident user invited; **security deposit** recorded on escrow ledger  
 3. Access to resident app; rent schedule starts  
 
 ### C) Monthly rent ops
@@ -409,13 +420,13 @@ Enforced in **Postgres RLS** + app checks; payment webhooks use service role wit
 ## 11. MVP vs later (updated with rent)
 
 ### MVP (systems that must work together)
-- Portfolio + RBAC  
-- Leases + residents  
+- Portfolio + vacancy board + **listings / photos / optional 3D**  
+- Applications + **pay security → secured lease**  
 - Escrow rent + cleaning biometric/CCTV proof + building water IoT  
-- Web admin + mobile for resident pay + staff/cleaning alerts  
+- Web admin + mobile for prospect browse/pay + staff alerts  
 
 ### Later
-- Autopay; cleaning payroll from verified minutes  
+- Autopay; cleaning payroll from verified minutes; in-app 3D capture  
 - **Pamtsho / main-source WTP ERP** for Thromde  
 - Multi-owner splits on one building  
 

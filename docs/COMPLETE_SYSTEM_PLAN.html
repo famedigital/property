@@ -82,14 +82,14 @@
   <div class="wrap">
     <header class="hero">
       <h1>Building-first property ops</h1>
-      <p class="promise">Local building IoT first. Now: <strong>escrow rent</strong>, <strong>cleaning with biometric + CCTV proof</strong>, <strong>water IoT per building</strong>. Main source / Pamtsho WTP ERP later. No owner roster to RRCO.</p>
+      <p class="promise">Local building IoT first. Now: <strong>list vacancies</strong>, photos (+ optional 3D), <strong>pay security → secured</strong>, <strong>escrow rent</strong>, <strong>cleaning biometric + CCTV</strong>, <strong>building water IoT</strong>. Pamtsho WTP later. No owner roster to RRCO.</p>
       <div class="badges">
+        <span class="badge">Unit listings</span>
+        <span class="badge">Photos / 3D opt</span>
+        <span class="badge">Security → secured</span>
         <span class="badge">Escrow rent</span>
         <span class="badge">Cleaning biometric</span>
-        <span class="badge">CCTV / proof</span>
-        <span class="badge">Building water IoT</span>
-        <span class="badge">Postgres RLS</span>
-        <span class="badge">Pamtsho ERP later</span>
+        <span class="badge">Full AI copilots</span>
       </div>
       <p class="meta">Visual edition · 2026-09-20 · Focus: individual buildings</p>
     </header>
@@ -98,10 +98,12 @@
       <h2>Contents</h2>
       <ol>
         <li><a href="#phasing">Phasing</a></li>
+        <li><a href="#listing">Listing &amp; security → secured</a></li>
         <li><a href="#escrow">Escrow rent + RRCO</a></li>
         <li><a href="#cleaning">Cleaning proof</a></li>
         <li><a href="#water">Building water IoT</a></li>
         <li><a href="#systems">Systems map</a></li>
+        <li><a href="#ai">Full AI dashboards &amp; clients</a></li>
         <li><a href="#later">Later: Pamtsho WTP</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#mvp">MVP checklist</a></li>
@@ -115,10 +117,12 @@
         <div class="phase-box">
           <h3>NOW — buildings</h3>
           <ul>
-            <li>Local building gateways / IoT</li>
-            <li>Escrow rental collection</li>
+            <li>Vacancy board + unit listings</li>
+            <li>Standard photos (+ optional 3D)</li>
+            <li>Pay security → secured lease</li>
+            <li>Escrow monthly rent</li>
             <li>Cleaning + biometric + CCTV/proof</li>
-            <li>Water IoT per building (tank/inlet)</li>
+            <li>Water IoT per building</li>
           </ul>
         </div>
         <div class="phase-box later">
@@ -132,15 +136,46 @@
       </div>
       <div class="mermaid">
 flowchart LR
-  LocalIoT["Local building IoT"] --> Rent["Escrow rent"]
+  LocalIoT["Local building IoT"] --> List["List vacancy photos"]
+  List --> Sec["Pay security escrow"]
+  Sec --> Lease["Secured lease"]
+  Lease --> Rent["Monthly escrow rent"]
   LocalIoT --> Clean["Cleaning biometric CCTV"]
   LocalIoT --> WaterB["Building water IoT"]
   WaterB -.->|later| Source["Pamtsho main source ERP"]
       </div>
     </section>
 
+    <section id="listing">
+      <h2>2. Listing · vacancy · photos / 3D · security → secured</h2>
+      <p class="lede">Standard PMS leasing funnel — not only collecting rent on existing tenants.</p>
+      <div class="mermaid">
+flowchart LR
+  Vacant["Unit vacant"] --> Listed["Listing + photos"]
+  Listed --> Tour["Optional 3D tour"]
+  Listed --> Apply["Application"]
+  Apply --> Reserve["Reserved"]
+  Reserve --> PaySec["Pay security into escrow"]
+  PaySec --> Secured["Secured lease"]
+  Secured --> Handover["Handover + access"]
+      </div>
+      <table>
+        <thead><tr><th>Feature</th><th>MVP</th></tr></thead>
+        <tbody>
+          <tr><td>Vacancy board / unit statuses</td><td>Yes</td></tr>
+          <tr><td>Public or link listings</td><td>Yes</td></tr>
+          <tr><td>Standard photo slots (living, kitchen, beds…)</td><td>Yes</td></tr>
+          <tr><td>Optional 3D / 360 embed</td><td>Yes (URL field)</td></tr>
+          <tr><td>Apply → approve</td><td>Yes</td></tr>
+          <tr><td>Pay security deposit in escrow</td><td>Yes</td></tr>
+          <tr><td>Unit becomes secured; listing closes</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Secured = deposit cleared in escrow + lease active — not “manager said they paid.”</div>
+    </section>
+
     <section id="escrow">
-      <h2>2. Escrow rent + RRCO boundary</h2>
+      <h2>3. Escrow rent + RRCO boundary</h2>
       <p class="lede">Residents pay into platform escrow. Owners get scheduled settlement. Manager never holds rent.</p>
       <div class="callout danger"><strong>RRCO:</strong> Do not export owner roster / rent rolls. Owners self-file PIT using settlement PDFs.</div>
       <div class="mermaid">
@@ -236,8 +271,33 @@ flowchart TB
       </div>
     </section>
 
+    <section id="ai">
+      <h2>6. Full AI — dashboards &amp; clients</h2>
+      <p class="lede">AI controls dashboards and client chats via tool-calling agents. Escrow, biometric, and sensor rules stay source of truth.</p>
+      <div class="mermaid">
+flowchart TB
+  OwnerPM["Owner / PM dashboard chat"] --> Agent["RBAC AI agent"]
+  Client["Prospect / resident AI"] --> Agent
+  Agent --> GW["AI Gateway API key"]
+  Agent --> Tools["Tools: listings escrow cleaning water"]
+  Tools --> UI["Pin widgets draft listing remind"]
+  Rules["Escrow webhook / biometric / P0 water"] -.->|always win| Truth["System of record"]
+      </div>
+      <table>
+        <thead><tr><th>AI surface</th><th>Controls</th></tr></thead>
+        <tbody>
+          <tr><td>Owner/PM command dashboard</td><td>Risk rank, NL query, widget focus, briefs, confirmable actions</td></tr>
+          <tr><td>Prospect client</td><td>Listing Q&amp;A, apply help, security-pay steps</td></tr>
+          <tr><td>Resident client</td><td>Rent FAQ, tank status, raise ticket</td></tr>
+          <tr><td>Cleaning / water ops</td><td>No-show risk, WO drafts, alert explain</td></tr>
+          <tr><td>Listing media</td><td>Photo-slot checker, captions</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Key: <code>AI_GATEWAY_API_KEY</code> server-only. Autopilot toggles: Off / Assist / Auto (never auto-close money or cleaning without proofs).</div>
+    </section>
+
     <section id="later">
-      <h2>6. Later — Pamtsho WTP ERP</h2>
+      <h2>7. Later — Pamtsho WTP ERP</h2>
       <p class="lede">Complete municipal ERP (ops, CMMS, stores, lab, network) when buildings are stable. Blueprint: <code>PAMTSHO_WTP_ERP_BLUEPRINT.md</code>.</p>
       <ul>
         <li>Physical edge cabinet + LoRaWAN + control room</li>
@@ -248,32 +308,34 @@ flowchart TB
     </section>
 
     <section id="stack">
-      <h2>7. Tech stack</h2>
+      <h2>8. Tech stack</h2>
       <table>
         <thead><tr><th>Layer</th><th>Choice</th></tr></thead>
         <tbody>
           <tr><td>Web / Mobile</td><td>Next.js + Expo</td></tr>
           <tr><td>DB</td><td>Postgres + RLS</td></tr>
-          <tr><td>Rent</td><td>Escrow merchant account + ledger</td></tr>
-          <tr><td>Cleaning</td><td>Biometric devices + CCTV / alternate proof</td></tr>
+          <tr><td>Listing / lease</td><td>Vacancies, photos, optional 3D, security → secured</td></tr>
+          <tr><td>Rent</td><td>Escrow merchant + ledger</td></tr>
+          <tr><td>Cleaning</td><td>Biometric + CCTV / alternate proof</td></tr>
           <tr><td>Building water</td><td>Local IoT / LoRaWAN → MQTT</td></tr>
-          <tr><td>AI</td><td>Vercel AI Gateway (server key only)</td></tr>
+          <tr><td>AI</td><td><strong>Full copilots</strong> — AI Gateway + tool agents</td></tr>
           <tr><td>Deploy</td><td>Supabase + Vercel + Hetzner IoT</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="mvp">
-      <h2>8. MVP checklist (NOW)</h2>
+      <h2>9. MVP checklist (NOW)</h2>
       <ol>
-        <li>Building org + RBAC + units</li>
-        <li>Escrow invoices + settlements (no RRCO roster)</li>
-        <li>Cleaning schedules + biometric in/out + CCTV/alt proof viewer</li>
-        <li>Building tank level + alerts on local gateway</li>
-        <li>Owner/PM mobile notifications</li>
-        <li>Hold Pamtsho WTP ERP until this is live</li>
+        <li>Units + vacancy board + listings + standard photos (+ optional 3D URL)</li>
+        <li>Pay security into escrow → secured lease</li>
+        <li>Monthly escrow rent + settlements (no RRCO roster)</li>
+        <li>Cleaning schedules + biometric in/out + CCTV/alt proof</li>
+        <li>Building tank IoT + alerts</li>
+        <li><strong>AI:</strong> Owner/PM chat tools + briefs + listing helper + resident FAQ</li>
+        <li>Hold Pamtsho WTP ERP until building product is live</li>
       </ol>
-      <div class="callout">Markdown: PROJECT_FOCUS · CLEANING_OPS · SYSTEMS_AND_OPERATIONS · PAMTSHO_WTP_ERP_BLUEPRINT (later)</div>
+      <div class="callout">Docs: LISTING_AND_LEASING · AI_AND_API_KEYS · CLEANING_OPS · PROJECT_FOCUS · PAMTSHO blueprint (later)</div>
     </section>
 
     <footer class="page-foot">Building-first plan · Download HTML or Print → PDF</footer>

@@ -2,17 +2,18 @@
 
 **Status:** Proposed (plan only — no implementation yet)  
 **Date:** 2026-08-30  
-**Goal:** Multi-platform **building-first** property ops: **escrow rent**, **cleaning with biometric/CCTV proof**, **per-building water IoT**. Main-source / Pamtsho WTP ERP is a later municipal product. No owner roster to RRCO.
+**Goal:** Multi-platform **building-first** property ops: **unit listing / vacancies / photos (+ optional 3D) / pay security → secured lease**, **escrow rent**, **cleaning with biometric/CCTV proof**, **per-building water IoT**. Pamtsho WTP ERP later. No owner roster to RRCO.
 
 **Related:**
 - **Focus & phasing** → [`PROJECT_FOCUS.md`](./PROJECT_FOCUS.md)
+- **Listing & leasing funnel** → [`LISTING_AND_LEASING.md`](./LISTING_AND_LEASING.md)
 - Escrow + ops → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)
 - **Cleaning biometric/CCTV** → [`CLEANING_OPS.md`](./CLEANING_OPS.md)
 - **Pamtsho WTP ERP (later)** → [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md)
 - Building / corridor LoRaWAN → [`THIMPHU_LORAWAN_PIPELINE.md`](./THIMPHU_LORAWAN_PIPELINE.md)
 - Water alerts → [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md)
 - City comparison → [`CITY_WATER_MONITORING_COMPARISON.md`](./CITY_WATER_MONITORING_COMPARISON.md)
-- AI + API keys → [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md)
+- **Full AI dashboards & clients** → [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md)
 - **Visual plan** → [`COMPLETE_SYSTEM_PLAN.html`](./COMPLETE_SYSTEM_PLAN.html)
 
 ---
@@ -37,23 +38,25 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 - **Brick Schema** — equipment + sensors (water tanks, level points)
 - **Project Haystack / ASHRAE 223P** — optional later for BMS interoperability
 
-**Product positioning:** **Building-first.** Ship escrow rent + cleaning proof + building water IoT on local gateways you already deploy. Pamtsho municipal ERP is a later GTM track ([blueprint](./PAMTSHO_WTP_ERP_BLUEPRINT.md)).
+**Product positioning:** **Building-first PMS.** Vacancy → list → photos (+ optional 3D) → pay security in escrow → secured lease; then monthly escrow rent, cleaning proof, building water IoT. Pamtsho municipal ERP later.
 
 ---
 
 ## 2. Recommended product scope (MVP → later)
 
 ### MVP — NOW (individual buildings)
-- Orgs, buildings, units, RBAC  
-- Leases + **escrow rent** + settlements (**no RRCO owner roster**)  
-- **Cleaning schedules** + **biometric in/out** + **CCTV or alternate proof**  
-- **Water IoT per building** (tank level / inlet) + owner/PM alerts  
+- Orgs, buildings, **units + vacancy board**  
+- **Listings** with **standard photo slots** (+ optional 3D/360 embed)  
+- Applications → **pay security deposit into escrow** → **secured** lease  
+- Ongoing **escrow rent** + settlements (**no RRCO owner roster**)  
+- **Cleaning** + biometric/CCTV proof  
+- **Water IoT per building** + alerts  
 - Work orders; admin web + mobile  
 
 ### Later
+- In-app 3D capture SDK, e-sign, waitlists  
 - Main source / **Pamtsho WTP complete ERP** for Thromde  
-- Corridor leak nodes, municipal metering hooks  
-- Cleaning payroll from verified minutes; AI checklist scoring
+- Cleaning payroll from verified minutes
 
 ---
 
@@ -77,7 +80,7 @@ Leading platforms (AppFolio, Yardi, Entrata, RealPage, Buildium, Facilio, ODIN) 
 | Object storage | **S3-compatible** (Cloudflare R2 / MinIO / AWS S3) | Photos, docs, firmware |
 | Maps | Mapbox or Google Maps | Building location |
 | Push notifications | Expo Push + FCM/APNs | Critical water alerts |
-| AI | **Vercel AI SDK + AI Gateway** (`AI_GATEWAY_API_KEY`) | Alert explain, root-cause assist, briefs — server only |
+| AI | **Full control plane** — Vercel AI SDK + Gateway; dashboard + client copilots with RBAC tools | Escrow/biometric/sensors stay source of truth |
 | Observability | OpenTelemetry + Grafana | Device + API health |
 | CI/CD | GitHub Actions + EAS + deploy hooks | Code management |
 

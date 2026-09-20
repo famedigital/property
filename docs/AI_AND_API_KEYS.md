@@ -1,184 +1,183 @@
-# AI Layer — Where AI Runs + API Keys
+# Full AI Control — Dashboards & Clients
 
-**Goal:** Use AI across property ops, rent, and **Thimphu source→tank water monitoring** — with **one managed API key path**, never keys in git.
+**Goal:** AI is not a side feature — it **operates dashboards and client experiences** across listing, escrow rent, cleaning, and building water.  
+**Stack:** Vercel AI SDK + **AI Gateway** (`AI_GATEWAY_API_KEY` server-only).  
+**Hard rule:** Deterministic systems still win for money + safety (escrow webhooks, biometric proof, P0 water alarms). AI **controls UX, prioritization, drafting, and copilots** — it does not invent paid/secured states.
 
 ---
 
-## 1. Recommended AI stack
+## 1. What “full AI” means here
 
-| Piece | Choice | Why |
+| Layer | AI does | AI must NOT do alone |
 |---|---|---|
-| SDK | **Vercel AI SDK** (`ai` package) | Streaming, tools, typed, works in Next.js |
-| Key routing | **Vercel AI Gateway** | **One key** → many models (OpenAI, Anthropic, etc.) |
-| Local auth | `AI_GATEWAY_API_KEY` in `.env.local` | Simple for laptop / CI |
-| Prod on Vercel | OIDC `VERCEL_OIDC_TOKEN` (or same gateway key) | Less key sprawl |
-| Fallback (non-Vercel host) | Same gateway key, or provider keys via BYOK | Hetzner API can still call Gateway over HTTPS |
-
-**Do not** put OpenAI/Anthropic keys in the mobile app. All AI calls go through **your backend** (Next.js server / edge function).
+| **Dashboards (Owner / PM)** | Rank risks, explain widgets, auto-layout focus, morning brief, natural-language queries | Change ledger balances without tools + audit |
+| **Clients (Prospect / Resident)** | Listing Q&A, apply help, rent FAQ, water status in plain language, multilingual | Bypass escrow payment or fake “secured” |
+| **Ops (Cleaning / Facilities)** | Schedule suggest, no-show risk, WO drafts, proof review hints | Mark cleaning done without biometric+proof |
+| **Vision** | Photo slot check, optional 3D quality hint, CCTV summarize | Replace biometric identity |
 
 ```text
-Mobile / Web UI
-    → your API (authenticated user)
-        → AI Gateway (AI_GATEWAY_API_KEY or OIDC)
-            → model (openai/…, anthropic/…, …)
+User (dashboard or client app)
+    → Chat / voice / “Ask AI” panel
+        → Backend agent (RBAC + tools)
+            → AI Gateway (API key)
+            → Tools: search units, listings, escrow summary, alerts, cleaning jobs
+            → UI actions: pin widgets, draft listing, open WO, send reminder
 ```
 
 ---
 
-## 2. Where AI is used in *this* product
+## 2. AI products to build
 
-| Feature | AI job | Inputs | Output |
-|---|---|---|---|
-| **Source water alert explain** | Turn sensor codes into human message (Dzongkha/English later) | `SRC_FLOW_ZERO`, readings, stage | Push/SMS copy + severity suggest |
-| **Root-cause assist** | “Source vs leak vs building pump?” | Last N readings along path + open alerts | Ranked cause + recommended action |
-| **Alert triage** | Dedupe / priority when many nodes alarm | Alert burst | Group into one incident |
-| **Work-order draft** | Auto ticket text from alert | Alert + asset + CCTV link | Draft WO for facilities |
-| **Owner daily brief** | Morning summary | Overnight alerts, tank %, rent arrears | Short brief in app |
-| **Resident FAQ bot** | “Why is water low?” | Public alert stage + FAQ policy | Safe answer (no internal money data) |
-| **Rent anomaly** | Flag odd patterns | Ledger (paid/expected) | “Unit 12 always marked cash by manager” risk hint |
-| **CCTV assist (later)** | Describe clip / detect person at intake | Snapshot URL | Note on alert (optional vision model) |
-| **Ops copilot (admin)** | Ask “which buildings fed by Chamgang are critical?” | Tools → DB (RBAC-scoped) | Answer with citations |
+### A. Owner / PM **Command Dashboard AI**
+- **Risk cockpit:** AI ranks today’s issues (arrears, vacancies days, tank critical, cleaning no-shows).  
+- **NL query:** “Which units are vacant > 14 days without listing?” → tool query → table + suggest publish.  
+- **Widget control:** User says “show only water + rent arrears” → AI sets dashboard layout prefs.  
+- **Briefs:** Daily/weekly narrative for owner (Dzongkha/English later).  
+- **Actions with confirm:** “Remind unit 3B about rent” → drafts message → human send (or auto if policy allows).
 
-**MVP AI (ship first):** alert explain + root-cause assist + work-order draft + owner brief.  
-**Later:** resident bot, vision, full copilot with tools.
+### B. Prospect / Resident **Client AI**
+- **Listing concierge:** Answer amenities, deposit, photos; suggest units from filters.  
+- **Apply coach:** Missing fields, document checklist.  
+- **Security pay helper:** Explain escrow steps (“pay security → get secured”).  
+- **Resident assistant:** Balance due, receipt find, water tank status, raise ticket in chat.  
+- **Language:** Prefer bilingual prompts when ready.
 
----
+### C. Cleaning **Workforce AI**
+- Suggest schedules from vacancy / turnover.  
+- Flag likely no-show from history.  
+- Review proof pack (vision: “person at door?”) — **advisory only**; biometric still required.  
+- Draft vendor messages.
 
-## 3. API keys — how to set up (no secrets in repo)
+### D. Building water **Ops AI**
+- Explain tank alerts; suggest pump vs supply.  
+- Owner push copy generation.  
+- (Later) corridor / Pamtsho root-cause when municipal phase starts.
 
-### A) Create gateway key
-1. Vercel Dashboard → **AI Gateway** → **API Keys** → Create  
-2. Copy key once  
-
-### B) Local
-```bash
-# .env.local  (gitignored)
-AI_GATEWAY_API_KEY=gw_xxxxxxxx
-
-# Optional direct providers (only if not using Gateway)
-# OPENAI_API_KEY=
-# ANTHROPIC_API_KEY=
-```
-
-### C) Vercel project
-- Settings → Environment Variables  
-- Add `AI_GATEWAY_API_KEY` for Production / Preview / Development  
-- Or rely on OIDC on deployed Vercel and keep gateway key for local only  
-
-### D) Committed template only
-```bash
-# .env.example  (safe to commit)
-AI_GATEWAY_API_KEY=
-# DATABASE_URL=
-# MQTT_URL=
-# PAYMENTS_SECRET_KEY=
-```
-
-### E) Rules
-- Never commit `.env.local`  
-- Never put keys in Expo/`EXPO_PUBLIC_*`  
-- Rotate key if leaked  
-- Set Gateway **budget caps** in Vercel  
-- Log `request_id` / token usage per org for cost control  
+### E. Listing media AI
+- Check **standard photo slots** completeness (“missing kitchen photo”).  
+- Caption / description draft from photos.  
+- Optional: quality score before publish.
 
 ---
 
-## 4. Code pattern (Next.js server)
-
-```ts
-// apps/web — server only
-import { generateText } from 'ai';
-
-export async function explainSourceAlert(input: {
-  code: string;
-  stage: string;
-  value: number;
-  sourceName: string;
-}) {
-  const { text } = await generateText({
-    model: 'anthropic/claude-sonnet-4.5', // via AI Gateway string
-    system: `You write short water-supply alerts for building owners in Thimphu.
-Be factual. Name the stage (SOURCE/MAIN/ZONE/BUILDING). Max 2 sentences.`,
-    prompt: JSON.stringify(input),
-  });
-  return text;
-}
-```
-
-Auth to Gateway: AI SDK reads `AI_GATEWAY_API_KEY` automatically (or OIDC on Vercel).
-
-**Tool-calling ops copilot** (later): AI SDK `tools` that query Postgres **only after** setting RLS `org_id` / user role — AI never bypasses RBAC.
-
----
-
-## 5. Architecture fit
+## 3. Agent architecture
 
 ```text
-LoRaWAN → readings → alert rules (deterministic first)
-                         │
-                         ├─ always: create alert + notify (rules)
-                         └─ then: AI enriches message / suggests cause
-                                      │
-                                      └─ AI Gateway (API key)
+┌─────────────────────────────────────────────┐
+│  AI Gateway  (AI_GATEWAY_API_KEY)           │
+│  models: fast for chat, stronger for plans  │
+└──────────────────┬──────────────────────────┘
+                   │
+         ┌─────────▼─────────┐
+         │  Orchestrator     │  (Next.js server)
+         │  - auth + RLS ctx │
+         │  - tool registry  │
+         │  - audit log      │
+         └─────────┬─────────┘
+                   │ tools
+     ┌─────────────┼─────────────┬──────────────┐
+     ▼             ▼             ▼              ▼
+  listings     escrow       cleaning        water
+  vacancies    invoices     jobs/proofs     sensors
+  media        payouts      workers         alerts
 ```
 
-**Important:** Core safety alerts must work **even if AI / API key is down**.  
-Rules engine = source of truth for P0/P1 fire. AI = wording + advice + drafts.
+### Tools (examples — all RBAC-scoped)
 
-```text
-if (aiGatewayOk) enrichAlert()
-else sendTemplateAlert()   // never block water P0 on LLM
-```
-
----
-
-## 6. Cost control
-
-| Control | Practice |
+| Tool | Effect |
 |---|---|
-| Model tier | Cheap/fast for SMS copy; stronger model for root-cause |
-| Cache | Same `SRC_FLOW_ZERO` template cache 15 min |
-| Batch | Owner brief once/day, not per reading |
-| Cap | Gateway budget + per-org monthly AI quota |
-| Meter | Store `ai_usage(org_id, feature, tokens, cost)` |
+| `list_vacancies` | Query unit statuses |
+| `create_listing_draft` | Draft listing + photo slot checklist |
+| `summarize_escrow` | Expected vs collected for owner |
+| `list_overdue_invoices` | Arrears board |
+| `list_cleaning_jobs` | Today’s jobs / no-shows |
+| `get_tank_status` | Building water |
+| `draft_work_order` | Create WO draft |
+| `set_dashboard_focus` | Persist UI preference |
+| `send_reminder` | Queued notification (policy-gated) |
+
+**Confirm step:** Money-moving or status-closing tools require explicit user confirm unless org enables autopilot for that tool.
 
 ---
 
-## 7. Security / compliance
+## 4. Dashboard control model
 
-- AI sees **minimized** payloads (no full resident PII in prompts unless needed)  
-- Rent tools: owner/accounts only  
-- Prompt injection: treat sensor/user text as untrusted data  
-- Audit: who ran copilot, what tools fired  
-- Bhutan / data: prefer hosting region you already chose; don’t send CCTV frames to AI unless policy allows  
+1. **Default dashboard** = rules-based KPIs (always work offline from AI).  
+2. **AI layer** overlays: ranked cards, explanations, suggested actions.  
+3. **Voice/chat bar** on every Owner/PM screen: “Ask anything about my buildings.”  
+4. **Autopilot modes** (per org toggle):
+   - Off — suggest only  
+   - Assist — auto-draft, human approve  
+   - Auto — allowed safe actions (reminders, listing captions) without money changes  
 
 ---
 
-## 8. Env checklist for this monorepo
+## 5. Client control model
 
-| Variable | Where | Purpose |
+| Client | AI surface |
+|---|---|
+| Prospect web/app | Listing chat + apply help |
+| Resident app | Home assistant (rent, water, tickets) |
+| Cleaning worker app | Job instructions only (no owner money data) |
+
+Guardrails: strip PII; never expose other tenants’ data; never expose owner bank details to prospects.
+
+---
+
+## 6. Models & keys
+
+| Piece | Choice |
+|---|---|
+| SDK | Vercel AI SDK |
+| Router | AI Gateway — one key, many models |
+| Env | `AI_GATEWAY_API_KEY` server-only |
+| Fast path | Small/cheap model for chat & captions |
+| Deep path | Stronger model for briefs & multi-tool plans |
+| Vision | Gateway vision model for photo slots / CCTV stills |
+
+Setup: Vercel AI Gateway → create key → `.env.local` + Vercel env. Never `EXPO_PUBLIC_*`.
+
+---
+
+## 7. Safety matrix
+
+| Domain | Source of truth | AI role |
 |---|---|---|
-| `AI_GATEWAY_API_KEY` | Vercel + `.env.local` | All LLM calls |
-| `DATABASE_URL` | Server | Postgres |
-| `MQTT` / ChirpStack creds | Bridge service | Sensors |
-| Payment secrets | Server only | Rent-to-owner |
-| Expo push keys | Server | Notifications |
-| `EXPO_PUBLIC_API_URL` | Mobile | Public API base only |
+| Escrow paid / secured | Payment webhook + ledger | Explain, remind, draft |
+| Cleaning done | Biometric + proof | Suggest, review |
+| Water P0 | Sensor rules | Explain, notify copy |
+| Listing published | PM publish action | Draft, slot check |
+| Dashboard numbers | SQL aggregates | Rank, narrate |
+
+If AI Gateway is down: dashboards and payments still work; chat shows “AI offline.”
 
 ---
 
-## 9. Rollout
+## 8. MVP AI (ship with building product)
 
-1. Add AI Gateway key to env  
-2. Wire `explainSourceAlert` on P0/P1 create  
-3. Owner morning brief job  
-4. Work-order draft button  
-5. Ops copilot with RBAC tools  
-6. Optional vision on source CCTV stills  
+1. Owner/PM chat with tools (vacancies, arrears, tank, cleaning)  
+2. Dashboard morning brief  
+3. Listing description + photo-slot checker  
+4. Resident FAQ bot (rent + water)  
+5. Water alert explain + cleaning no-show draft message  
+
+### Phase 2 AI
+- Full dashboard layout autopilot  
+- Vision on cleaning CCTV  
+- Multilingual Dzongkha  
+- Pamtsho WTP plant copilot (later municipal)
+
+---
+
+## 9. Data / cost
+
+- Log `ai_usage(org_id, feature, tokens)`  
+- Cache briefs 15–60 min  
+- Gateway budget caps  
+- Minimize PII in prompts  
 
 ---
 
 ## 10. One-line decision
 
-**Use Vercel AI SDK + AI Gateway with `AI_GATEWAY_API_KEY` (server-side only).**  
-AI explains and assists; **LoRaWAN rules still fire water alerts if the API key or model fails.**
+**Full AI via AI Gateway controls dashboards and clients through an RBAC tool-calling agent; escrow, biometric, and sensor rules remain the system of record.**
