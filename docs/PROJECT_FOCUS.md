@@ -32,4 +32,5 @@ Building water IoT
 | [`CLEANING_OPS.md`](./CLEANING_OPS.md) | Cleaning biometric / proof |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | Stack |
 | [`PAMTSHO_WTP_ERP_BLUEPRINT.md`](./PAMTSHO_WTP_ERP_BLUEPRINT.md) | Later municipal ERP |
+| [`UI_PAGES_AND_LOOK.md`](./UI_PAGES_AND_LOOK.md) / [`.html`](./UI_PAGES_AND_LOOK.html) | Darkmatter look · **52 screens** · components & needs |
 | [`COMPLETE_SYSTEM_PLAN.html`](./COMPLETE_SYSTEM_PLAN.html) | Downloadable visual plan |

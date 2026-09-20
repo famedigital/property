@@ -83,6 +83,7 @@
     <div class="actions">
       <a id="dl" href="COMPLETE_SYSTEM_PLAN.html" download="COMPLETE_SYSTEM_PLAN.html">Download HTML</a>
       <button type="button" onclick="window.print()">Print / Save PDF</button>
+      <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory (52)</a>
       <a class="ghost" href="#toc">Contents</a>
     </div>
   </div>
@@ -123,6 +124,7 @@
         <li><a href="#later">Later: Pamtsho WTP ERP</a></li>
         <li><a href="#stack">Tech stack</a></li>
         <li><a href="#mvp">MVP checklist</a></li>
+        <li><a href="#ui">UI inventory (52 screens)</a></li>
       </ol>
     </nav>
 
@@ -426,9 +428,28 @@ flowchart TB
         <li>Hold Pamtsho WTP ERP until this building product is live</li>
       </ol>
       <div class="callout">
-        Source markdown: PROJECT_FOCUS · LISTING_AND_LEASING · AI_AND_API_KEYS · SYSTEMS_AND_OPERATIONS ·
+        Source markdown: PROJECT_FOCUS · UI_PAGES_AND_LOOK · LISTING_AND_LEASING · AI_AND_API_KEYS · SYSTEMS_AND_OPERATIONS ·
         CLEANING_OPS · PAMTSHO_WTP_ERP_BLUEPRINT (later)
       </div>
+    </section>
+
+    <!-- 12 UI -->
+    <section id="ui">
+      <h2>12. UI inventory (Darkmatter · 52 screens)</h2>
+      <p class="lede">
+        System plan above is architecture. For <strong>how the product looks</strong>, every route/screen,
+        and what to install — open the dedicated UI inventory.
+      </p>
+      <ul>
+        <li><strong>Theme:</strong> <code>npx shadcn@latest add https://tweakcn.com/r/themes/darkmatter.json</code> — dark charcoal, amber primary, Geist Mono</li>
+        <li><strong>52 screens NOW:</strong> Auth 5 · Prospect 6 · Owner/PM 28 · Resident 8 · Worker 5</li>
+        <li><strong>Needs:</strong> shadcn component set, domain widgets (VacancyStatusBadge, ProofPackViewer, TankLevelGauge…), R2, escrow checkout, Expo push, AI Gateway</li>
+      </ul>
+      <p>
+        <a href="UI_PAGES_AND_LOOK.html"><strong>Open UI_PAGES_AND_LOOK.html</strong></a>
+        (downloadable Darkmatter mock + full page tables) ·
+        <a href="UI_PAGES_AND_LOOK.md">markdown source</a>
+      </p>
     </section>
 
     <footer class="page-foot">Complete System Plan · Download HTML or Print → Save as PDF</footer>
