@@ -25,10 +25,17 @@
 
 ### Layout language
 - **Owner/PM web:** left sidebar (**PEMA** wordmark) + top bar (“Ask PEMA”) + main canvas  
-- **Prospect:** full-bleed listing gallery, minimal chrome  
+- **Prospect:** light listing browse + **detail page** in the same genre as portals (address, specs, big gallery, CTA) — cleaner, escrow-native  
 - **Resident / Worker mobile:** bottom tab bar, large green primary CTAs  
 - Prefer **tables + dense lists** for ops; **cards only** for listing gallery and proof packs  
 - Status badges: `vacant` `listed` `reserved` `secured` `overdue` `P0` in mono chips  
+
+### Prospect listing detail (vs typical portals)
+
+Same job: light page · address · beds/baths · rent · dominant photo gallery · apply.  
+**Better in PEMA:** no heavy agency brand bar; PEMA chrome; security amount + escrow copy; Apply → pay security → secured; guided photo slots + optional 3D; Ask PEMA; same system as rent/cleaning/water (not a dead-end lead form).
+
+See visual mock in [`UI_PAGES_AND_LOOK.html`](./UI_PAGES_AND_LOOK.html#listing-detail). 
 
 ### Shell sketch (Owner/PM)
 

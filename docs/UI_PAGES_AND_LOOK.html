@@ -241,6 +241,82 @@
     .listing-card .txt { padding: .45rem .5rem; font-size: .68rem; }
     .listing-card .price { color: var(--primary); font-weight: 700; font-family: var(--mono); }
 
+    /* Listing DETAIL mock — better than portal clones */
+    .ld {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: var(--card); margin: 1rem 0;
+      box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
+    }
+    .ld-top {
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+      padding: .65rem 1rem; border-bottom: 1px solid var(--border); background: var(--background);
+      font-size: .75rem;
+    }
+    .ld-top .brand { font-weight: 700; letter-spacing: .08em; color: var(--primary); }
+    .ld-top .crumb { color: var(--muted-foreground); }
+    .ld-body {
+      display: grid; grid-template-columns: minmax(220px, 0.38fr) 1fr; gap: 0;
+    }
+    @media (max-width: 800px) { .ld-body { grid-template-columns: 1fr; } }
+    .ld-info { padding: 1.15rem 1.1rem 1.25rem; border-right: 1px solid var(--border); }
+    @media (max-width: 800px) { .ld-info { border-right: 0; border-bottom: 1px solid var(--border); } }
+    .ld-actions { display: flex; gap: .75rem; color: var(--muted-foreground); font-size: .7rem; margin-bottom: .75rem; }
+    .ld-addr { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; line-height: 1.25; }
+    .ld-specs { display: flex; flex-wrap: wrap; gap: .55rem; font-size: .78rem; color: var(--muted-foreground); margin-bottom: .85rem; }
+    .ld-specs b { color: var(--foreground); font-family: var(--mono); }
+    .ld-price { font-size: 1.35rem; font-weight: 700; font-family: var(--mono); color: var(--foreground); margin: 0; }
+    .ld-bond { font-size: .8rem; color: var(--muted-foreground); margin: .25rem 0 .85rem; }
+    .ld-bond strong { color: var(--foreground); }
+    .ld-status {
+      display: inline-block; font-size: .7rem; font-weight: 600; font-family: var(--mono);
+      padding: .2rem .5rem; border-radius: 4px; margin-bottom: 1rem;
+      background: color-mix(in oklch, var(--primary) 15%, transparent); color: var(--primary);
+    }
+    .ld-ctas { display: flex; flex-direction: column; gap: .45rem; }
+    .ld-cta {
+      display: block; text-align: center; font-weight: 700; font-size: .82rem;
+      padding: .65rem .75rem; border-radius: var(--radius); text-decoration: none;
+    }
+    .ld-cta.primary { background: var(--primary); color: var(--primary-foreground); }
+    .ld-cta.ghost { background: transparent; color: var(--foreground); border: 1px solid var(--border); }
+    .ld-note { font-size: .68rem; color: var(--muted-foreground); margin-top: .65rem; line-height: 1.4; }
+    .ld-media { display: flex; flex-direction: column; min-height: 280px; }
+    .ld-hero {
+      flex: 1; min-height: 200px; position: relative;
+      background:
+        linear-gradient(160deg, color-mix(in oklch, var(--accent) 35%, white), color-mix(in oklch, var(--muted) 70%, var(--secondary)));
+    }
+    .ld-hero-label {
+      position: absolute; left: .75rem; bottom: .75rem;
+      background: color-mix(in oklch, var(--card) 88%, transparent); backdrop-filter: blur(6px);
+      border: 1px solid var(--border); border-radius: 6px; padding: .3rem .55rem;
+      font-size: .68rem; font-weight: 600; color: var(--foreground);
+    }
+    .ld-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; padding: .45rem; background: var(--background); }
+    .ld-thumb {
+      height: 64px; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border);
+      background: color-mix(in oklch, var(--muted) 80%, var(--secondary));
+      display: flex; align-items: flex-end; justify-content: flex-start; padding: .35rem;
+      font-size: .62rem; font-weight: 600; color: var(--foreground); position: relative; overflow: hidden;
+    }
+    .ld-thumb.t2 { background: color-mix(in oklch, var(--accent) 40%, var(--muted)); }
+    .ld-thumb.t3 { background: color-mix(in oklch, var(--primary) 18%, var(--muted)); }
+    .ld-thumb .more {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: color-mix(in oklch, var(--foreground) 45%, transparent); color: white; font-size: .9rem;
+    }
+    .better-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin: .85rem 0 0; font-size: .78rem;
+    }
+    @media (max-width: 700px) { .better-grid { grid-template-columns: 1fr; } }
+    .better-grid div {
+      border: 1px solid var(--border); border-radius: var(--radius); padding: .65rem .75rem; background: var(--background);
+    }
+    .better-grid .bad { color: var(--muted-foreground); }
+    .better-grid .good { color: var(--foreground); }
+    .better-grid strong { display: block; margin-bottom: .25rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; }
+    .better-grid .good strong { color: var(--primary); }
+
     .check-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .5rem; margin: .75rem 0;
     }
@@ -319,6 +395,7 @@
         <li><a href="#look">How UI looks (Northern Lights)</a></li>
         <li><a href="#shell">Owner/PM shell mock</a></li>
         <li><a href="#prospect-mock">Prospect listings look</a></li>
+        <li><a href="#listing-detail">Listing detail (better than portals)</a></li>
         <li><a href="#mobile-mock">Resident + worker mobile</a></li>
         <li><a href="#count">Page count summary</a></li>
         <li><a href="#auth">A. Auth (5)</a></li>
@@ -409,7 +486,7 @@
     <!-- PROSPECT -->
     <section id="prospect-mock">
       <h2>3. Prospect / public listings — look</h2>
-      <p class="lede">Photo cards (exception to “no cards in ops”). Amber “Apply” / “Pay security”. Timeline to secured.</p>
+      <p class="lede">Same job as portals like realestate.com.au: browse → detail → apply. PEMA stays light, calmer, and escrow-native.</p>
       <div class="listing-grid">
         <div class="listing-card"><div class="img"></div><div class="txt">Block A · 2BHK<br><span class="price">Nu 18,000</span> · listed</div></div>
         <div class="listing-card"><div class="img" style="opacity:.85"></div><div class="txt">Block B · Studio<br><span class="price">Nu 12,500</span> · listed</div></div>
@@ -421,6 +498,64 @@
         <span class="step">Apply</span><span class="arrow">→</span>
         <span class="step hot">Pay security</span><span class="arrow">→</span>
         <span class="step hot">Secured</span>
+      </div>
+    </section>
+
+    <!-- LISTING DETAIL -->
+    <section id="listing-detail">
+      <h2>3b. Listing detail — like portals, better</h2>
+      <p class="lede">
+        Yes: light page, address + beds/baths, big gallery, Apply CTA — same genre as the screenshot.
+        Better: PEMA brand, no heavy agency bar, escrow security → secured, standard photo slots, optional 3D, Ask PEMA.
+      </p>
+
+      <div class="ld" aria-label="PEMA listing detail mock">
+        <div class="ld-top">
+          <span class="brand">PEMA</span>
+          <span class="crumb">Rent · Thimphu · Pamtsho · Flat · Unit 4B</span>
+          <span style="font-size:.7rem;font-weight:600;color:var(--primary)">Ask PEMA</span>
+        </div>
+        <div class="ld-body">
+          <div class="ld-info">
+            <div class="ld-actions"><span>Share</span><span>Save</span></div>
+            <h3 class="ld-addr">Unit 4B, Block A<br>Pamtsho, Thimphu</h3>
+            <div class="ld-specs">
+              <span><b>2</b> bed</span>
+              <span><b>1</b> bath</span>
+              <span><b>1</b> park</span>
+              <span>Flat</span>
+            </div>
+            <p class="ld-price">Nu 18,000<span style="font-size:.75rem;font-weight:500;color:var(--muted-foreground)"> / month</span></p>
+            <p class="ld-bond">Security <strong>Nu 36,000</strong> · held in escrow until lease secured</p>
+            <span class="ld-status">listed · available now</span>
+            <div class="ld-ctas">
+              <a class="ld-cta primary" href="#prospect">Apply</a>
+              <a class="ld-cta ghost" href="#prospect">Pay security (after approval)</a>
+            </div>
+            <p class="ld-note">Owner identity stays private. Money settles through PEMA escrow — not a portal lead form that goes nowhere.</p>
+          </div>
+          <div class="ld-media">
+            <div class="ld-hero">
+              <span class="ld-hero-label">Living · slot 2/8</span>
+            </div>
+            <div class="ld-thumbs">
+              <div class="ld-thumb">3D tour</div>
+              <div class="ld-thumb t2">Exterior</div>
+              <div class="ld-thumb t3"><span class="more">+11</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="better-grid">
+        <div class="bad">
+          <strong>Typical portal</strong>
+          Heavy agency strip · lead spam · weak after “enquire” · no escrow · no building ops link
+        </div>
+        <div class="good">
+          <strong>PEMA (better)</strong>
+          Clean light chrome · guided photo slots · optional 3D · Apply → escrow security → secured · Ask PEMA · same system as rent + cleaning + water
+        </div>
       </div>
     </section>
 

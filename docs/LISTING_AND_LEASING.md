@@ -53,6 +53,19 @@ Vacancy board for Owner/PM: counts + days vacant + listed vs not listed.
 - Publish / unpublish / mark reserved / withdraw  
 - Clone listing template per building  
 
+### Public listing detail (prospect)
+
+Target experience: **light**, portal-familiar (address · beds/baths · rent · big gallery · CTA), but **better than** lead-gen sites:
+
+| Portal-typical | PEMA |
+|---|---|
+| Heavy third-party agency strip | Quiet **PEMA** chrome |
+| Enquire → spam leads | **Apply → escrow security → secured** |
+| Random photo dump | **Standard photo slots** + optional **3D** |
+| Dead end after click | Same product as rent, cleaning, water, Ask PEMA |
+
+Visual mock: [`UI_PAGES_AND_LOOK.html`](./UI_PAGES_AND_LOOK.html#listing-detail).
+
 ---
 
 ## 4. Media — standard photos + optional 3D
