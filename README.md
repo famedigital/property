@@ -18,7 +18,7 @@ Listings · Escrow rent · Cleaning proof · Building water IoT · **Full AI das
 
 - [`docs/BRAND.md`](docs/BRAND.md) / [`.html`](docs/BRAND.html) — **Pema** name, voice, mark
 - [`docs/PROJECT_FOCUS.md`](docs/PROJECT_FOCUS.md) — phasing
-- [`docs/UI_PAGES_AND_LOOK.md`](docs/UI_PAGES_AND_LOOK.md) / [`.html`](docs/UI_PAGES_AND_LOOK.html) — **Darkmatter UI look · 52 screens · what to build**
+- [`docs/UI_PAGES_AND_LOOK.md`](docs/UI_PAGES_AND_LOOK.md) / [`.html`](docs/UI_PAGES_AND_LOOK.html) — **Northern Lights UI look · 52 screens · what to build**
 - [`docs/LISTING_AND_LEASING.md`](docs/LISTING_AND_LEASING.md) — vacancy, photos/3D, security → secured
 - [`docs/AI_AND_API_KEYS.md`](docs/AI_AND_API_KEYS.md) — **full AI control** (dashboards + clients)
 - [`docs/SYSTEMS_AND_OPERATIONS.md`](docs/SYSTEMS_AND_OPERATIONS.md) — escrow + RRCO boundary

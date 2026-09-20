@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pema — UI Inventory · Darkmatter · 52 Screens</title>
+  <title>Pema — UI Inventory · Northern Lights · 52 Screens</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --background: oklch(0.1797 0.0043 308.1928);
-      --foreground: oklch(0.8109 0 0);
-      --card: oklch(0.1822 0 0);
-      --card-foreground: oklch(0.8109 0 0);
-      --primary: oklch(0.7214 0.1337 49.9802);
-      --primary-foreground: oklch(0.1797 0.0043 308.1928);
-      --secondary: oklch(0.5940 0.0443 196.0233);
-      --secondary-foreground: oklch(0.1797 0.0043 308.1928);
-      --muted: oklch(0.2520 0 0);
-      --muted-foreground: oklch(0.6268 0 0);
-      --accent: oklch(0.3211 0 0);
-      --accent-foreground: oklch(0.8109 0 0);
-      --destructive: oklch(0.5940 0.0443 196.0233);
-      --border: oklch(0.2520 0 0);
-      --sidebar: oklch(0.1822 0 0);
-      --radius: 0.75rem;
-      --font: "Geist Mono", ui-monospace, monospace;
+      --background: oklch(0.2303 0.0125 264.2926);
+      --foreground: oklch(0.9219 0 0);
+      --card: oklch(0.3210 0.0078 223.6661);
+      --card-foreground: oklch(0.9219 0 0);
+      --primary: oklch(0.6487 0.1538 150.3071);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.5880 0.0993 245.7394);
+      --secondary-foreground: oklch(0.9219 0 0);
+      --muted: oklch(0.3867 0 0);
+      --muted-foreground: oklch(0.7155 0 0);
+      --accent: oklch(0.6746 0.1414 261.3380);
+      --accent-foreground: oklch(0.9219 0 0);
+      --destructive: oklch(0.6368 0.2078 25.3313);
+      --border: oklch(0.3867 0 0);
+      --sidebar: oklch(0.2303 0.0125 264.2926);
+      --radius: 0.5rem;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
       --mono: "JetBrains Mono", monospace;
     }
     * { box-sizing: border-box; }
@@ -174,8 +174,8 @@
     }
     .kpi .label { font-size: .65rem; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .04em; }
     .kpi .val { font-size: 1.1rem; font-weight: 700; font-family: var(--mono); color: var(--foreground); margin-top: .15rem; }
-    .kpi .val.amber { color: var(--primary); }
-    .kpi .val.teal { color: var(--secondary); }
+    .kpi .val.green { color: var(--primary); }
+    .kpi .val.blue { color: var(--secondary); }
     .ai-strip {
       background: color-mix(in oklch, var(--primary) 10%, var(--muted));
       border: 1px solid color-mix(in oklch, var(--primary) 35%, var(--border));
@@ -295,13 +295,13 @@
 
   <div class="wrap">
     <header class="hero">
-      <p class="eyebrow">Pema · Theme · tweakcn.com/r/themes/darkmatter.json</p>
+      <p class="eyebrow">Pema · Theme · tweakcn.com/r/themes/northern-lights.json</p>
       <h1>How Pema looks — every page, everything needed</h1>
       <p>
-        Dark charcoal ops console, warm amber CTAs, Geist Mono throughout.
+        Cool blue-night ops console, aurora green CTAs, Plus Jakarta Sans throughout.
         <strong style="color:var(--foreground)">52 screens NOW</strong> across public listings,
         Owner/PM web, resident app, and cleaning worker app.
-        Install: <code style="font-family:var(--mono);color:var(--primary);font-size:.85em">npx shadcn@latest add https://tweakcn.com/r/themes/darkmatter.json</code>
+        Install: <code style="font-family:var(--mono);color:var(--primary);font-size:.85em">npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json</code>
       </p>
       <div class="count-row">
         <div class="count"><span class="n">5</span><span class="l">Auth</span></div>
@@ -316,7 +316,7 @@
     <nav class="toc" id="toc">
       <h2>Contents</h2>
       <ol>
-        <li><a href="#look">How UI looks (Darkmatter)</a></li>
+        <li><a href="#look">How UI looks (Northern Lights)</a></li>
         <li><a href="#shell">Owner/PM shell mock</a></li>
         <li><a href="#prospect-mock">Prospect listings look</a></li>
         <li><a href="#mobile-mock">Resident + worker mobile</a></li>
@@ -337,30 +337,30 @@
       <p class="lede">Default = <strong style="color:var(--foreground)">dark</strong>. Same CSS variables drive light mode later. Not soft SaaS — technical PMS.</p>
 
       <div class="swatches">
-        <div class="swatch"><div class="chip" style="background:var(--background)"></div><div class="meta"><strong>Background</strong> charcoal oklch ~0.18</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--background)"></div><div class="meta"><strong>Background</strong> cool night oklch ~0.23</div></div>
         <div class="swatch"><div class="chip" style="background:var(--foreground)"></div><div class="meta"><strong>Foreground</strong> soft gray-white</div></div>
-        <div class="swatch"><div class="chip" style="background:var(--primary)"></div><div class="meta"><strong>Primary</strong> amber — CTAs, Ask AI</div></div>
-        <div class="swatch"><div class="chip" style="background:var(--secondary)"></div><div class="meta"><strong>Secondary</strong> muted teal — water</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--primary)"></div><div class="meta"><strong>Primary</strong> aurora green — CTAs, Ask Pema</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--secondary)"></div><div class="meta"><strong>Secondary</strong> cool blue — water</div></div>
         <div class="swatch"><div class="chip" style="background:var(--muted)"></div><div class="meta"><strong>Muted</strong> panels / rows</div></div>
-        <div class="swatch"><div class="chip" style="background:var(--destructive)"></div><div class="meta"><strong>Destructive</strong> teal danger</div></div>
+        <div class="swatch"><div class="chip" style="background:var(--destructive)"></div><div class="meta"><strong>Destructive</strong> warm red</div></div>
       </div>
 
       <h3>Layout language</h3>
       <ul style="font-size:.88rem;color:var(--muted-foreground)">
-        <li><strong style="color:var(--foreground)">Owner/PM web:</strong> left sidebar + top bar (“Ask AI”) + dense tables</li>
+        <li><strong style="color:var(--foreground)">Owner/PM web:</strong> left sidebar + top bar (“Ask Pema”) + dense tables</li>
         <li><strong style="color:var(--foreground)">Prospect:</strong> full-bleed listing gallery, minimal chrome</li>
-        <li><strong style="color:var(--foreground)">Resident / Worker:</strong> bottom tabs, large amber primary CTAs</li>
+        <li><strong style="color:var(--foreground)">Resident / Worker:</strong> bottom tabs, large green primary CTAs</li>
         <li>Cards only for listing gallery + proof packs — ops stays tables</li>
         <li>Status chips: <span class="badge vacant">vacant</span> <span class="badge listed">listed</span> <span class="badge secured">secured</span> <span class="badge overdue">overdue</span> <span class="badge p0">P0</span></li>
-        <li>Fonts: <strong style="color:var(--foreground)">Geist Mono</strong> UI · <strong style="color:var(--foreground)">JetBrains Mono</strong> IDs/code</li>
-        <li>Radius <code class="route">0.75rem</code> — soft, not pill-heavy</li>
+        <li>Fonts: <strong style="color:var(--foreground)">Plus Jakarta Sans</strong> UI · <strong style="color:var(--foreground)">JetBrains Mono</strong> IDs/code</li>
+        <li>Radius <code class="route">0.5rem</code></li>
       </ul>
     </section>
 
     <!-- SHELL MOCK -->
     <section id="shell">
       <h2>2. Owner / PM console — visual mock</h2>
-      <p class="lede">What staff see every day: Darkmatter sidebar, amber “Ask AI”, KPI row, AI risk strip, vacancy table.</p>
+      <p class="lede">What staff see every day: Northern Lights sidebar, green “Ask Pema”, KPI row, AI risk strip, vacancy table.</p>
 
       <div class="mock-shell" aria-label="Owner PM dashboard mock">
         <aside class="mock-side">
@@ -384,10 +384,10 @@
           </div>
           <div class="mock-body">
             <div class="kpi-row">
-              <div class="kpi"><div class="label">Vacant</div><div class="val amber">7</div></div>
+              <div class="kpi"><div class="label">Vacant</div><div class="val green">7</div></div>
               <div class="kpi"><div class="label">Listed</div><div class="val">12</div></div>
-              <div class="kpi"><div class="label">Escrow due</div><div class="val amber">Nu 1.2L</div></div>
-              <div class="kpi"><div class="label">Tank</div><div class="val teal">62%</div></div>
+              <div class="kpi"><div class="label">Escrow due</div><div class="val green">Nu 1.2L</div></div>
+              <div class="kpi"><div class="label">Tank</div><div class="val blue">62%</div></div>
             </div>
             <div class="ai-strip">
               <strong>AI risk ·</strong> Unit 4B vacant 41d · Cleaning job #882 no biometric checkout · Tank trend −8% / 6h
@@ -427,7 +427,7 @@
     <!-- MOBILE -->
     <section id="mobile-mock">
       <h2>4. Resident + cleaning worker — mobile look</h2>
-      <p class="lede">Expo apps. Same Darkmatter tokens. Bottom tabs. Large amber CTAs for pay / check-in.</p>
+      <p class="lede">Expo apps. Same Northern Lights tokens. Bottom tabs. Large green CTAs for pay / check-in.</p>
       <div class="phones">
         <div class="phone">
           <div class="phone-notch">Resident</div>
@@ -489,7 +489,7 @@
       <table>
         <thead><tr><th>#</th><th>Route</th><th>Who</th><th>UI look / purpose</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td><span class="route">/login</span></td><td class="who">All</td><td>Centered card, mono logo, amber primary button</td></tr>
+          <tr><td>1</td><td><span class="route">/login</span></td><td class="who">All</td><td>Centered card, Pema wordmark, green primary button</td></tr>
           <tr><td>2</td><td><span class="route">/signup</span></td><td class="who">Prospect / invite</td><td>Same shell; role from invite token</td></tr>
           <tr><td>3</td><td><span class="route">/forgot-password</span></td><td class="who">All</td><td>Email reset</td></tr>
           <tr><td>4</td><td><span class="route">/invite/[token]</span></td><td class="who">Staff/owner</td><td>Accept membership</td></tr>
@@ -507,7 +507,7 @@
           <tr><td>6</td><td><span class="route">/listings</span></td><td>Filter bar + <strong>photo card grid</strong></td></tr>
           <tr><td>7</td><td><span class="route">/listings/[id]</span></td><td>Gallery (standard slots), optional 3D embed, rent/deposit, Apply CTA</td></tr>
           <tr><td>8</td><td><span class="route">/listings/[id]/apply</span></td><td>Multi-step form (ID, contacts)</td></tr>
-          <tr><td>9</td><td><span class="route">/listings/[id]/pay-security</span></td><td>Checkout — escrow copy, amount, amber Pay</td></tr>
+          <tr><td>9</td><td><span class="route">/listings/[id]/pay-security</span></td><td>Checkout — escrow copy, amount, green Pay</td></tr>
           <tr><td>10</td><td><span class="route">/applications/[id]/status</span></td><td>Timeline: applied → approved → pay → <span class="badge secured">secured</span></td></tr>
           <tr><td>11</td><td><span class="route">/favorites</span></td><td>Saved listings (optional MVP)</td></tr>
         </tbody>
@@ -517,11 +517,11 @@
     <!-- CONSOLE -->
     <section id="console">
       <h2>C. Owner / PM web console — 28 pages</h2>
-      <p class="lede">Shell: <span class="route">/app/(console)/…</span> with Darkmatter sidebar. Dense tables + mono badges.</p>
+      <p class="lede">Shell: <span class="route">/app/(console)/…</span> with Northern Lights sidebar. Dense tables + mono badges.</p>
       <table>
         <thead><tr><th>#</th><th>Route</th><th>Purpose / UI</th></tr></thead>
         <tbody>
-          <tr><td>12</td><td><span class="route">/app</span></td><td><strong>Command dashboard</strong> — KPI tiles, AI risk strip, Ask AI</td></tr>
+          <tr><td>12</td><td><span class="route">/app</span></td><td><strong>Command dashboard</strong> — KPI tiles, AI risk strip, Ask Pema</td></tr>
           <tr><td>13</td><td><span class="route">/app/buildings</span></td><td>Table of buildings</td></tr>
           <tr><td>14</td><td><span class="route">/app/buildings/new</span></td><td>Create building form</td></tr>
           <tr><td>15</td><td><span class="route">/app/buildings/[id]</span></td><td>Building overview (units, water, cleaning)</td></tr>
@@ -551,7 +551,7 @@
           <tr><td>39</td><td><span class="route">/app/settings</span></td><td>Org profile + escrow + notification prefs (tabs)</td></tr>
         </tbody>
       </table>
-      <p class="lede" style="margin-top:.5rem">Dashboard+buildings 4 · units 3 · listings 4 · applications 2 · leases 2 · rent 3 · cleaning 3 · water 2 · alerts 1 · WO 2 · people 1 · settings 1 = <strong style="color:var(--foreground)">28</strong>. Ask AI + notifications = overlays, not extra pages.</p>
+      <p class="lede" style="margin-top:.5rem">Dashboard+buildings 4 · units 3 · listings 4 · applications 2 · leases 2 · rent 3 · cleaning 3 · water 2 · alerts 1 · WO 2 · people 1 · settings 1 = <strong style="color:var(--foreground)">28</strong>. Ask Pema + notifications = overlays, not extra pages.</p>
     </section>
 
     <!-- RESIDENT -->
@@ -560,7 +560,7 @@
       <table>
         <thead><tr><th>#</th><th>Screen</th><th>UI</th></tr></thead>
         <tbody>
-          <tr><td>40</td><td>Home</td><td>Dues chip, tank gauge, Ask AI, quick pay</td></tr>
+          <tr><td>40</td><td>Home</td><td>Dues chip, tank gauge, Ask Pema, quick pay</td></tr>
           <tr><td>41</td><td>Pay rent</td><td>Escrow checkout</td></tr>
           <tr><td>42</td><td>Receipts</td><td>List + PDF</td></tr>
           <tr><td>43</td><td>Tickets</td><td>Create / list</td></tr>
@@ -595,8 +595,8 @@
       <h3>6.1 Theme &amp; design system</h3>
       <div class="check-grid">
         <div class="check">Next.js + Tailwind v4 / shadcn init</div>
-        <div class="check">Add Darkmatter theme JSON (tweakcn)</div>
-        <div class="check">Geist Mono + JetBrains Mono loaded</div>
+        <div class="check">Add Northern Lights theme JSON (tweakcn)</div>
+        <div class="check">Plus Jakarta Sans + JetBrains Mono loaded</div>
         <div class="check">Dark default; light toggle optional</div>
         <div class="check">Tokens in globals.css</div>
       </div>
@@ -633,7 +633,7 @@
         <div class="check">Expo push notifications</div>
         <div class="check">Biometric SDK or supervised capture</div>
         <div class="check">Maps (optional, worker address)</div>
-        <div class="check">AI_GATEWAY_API_KEY for Ask AI</div>
+        <div class="check">AI_GATEWAY_API_KEY for Ask Pema</div>
       </div>
 
       <h3>6.5 Roles → default home</h3>
@@ -654,21 +654,21 @@
     <section id="order">
       <h2>7. MVP UI build order</h2>
       <ol style="font-size:.88rem;color:var(--muted-foreground)">
-        <li><strong style="color:var(--foreground)">Auth + shell</strong> (Darkmatter sidebar)</li>
+        <li><strong style="color:var(--foreground)">Auth + shell</strong> (Northern Lights sidebar)</li>
         <li><strong style="color:var(--foreground)">Buildings / units / vacancy board</strong></li>
         <li><strong style="color:var(--foreground)">Listings + photo slots + public detail</strong></li>
         <li><strong style="color:var(--foreground)">Apply → pay security → secured</strong></li>
         <li><strong style="color:var(--foreground)">Escrow rent board + resident pay</strong></li>
         <li><strong style="color:var(--foreground)">Cleaning jobs + proof viewer + worker check-in</strong></li>
         <li><strong style="color:var(--foreground)">Building water gauge + alerts</strong></li>
-        <li><strong style="color:var(--foreground)">Ask AI drawer</strong> wired to tools</li>
+        <li><strong style="color:var(--foreground)">Ask Pema drawer</strong> wired to tools</li>
       </ol>
       <p class="lede" style="margin-top:1rem">Later (not NOW): Pamtsho WTP ERP ~20+ municipal screens — see PAMTSHO_WTP_ERP_BLUEPRINT.md</p>
     </section>
 
     <footer class="page-foot">
       Source: <a href="UI_PAGES_AND_LOOK.md">UI_PAGES_AND_LOOK.md</a> · Theme:
-      <a href="https://tweakcn.com/r/themes/darkmatter.json" rel="noopener">darkmatter.json</a> ·
+      <a href="https://tweakcn.com/r/themes/northern-lights.json" rel="noopener">northern-lights.json</a> ·
       Updated 2026-09-20
     </footer>
   </div>

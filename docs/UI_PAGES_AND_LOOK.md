@@ -1,31 +1,32 @@
 # Pema — UI Inventory (Pages, Look, Needs)
 
 **Brand:** [Pema](./BRAND.md) — *Property, settled.*  
-**Theme:** [Darkmatter](https://tweakcn.com/r/themes/darkmatter.json) via  
-`npx shadcn@latest add https://tweakcn.com/r/themes/darkmatter.json`  
+**Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) via  
+`npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`  
 **Apps:** Next.js web (Owner/PM + public listings) · Expo mobile (Resident + Cleaning worker)  
-**Default appearance:** **Dark** (Darkmatter dark tokens). Light mode supported via same CSS vars.
+**Default appearance:** **Dark** (Northern Lights dark tokens). Light mode supported via same CSS vars.
 
 ---
 
-## 1. How the UI will look (Darkmatter)
+## 1. How the UI will look (Northern Lights)
 
 | Token | Role in UI |
 |---|---|
-| **Background** | Near-black charcoal (`oklch ~0.18`) — dense ops feel |
-| **Foreground** | Soft gray-white text |
-| **Primary** | Warm amber/gold — CTAs, active nav, “Pay security”, AI accent |
-| **Secondary** | Muted teal — secondary buttons, water chips |
-| **Muted / accent** | Dark gray panels, hover rows |
-| **Destructive** | Teal-tinted danger (theme) — use sparingly for delete/P0 |
-| **Sidebar** | Slightly elevated black card |
-| **Radius** | `0.75rem` — soft but not pill-heavy |
-| **Fonts** | **Geist Mono** (UI) + **JetBrains Mono** (code/IDs) — technical PMS, not soft SaaS |
+| **Background** | Cool blue-night (`oklch ~0.23`) — aurora ops feel |
+| **Foreground** | Near-white soft text |
+| **Primary** | Aurora **green** — CTAs, active nav, “Pay security”, Ask Pema |
+| **Secondary** | Cool **blue** — secondary buttons, water chips |
+| **Accent** | Violet-blue aurora — highlights, AI strip edge |
+| **Muted** | Mid-gray panels / rows |
+| **Destructive** | Warm red — delete / P0 only |
+| **Sidebar** | Same as background, bordered |
+| **Radius** | `0.5rem` |
+| **Fonts** | **Plus Jakarta Sans** (UI) · **JetBrains Mono** (IDs) · Source Serif 4 optional |
 
 ### Layout language
 - **Owner/PM web:** left sidebar (**Pema** wordmark) + top bar (“Ask Pema”) + main canvas  
 - **Prospect:** full-bleed listing gallery, minimal chrome  
-- **Resident / Worker mobile:** bottom tab bar, large primary CTAs  
+- **Resident / Worker mobile:** bottom tab bar, large green primary CTAs  
 - Prefer **tables + dense lists** for ops; **cards only** for listing gallery and proof packs  
 - Status badges: `vacant` `listed` `reserved` `secured` `overdue` `P0` in mono chips  
 
@@ -33,7 +34,7 @@
 
 ```text
 ┌──────────┬─────────────────────────────────────────────┐
-│ Pema   │  Top: Building switcher · Notifs · Ask Pema │
+│ Pema     │  Top: Building switcher · Notifs · Ask Pema │
 │──────────┼─────────────────────────────────────────────┤
 │ Dash     │  Main: KPI row + AI risk strip + tables     │
 │ Units    │                                             │
@@ -58,7 +59,7 @@
 | **Resident mobile** | **8** | Home, pay, receipts, tickets, water, profile, AI, notifs |
 | **Cleaning worker mobile** | **5** | Jobs today, job detail, check-in, history, profile |
 | **Overlays** (not full pages) | AI drawer, confirm dialogs, upload sheets | Counted separately |
-| **TOTAL screens to build (NOW)** | **~52** | 44 pages + shared auth + worker/resident |
+| **TOTAL screens to build (NOW)** | **52** | Auth + prospect + console + mobile |
 
 **Later (Pamtsho WTP ERP):** +18–25 municipal screens — out of NOW scope.
 
@@ -70,7 +71,7 @@
 
 | # | Route / screen | Who | UI look / purpose |
 |---|---|---|---|
-| 1 | `/login` | All | Centered card, mono logo, amber primary button |
+| 1 | `/login` | All | Centered card, Pema wordmark, green primary button |
 | 2 | `/signup` | Prospect / invite | Same shell; role from invite token |
 | 3 | `/forgot-password` | All | Email reset |
 | 4 | `/invite/[token]` | Staff/owner | Accept membership |
@@ -89,11 +90,11 @@
 
 ### C. Owner / PM web console (28)
 
-**Shell:** `/app/(console)/…` with Darkmatter sidebar.
+**Shell:** `/app/(console)/…` with Northern Lights sidebar.
 
 | # | Route | Purpose / UI |
 |---|---|---|
-| 12 | `/app` | **Command dashboard** — KPI tiles, AI risk strip, Ask AI |
+| 12 | `/app` | **Command dashboard** — KPI tiles, AI risk strip, Ask Pema |
 | 13 | `/app/buildings` | Table of buildings |
 | 14 | `/app/buildings/new` | Create building form |
 | 15 | `/app/buildings/[id]` | Building overview (units, water, cleaning) |
@@ -122,7 +123,7 @@
 | 38 | `/app/people` | Members + roles |
 | 39 | `/app/settings` | Org profile + escrow + notification prefs (tabs) |
 
-*Overlays (not separate pages): Ask AI drawer, notification popover, confirm dialogs.*
+*Overlays (not separate pages): Ask Pema drawer, notification popover, confirm dialogs.*
 
 *Dashboard + buildings 4 · units 3 · listings 4 · applications 2 · leases 2 · rent 3 · cleaning 3 · water 2 · alerts 1 · WO 2 · people 1 · settings 1 → **28**.*
 
@@ -130,7 +131,7 @@
 
 | # | Screen | UI |
 |---|---|---|
-| 40 | Home | Dues chip, tank gauge, Ask AI, quick pay |
+| 40 | Home | Dues chip, tank gauge, Ask Pema, quick pay |
 | 41 | Pay rent | Escrow checkout |
 | 42 | Receipts | List + PDF |
 | 43 | Tickets | Create / list |
@@ -166,8 +167,8 @@
 
 ### 4.1 Theme & design system
 - [ ] Next.js app with Tailwind v4 / shadcn init  
-- [ ] `npx shadcn@latest add https://tweakcn.com/r/themes/darkmatter.json`  
-- [ ] Geist Mono + JetBrains Mono loaded  
+- [ ] `npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`  
+- [ ] Plus Jakarta Sans + JetBrains Mono (+ Source Serif 4 optional)  
 - [ ] Dark default; theme toggle optional  
 - [ ] Design tokens documented in `globals.css`  
 
@@ -178,7 +179,7 @@ button input label textarea select checkbox radio-group switch
 form dialog sheet drawer dropdown-menu popover
 table card badge avatar separator tabs
 calendar date-picker (or react-day-picker)
-command (Ask AI palette)
+command (Ask Pema palette)
 sonner / toast
 sidebar navigation-menu breadcrumb
 scroll-area skeleton progress alert
@@ -202,7 +203,7 @@ chart (for tank / rent graphs)
 - Push notifications (Expo)  
 - Biometric device SDK or supervised mobile capture  
 - Maps (optional for worker address)  
-- `AI_GATEWAY_API_KEY` for Ask AI  
+- `AI_GATEWAY_API_KEY` for Ask Pema  
 
 ### 4.5 Roles → default home
 
@@ -219,14 +220,14 @@ chart (for tank / rent graphs)
 
 ## 5. MVP build order (UI)
 
-1. Auth + shell (sidebar Darkmatter)  
+1. Auth + shell (sidebar Northern Lights)  
 2. Buildings / units / vacancy board  
 3. Listings + photo slots + public detail  
 4. Apply → pay security → secured status  
 5. Escrow rent board + resident pay  
 6. Cleaning jobs + proof viewer + worker check-in  
 7. Building water gauge + alerts  
-8. Ask AI drawer wired to tools  
+8. Ask Pema drawer wired to tools  
 
 ---
 
@@ -238,4 +239,4 @@ Pamtsho WTP ERP: control-room overview, process tags, CMMS, stores, lab, network
 
 ## 7. One-line summary
 
-**52 screens NOW** on **Darkmatter** (dark, Geist Mono, amber primary): public listings → security escrow → Owner/PM console → resident + worker apps, with Ask AI on dashboards and clients.
+**52 screens NOW** on **Northern Lights** (cool dark, Plus Jakarta Sans, aurora green primary): public listings → security escrow → Owner/PM console → resident + worker apps, with Ask Pema on dashboards and clients.

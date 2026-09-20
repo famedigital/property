@@ -16,7 +16,7 @@
 - Water alerts → [`WATER_SOURCE_ALERTS.md`](./WATER_SOURCE_ALERTS.md)
 - City comparison → [`CITY_WATER_MONITORING_COMPARISON.md`](./CITY_WATER_MONITORING_COMPARISON.md)
 - **Full AI dashboards & clients** → [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md)
-- **UI look · page inventory · needs** → [`UI_PAGES_AND_LOOK.md`](./UI_PAGES_AND_LOOK.md) / [`.html`](./UI_PAGES_AND_LOOK.html) (Darkmatter, ~52 screens)
+- **UI look · page inventory · needs** → [`UI_PAGES_AND_LOOK.md`](./UI_PAGES_AND_LOOK.md) / [`.html`](./UI_PAGES_AND_LOOK.html) (Northern Lights, ~52 screens)
 - **Visual plan** → [`COMPLETE_SYSTEM_PLAN.html`](./COMPLETE_SYSTEM_PLAN.html)
 
 ---

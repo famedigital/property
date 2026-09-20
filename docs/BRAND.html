@@ -6,20 +6,21 @@
   <title>Pema — Brand</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --background: oklch(0.1797 0.0043 308.1928);
-      --foreground: oklch(0.8109 0 0);
-      --card: oklch(0.1822 0 0);
-      --primary: oklch(0.7214 0.1337 49.9802);
-      --primary-foreground: oklch(0.1797 0.0043 308.1928);
-      --secondary: oklch(0.5940 0.0443 196.0233);
-      --muted: oklch(0.2520 0 0);
-      --muted-foreground: oklch(0.6268 0 0);
-      --border: oklch(0.2520 0 0);
-      --radius: 0.75rem;
-      --font: "Geist Mono", ui-monospace, monospace;
+      --background: oklch(0.2303 0.0125 264.2926);
+      --foreground: oklch(0.9219 0 0);
+      --card: oklch(0.3210 0.0078 223.6661);
+      --primary: oklch(0.6487 0.1538 150.3071);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.5880 0.0993 245.7394);
+      --muted: oklch(0.3867 0 0);
+      --muted-foreground: oklch(0.7155 0 0);
+      --accent: oklch(0.6746 0.1414 261.3380);
+      --border: oklch(0.3867 0 0);
+      --radius: 0.5rem;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
     }
     * { box-sizing: border-box; }
     body {
@@ -87,7 +88,7 @@
       background: oklch(0.97 0 0); color: oklch(0.21 0.03 265);
     }
     .logo-card.on-light .wm { color: oklch(0.21 0.03 265); }
-    .logo-card.on-light .wm .p { color: oklch(0.67 0.14 48); }
+    .logo-card.on-light .wm .p { color: oklch(0.65 0.15 150); }
     .logo-card .wm { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
     .logo-card .wm .p { color: var(--primary); }
     .logo-card .cap { margin-top: .6rem; font-size: .7rem; color: var(--muted-foreground); }
@@ -130,10 +131,10 @@
         <!-- Abstract lotus / petal — not a cartoon flower -->
         <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
-                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="1.75" stroke-linejoin="round"/>
+                stroke="oklch(0.6487 0.1538 150.3071)" stroke-width="1.75" stroke-linejoin="round"/>
           <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
-                stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
-          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.7214 0.1337 49.9802)"/>
+                stroke="oklch(0.5880 0.0993 245.7394)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
+          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
         </svg>
       </div>
       <h1 class="wordmark"><span class="p">P</span>ema</h1>
@@ -170,15 +171,15 @@
     </div>
 
     <section>
-      <h2>Color (Darkmatter)</h2>
+      <h2>Color (Northern Lights)</h2>
       <div class="swatches">
         <div class="sw"><i style="background:var(--background)"></i><span>Bg</span></div>
         <div class="sw"><i style="background:var(--foreground)"></i><span>Text</span></div>
-        <div class="sw"><i style="background:var(--primary)"></i><span>Amber</span></div>
-        <div class="sw"><i style="background:var(--secondary)"></i><span>Teal</span></div>
+        <div class="sw"><i style="background:var(--primary)"></i><span>Green</span></div>
+        <div class="sw"><i style="background:var(--secondary)"></i><span>Blue</span></div>
         <div class="sw"><i style="background:var(--muted)"></i><span>Muted</span></div>
       </div>
-      <p style="margin-top:.85rem">Font: Geist Mono. Radius 0.75rem. Default dark.</p>
+      <p style="margin-top:.85rem">Font: Plus Jakarta Sans. Radius 0.5rem. Default dark.</p>
     </section>
 
     <section>
@@ -212,21 +213,21 @@
       <h2>Mark</h2>
       <p>
         Abstract lotus / petal — nods to the meaning without a literal flower sticker.
-        Amber outline, soft teal inner petal, small center.
+        Green outline, soft blue inner petal, small center.
       </p>
       <div style="margin-top:1rem">
         <svg width="72" height="72" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 28c-4.2-3.2-7-7.2-7-11.2C11 12.2 14.1 9 18 9s7 3.2 7 7.8c0 4-2.8 8-7 11.2z"
-                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="1.75" stroke-linejoin="round"/>
+                stroke="oklch(0.6487 0.1538 150.3071)" stroke-width="1.75" stroke-linejoin="round"/>
           <path d="M18 28c-2.8-4.5-3.2-8.5-1.6-11.8C17.8 13.2 18 11.5 18 9c0 2.5.2 4.2 1.6 7.2 1.6 3.3 1.2 7.3-1.6 11.8z"
-                stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
-          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.7214 0.1337 49.9802)"/>
+                stroke="oklch(0.5880 0.0993 245.7394)" stroke-width="1.4" opacity=".75" stroke-linejoin="round"/>
+          <circle cx="18" cy="16.5" r="1.6" fill="oklch(0.6487 0.1538 150.3071)"/>
         </svg>
       </div>
     </section>
 
     <footer>
-      Source: <a href="BRAND.md">BRAND.md</a> · Theme Darkmatter · 2026-09-20
+      Source: <a href="BRAND.md">BRAND.md</a> · Theme Northern Lights · 2026-09-20
     </footer>
   </div>
 

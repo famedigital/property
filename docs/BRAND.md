@@ -4,7 +4,8 @@
 **Pronunciation:** *PEH-mah*  
 **Meaning:** Lotus (Dzongkha / Tibetan པདྨ་) — quiet growth, settled ground  
 **Tagline:** Property, settled.  
-**Theme:** [Darkmatter](https://tweakcn.com/r/themes/darkmatter.json)
+**Theme:** [Northern Lights](https://tweakcn.com/r/themes/northern-lights.json) via  
+`npx shadcn@latest add https://tweakcn.com/r/themes/northern-lights.json`
 
 ---
 
@@ -36,7 +37,7 @@ Lotus undertone: calm, enduring, not flashy PropTech. Fits escrow trust, buildin
 |---|---|
 | Calm, precise, short | Hype, “disrupt”, emoji clutter |
 | “Escrow settled to owner” | “Revolutionize rent!!!” |
-| Mono labels, status chips | Soft pastel SaaS fluff |
+| Clear status chips | Soft pastel SaaS fluff |
 
 **Sample UI strings**
 
@@ -48,15 +49,17 @@ Lotus undertone: calm, enduring, not flashy PropTech. Fits escrow trust, buildin
 
 ---
 
-## Visual identity (with Darkmatter)
+## Visual identity (Northern Lights)
 
 | Element | Spec |
 |---|---|
-| **Wordmark** | `Pema` in **Geist Mono**, medium/semibold |
-| **Accent** | Amber primary on the **P** or a soft lotus petal mark |
-| **Mark** | Soft lotus / petal curve — abstract, not a cartoon flower |
-| **Surfaces** | Charcoal bg, muted panels, teal for water only |
-| **Radius** | `0.75rem` |
+| **Wordmark** | `Pema` in **Plus Jakarta Sans**, semibold |
+| **Accent** | Aurora **green** primary on the **P** or lotus mark |
+| **Mark** | Soft lotus / petal — green + cool blue, not a cartoon flower |
+| **Surfaces** | Cool blue-tinted dark (`oklch ~0.23`), elevated cards |
+| **Secondary / accent** | Blue → violet aurora — water chips, secondary actions |
+| **Radius** | `0.5rem` |
+| **Fonts** | **Plus Jakarta Sans** (UI) · **Source Serif 4** (rare display) · **JetBrains Mono** (IDs) |
 | **Default** | Dark |
 
 ### Wordmark treatments
@@ -70,7 +73,8 @@ Listed on Pema      ← prospect footer
 
 ### Don’t
 
-- Gradient logos, purple glow, literal water-drop logos  
+- Old Darkmatter / amber leftovers  
+- Literal water-drop logos as the brand mark  
 - Over-explaining “lotus” in every UI string  
 
 ---
