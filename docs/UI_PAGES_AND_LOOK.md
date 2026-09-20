@@ -33,9 +33,10 @@
 
 ```text
 ┌──────────┬─────────────────────────────────────────────┐
-│ Sidebar  │  Top: Building switcher · Notifs · Ask Velora │
-│ Velora   ├─────────────────────────────────────────────┤
+│ Velora   │  Top: Building switcher · Notifs · Ask Velora │
+│──────────┼─────────────────────────────────────────────┤
 │ Dash     │  Main: KPI row + AI risk strip + tables     │
+│ Units    │                                             │
 │ Listings │                                             │
 │ Rent     │                                             │
 │ Cleaning │                                             │
