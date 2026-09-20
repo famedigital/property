@@ -1,6 +1,7 @@
 # Project Focus & Phasing
 
-**Updated:** 2026-09-20
+**Updated:** 2026-09-20  
+**Brand:** [Velora](./BRAND.md) — *Property, settled.*
 
 ## Groundwork sequence
 
@@ -26,6 +27,7 @@ Building water IoT
 
 | Doc | Role |
 |---|---|
+| [`BRAND.md`](./BRAND.md) / [`.html`](./BRAND.html) | **Velora** — name, voice, mark, Darkmatter |
 | [`LISTING_AND_LEASING.md`](./LISTING_AND_LEASING.md) | Vacancies, listings, photos/3D, security → secured |
 | [`AI_AND_API_KEYS.md`](./AI_AND_API_KEYS.md) | Full AI control — dashboards & clients |
 | [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md) | Escrow + org ops |

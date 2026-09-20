@@ -1,5 +1,6 @@
-# UI Inventory — Pages, Look, Needs
+# Velora — UI Inventory (Pages, Look, Needs)
 
+**Brand:** [Velora](./BRAND.md) — *Property, settled.*  
 **Theme:** [Darkmatter](https://tweakcn.com/r/themes/darkmatter.json) via  
 `npx shadcn@latest add https://tweakcn.com/r/themes/darkmatter.json`  
 **Apps:** Next.js web (Owner/PM + public listings) · Expo mobile (Resident + Cleaning worker)  
@@ -22,7 +23,7 @@
 | **Fonts** | **Geist Mono** (UI) + **JetBrains Mono** (code/IDs) — technical PMS, not soft SaaS |
 
 ### Layout language
-- **Owner/PM web:** left sidebar + top bar (“Ask AI”) + main canvas  
+- **Owner/PM web:** left sidebar (**Velora** wordmark) + top bar (“Ask Velora”) + main canvas  
 - **Prospect:** full-bleed listing gallery, minimal chrome  
 - **Resident / Worker mobile:** bottom tab bar, large primary CTAs  
 - Prefer **tables + dense lists** for ops; **cards only** for listing gallery and proof packs  
@@ -32,9 +33,9 @@
 
 ```text
 ┌──────────┬─────────────────────────────────────────────┐
-│ Sidebar  │  Top: Building switcher · Notifs · Ask AI   │
-│ Dash     ├─────────────────────────────────────────────┤
-│ Units    │  Main: KPI row + AI risk strip + tables     │
+│ Sidebar  │  Top: Building switcher · Notifs · Ask Velora │
+│ Velora   ├─────────────────────────────────────────────┤
+│ Dash     │  Main: KPI row + AI risk strip + tables     │
 │ Listings │                                             │
 │ Rent     │                                             │
 │ Cleaning │                                             │

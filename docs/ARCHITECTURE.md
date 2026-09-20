@@ -1,10 +1,12 @@
-# Property + Water Sensor Management — Architecture Plan
+# Velora — Architecture Plan
 
+**Brand:** [`BRAND.md`](./BRAND.md) — *Property, settled.*  
 **Status:** Proposed (plan only — no implementation yet)  
 **Date:** 2026-08-30  
 **Goal:** Multi-platform **building-first** property ops: **unit listing / vacancies / photos (+ optional 3D) / pay security → secured lease**, **escrow rent**, **cleaning with biometric/CCTV proof**, **per-building water IoT**. Pamtsho WTP ERP later. No owner roster to RRCO.
 
 **Related:**
+- **Brand** → [`BRAND.md`](./BRAND.md) / [`.html`](./BRAND.html)
 - **Focus & phasing** → [`PROJECT_FOCUS.md`](./PROJECT_FOCUS.md)
 - **Listing & leasing funnel** → [`LISTING_AND_LEASING.md`](./LISTING_AND_LEASING.md)
 - Escrow + ops → [`SYSTEMS_AND_OPERATIONS.md`](./SYSTEMS_AND_OPERATIONS.md)

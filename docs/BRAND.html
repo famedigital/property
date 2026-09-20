@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velora — Brand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: oklch(0.1797 0.0043 308.1928);
+      --foreground: oklch(0.8109 0 0);
+      --card: oklch(0.1822 0 0);
+      --primary: oklch(0.7214 0.1337 49.9802);
+      --primary-foreground: oklch(0.1797 0.0043 308.1928);
+      --secondary: oklch(0.5940 0.0443 196.0233);
+      --muted: oklch(0.2520 0 0);
+      --muted-foreground: oklch(0.6268 0 0);
+      --border: oklch(0.2520 0 0);
+      --radius: 0.75rem;
+      --font: "Geist Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font); background: var(--background);
+      color: var(--foreground); line-height: 1.55;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    .toolbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      align-items: center; justify-content: space-between;
+      padding: .75rem 1.25rem; border-bottom: 1px solid var(--border);
+      background: color-mix(in oklch, var(--background) 92%, black);
+    }
+    .toolbar a, .toolbar button {
+      font-family: var(--font); font-size: .8rem; font-weight: 600;
+      padding: .4rem .85rem; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--primary); color: var(--primary-foreground); text-decoration: none;
+    }
+    .toolbar a.ghost {
+      background: transparent; color: var(--foreground); border: 1px solid var(--border);
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+    .hero {
+      min-height: 72vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 1.25rem;
+      padding: 3rem 0 4rem;
+      background:
+        radial-gradient(700px 380px at 10% 20%, color-mix(in oklch, var(--primary) 14%, transparent), transparent 60%),
+        radial-gradient(500px 280px at 90% 70%, color-mix(in oklch, var(--secondary) 10%, transparent), transparent 55%);
+    }
+    .mark {
+      display: inline-flex; align-items: center; gap: .65rem;
+    }
+    .mark svg { width: 28px; height: 28px; }
+    .wordmark {
+      font-size: clamp(2.75rem, 8vw, 4.5rem); font-weight: 600;
+      letter-spacing: -0.03em; line-height: 1; margin: 0;
+    }
+    .wordmark .v { color: var(--primary); }
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted-foreground);
+      margin: 0; max-width: 28ch;
+    }
+    .say {
+      font-size: .8rem; color: var(--muted-foreground);
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: .3rem .75rem; background: var(--muted);
+    }
+
+    section {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--card); padding: 1.35rem 1.25rem; margin-bottom: 1.1rem;
+    }
+    section h2 { margin: 0 0 .5rem; font-size: 1.05rem; color: var(--primary); }
+    section p, section li { font-size: .88rem; color: var(--muted-foreground); }
+    section strong { color: var(--foreground); }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .logo-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem 1.5rem; text-align: center; background: var(--muted);
+    }
+    .logo-card.on-light {
+      background: oklch(0.97 0 0); color: oklch(0.21 0.03 265);
+    }
+    .logo-card.on-light .wm { color: oklch(0.21 0.03 265); }
+    .logo-card.on-light .wm .v { color: oklch(0.67 0.14 48); }
+    .logo-card .wm { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
+    .logo-card .wm .v { color: var(--primary); }
+    .logo-card .cap { margin-top: .6rem; font-size: .7rem; color: var(--muted-foreground); }
+    .logo-card.on-light .cap { color: oklch(0.45 0.02 265); }
+
+    .swatches { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .sw {
+      width: 72px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .sw i { display: block; height: 36px; }
+    .sw span { display: block; padding: .3rem; font-size: .62rem; background: var(--muted); }
+
+    table { width: 100%; border-collapse: collapse; font-size: .8rem; margin-top: .5rem; }
+    th, td { border: 1px solid var(--border); padding: .45rem .55rem; text-align: left; }
+    th { background: var(--muted); }
+
+    .ui-chip {
+      display: inline-block; margin: .2rem .25rem .2rem 0;
+      padding: .35rem .7rem; border-radius: 6px; font-size: .75rem;
+      background: var(--muted); border: 1px solid var(--border);
+    }
+    .ui-chip.cta { background: var(--primary); color: var(--primary-foreground); border-color: transparent; font-weight: 600; }
+
+    footer { text-align: center; color: var(--muted-foreground); font-size: .78rem; padding: 1.5rem 0; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div><strong style="color:var(--primary)">Velora</strong> · Brand</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <a id="dl" href="BRAND.html" download="BRAND.html">Download HTML</a>
+      <a class="ghost" href="UI_PAGES_AND_LOOK.html">UI inventory</a>
+      <a class="ghost" href="COMPLETE_SYSTEM_PLAN.html">System plan</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="mark" aria-hidden="true">
+        <!-- Soft portal / lintel mark -->
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 26V10.5C8 9.12 9.12 8 10.5 8h11c1.38 0 2.5 1.12 2.5 2.5V26"
+                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 26V14h8v12" stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.5" opacity=".7"/>
+        </svg>
+      </div>
+      <h1 class="wordmark"><span class="v">V</span>elora</h1>
+      <p class="tagline">Property, settled.</p>
+      <span class="say">veh-LOR-ah · quiet building ops</span>
+    </header>
+
+    <section>
+      <h2>Why Velora</h2>
+      <p>
+        Same soft <strong>-ora</strong> family as Finora / Linora, but calmer and less finance-coded.
+        Settled ownership energy: escrow, care, water — without noise.
+      </p>
+      <p style="margin-top:.75rem">
+        <strong>Alternate:</strong> Linora (swap wordmark only; system stays the same).
+      </p>
+    </section>
+
+    <div class="grid2">
+      <section>
+        <h2>Wordmark · dark</h2>
+        <div class="logo-card">
+          <div class="wm"><span class="v">V</span>elora</div>
+          <div class="cap">Primary — sidebar, splash, PDF</div>
+        </div>
+      </section>
+      <section>
+        <h2>Wordmark · light</h2>
+        <div class="logo-card on-light">
+          <div class="wm"><span class="v">V</span>elora</div>
+          <div class="cap">Print / light sheets only</div>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <h2>Color (Darkmatter)</h2>
+      <div class="swatches">
+        <div class="sw"><i style="background:var(--background)"></i><span>Bg</span></div>
+        <div class="sw"><i style="background:var(--foreground)"></i><span>Text</span></div>
+        <div class="sw"><i style="background:var(--primary)"></i><span>Amber</span></div>
+        <div class="sw"><i style="background:var(--secondary)"></i><span>Teal</span></div>
+        <div class="sw"><i style="background:var(--muted)"></i><span>Muted</span></div>
+      </div>
+      <p style="margin-top:.85rem">Font: Geist Mono. Radius 0.75rem. Default dark.</p>
+    </section>
+
+    <section>
+      <h2>Voice · UI chips</h2>
+      <div>
+        <span class="ui-chip">Ask Velora</span>
+        <span class="ui-chip cta">Pay security</span>
+        <span class="ui-chip">Held until secured</span>
+        <span class="ui-chip">No vacant units.</span>
+        <span class="ui-chip">Escrow settled</span>
+      </div>
+      <p style="margin-top:.85rem">Calm. Precise. Never hype.</p>
+    </section>
+
+    <section>
+      <h2>Where the name appears</h2>
+      <table>
+        <thead><tr><th>Surface</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <tr><td>Owner / PM sidebar</td><td><strong>Velora</strong> wordmark</td></tr>
+          <tr><td>Login / splash</td><td>Wordmark + tagline</td></tr>
+          <tr><td>Prospect listings</td><td>“Listed on Velora”</td></tr>
+          <tr><td>Resident app</td><td>Splash · Property, settled.</td></tr>
+          <tr><td>Worker app</td><td>Velora Cleaning</td></tr>
+          <tr><td>AI</td><td>Ask Velora</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Mark</h2>
+      <p>
+        Optional portal / lintel glyph (soft door frame) — suggests threshold and settled shelter.
+        Never a cartoon house or water drop as the brand mark.
+      </p>
+      <div style="margin-top:1rem">
+        <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 26V10.5C8 9.12 9.12 8 10.5 8h11c1.38 0 2.5 1.12 2.5 2.5V26"
+                stroke="oklch(0.7214 0.1337 49.9802)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 26V14h8v12" stroke="oklch(0.5940 0.0443 196.0233)" stroke-width="1.5" opacity=".7"/>
+        </svg>
+      </div>
+    </section>
+
+    <footer>
+      Source: <a href="BRAND.md">BRAND.md</a> · Theme Darkmatter · 2026-09-20
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("dl").addEventListener("click", function (e) {
+      e.preventDefault();
+      var blob = new Blob([document.documentElement.outerHTML], { type: "text/html;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = "BRAND.html";
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>

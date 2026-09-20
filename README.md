@@ -1,17 +1,22 @@
-# Property Management — Building-First
+# Velora
+
+**Property, settled.**
 
 Listings · Escrow rent · Cleaning proof · Building water IoT · **Full AI dashboards & clients**
 
 ## Status
 
+**Brand:** [`docs/BRAND.md`](docs/BRAND.md) / [`.html`](docs/BRAND.html) — Velora  
 **NOW:** individual buildings (+ AI copilots).  
 **LATER:** Pamtsho / main-source WTP ERP.
 
+**[Download brand (HTML)](docs/BRAND.html)** ·  
 **[Download complete visual plan (HTML)](docs/COMPLETE_SYSTEM_PLAN.html)** ·  
 **[Download UI inventory — look, 52 pages, needs (HTML)](docs/UI_PAGES_AND_LOOK.html)**
 
 ## Docs
 
+- [`docs/BRAND.md`](docs/BRAND.md) / [`.html`](docs/BRAND.html) — **Velora** name, voice, mark
 - [`docs/PROJECT_FOCUS.md`](docs/PROJECT_FOCUS.md) — phasing
 - [`docs/UI_PAGES_AND_LOOK.md`](docs/UI_PAGES_AND_LOOK.md) / [`.html`](docs/UI_PAGES_AND_LOOK.html) — **Darkmatter UI look · 52 screens · what to build**
 - [`docs/LISTING_AND_LEASING.md`](docs/LISTING_AND_LEASING.md) — vacancy, photos/3D, security → secured
